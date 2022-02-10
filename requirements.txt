@@ -59,8 +59,6 @@ Keras-Preprocessing
 Markdown
 matplotlib-inline
 more-itertools
-mysql-connector-python
-mysqlclient
 nose
 nose-html-reporting
 numpy
@@ -127,8 +125,6 @@ sqlparse
 tensorboard
 tensorboard-data-server
 tensorboard-plugin-wit
-tensorflow
-tensorflow-estimator
 termcolor
 terminado
 terminaltables

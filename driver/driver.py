@@ -7,7 +7,7 @@ instance = None
 def initialize():
     global instance
     options = webdriver.ChromeOptions()
-    # options.add_argument('--headless')
+    options.add_argument('--headless')
     options.add_argument('--window-size=1920,1080')
     # chrome_options.add_extension('./driver/extentions/Phantom.crx')
     instance = webdriver.Chrome(options=options)
