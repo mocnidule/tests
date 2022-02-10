@@ -240,6 +240,8 @@ def close_popup_alert():
 def select_solflare_web():
     click_connect_button()
     WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, solflare))).click()
+    click_connect_button()
+    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, solflare))).click()
 
 
 def recipient_can_cancel_and_transfer():

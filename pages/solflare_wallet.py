@@ -3,7 +3,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as ec
 from pages.app_page import select_solflare_web
-
+from time import sleep
+from selenium.common.exceptions import TimeoutException
 
 create_new_wallet_button = '//*[contains(text(),"I NEED A NEW WALLET")]'
 already_have_wallet_button = '//*[contains(text(),"I ALREADY HAVE A WALLET")]'
@@ -59,8 +60,7 @@ def solflare_common_outro():
     WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
     handle_default_window()
     select_solflare_web()
-    handle_second_window()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
+    allow_button_handler()
     handle_default_window()
 
 
@@ -425,7 +425,10 @@ def reconnect_sender_mnemonic():
          read_sender_mnemonic_four(), read_sender_mnemonic_five(),read_sender_mnemonic_six(), read_sender_mnemonic_seven(), read_sender_mnemonic_eight(), read_sender_mnemonic_nine(), read_sender_mnemonic_ten(), read_sender_mnemonic_eleven(), read_recipient_mnemonic_twelve() ]))
 
 
-
-
-
-
+def allow_button_handler():
+    try:
+        handle_new_window()
+        WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
+    except TimeoutException:
+        handle_second_window()
+        WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()

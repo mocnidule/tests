@@ -155,8 +155,6 @@ def sender_use_random_date_and_time():
 
 def sender_cancel_contract():
     WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, cancel_button))).click()
-    # handle_second_window()
-    # WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
     approve_button_handler()
     handle_default_window()
     WebDriverWait(driver.instance, 10).until(ec.presence_of_element_located((By.XPATH, canceled_card)))
@@ -165,8 +163,6 @@ def sender_cancel_contract():
 
 def recipient_cancel_contract():
     WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, cancel_button))).click()
-    # handle_second_window()
-    # WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
     approve_button_handler()
     handle_default_window()
     WebDriverWait(driver.instance, 10).until(ec.presence_of_element_located((By.XPATH, canceled_card)))
