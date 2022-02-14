@@ -45,9 +45,9 @@ class test_devsuite(unittest.TestCase):
         sender_create_contract_and_recipient_assert_contract_streaming()
         recipient_withdraw_partial()
 
-    def test_streaming_and_all_can_cancel_and_transfer(self):
+    def test_streaming_years(self):
         create_recipient_and_sender_fill_details_for_streaming()
-        recipient_can_cancel_and_transfer()
+        sender_use_years()
         sender_create_contract_and_recipient_assert_contract_streaming()
 
     @classmethod
