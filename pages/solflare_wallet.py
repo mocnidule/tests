@@ -29,9 +29,9 @@ def create_wallet_for_sender():
     select_solflare_web()
     handle_new_window()
     driver.instance.maximize_window()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, create_new_wallet_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, create_new_wallet_button))).click()
     get_sender_mnemonic()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, wrote_down_mnemonic_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, wrote_down_mnemonic_button))).click()
     collect_sender_mnemonics()
     solflare_common_outro()
 
@@ -40,9 +40,9 @@ def create_wallet_for_recipient():
     select_solflare_web()
     handle_new_window()
     driver.instance.maximize_window()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, create_new_wallet_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, create_new_wallet_button))).click()
     get_recipient_mnemonic()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, wrote_down_mnemonic_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, wrote_down_mnemonic_button))).click()
     collect_recipient_mnemonics()
     solflare_common_outro()
 
@@ -51,13 +51,13 @@ def solflare_common_intro():
     select_solflare_web()
     handle_new_window()
     driver.instance.maximize_window()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, create_new_wallet_button))).click()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, copy_mnemonic_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, create_new_wallet_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, copy_mnemonic_button))).click()
 
 
 def solflare_common_outro():
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
     handle_default_window()
     select_solflare_web()
     allow_button_handler()
@@ -66,25 +66,25 @@ def solflare_common_outro():
 
 def mnemonic_reconnect_for_recipient():
     handle_new_window()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, already_have_wallet_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, already_have_wallet_button))).click()
     reconnect_recipient_mnemonic()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, advanced_button))).click()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, select_right_wallet))).click()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, advanced_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, select_right_wallet))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
     handle_default_window()
 
 
 def mnemonic_reconnect_for_sender():
     handle_new_window()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, already_have_wallet_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, already_have_wallet_button))).click()
     reconnect_sender_mnemonic()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, advanced_button))).click()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, select_right_wallet))).click()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, advanced_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, select_right_wallet))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
     handle_default_window()
 
 def get_recipient_mnemonic():
@@ -223,29 +223,29 @@ def collect_recipient_mnemonics():
     ten = 'mnemonic-input-9'
     eleven = 'mnemonic-input-10'
     twelve = 'mnemonic-input-11'
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, one))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, one))). \
         send_keys(read_recipient_mnemonic_one())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, two))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, two))). \
         send_keys(read_recipient_mnemonic_two())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, three))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, three))). \
         send_keys(read_recipient_mnemonic_three())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, four))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, four))). \
         send_keys(read_recipient_mnemonic_four())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, five))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, five))). \
         send_keys(read_recipient_mnemonic_five())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, six))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, six))). \
         send_keys(read_recipient_mnemonic_six())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, seven))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, seven))). \
         send_keys(read_recipient_mnemonic_seven())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, eight))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, eight))). \
         send_keys(read_recipient_mnemonic_eight())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, nine))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, nine))). \
         send_keys(read_recipient_mnemonic_nine())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, ten))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, ten))). \
         send_keys(read_recipient_mnemonic_ten())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, eleven))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, eleven))). \
         send_keys(read_recipient_mnemonic_eleven())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, twelve))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, twelve))). \
         send_keys(read_recipient_mnemonic_twelve())
 
 
@@ -385,41 +385,41 @@ def collect_sender_mnemonics():
     ten = 'mnemonic-input-9'
     eleven = 'mnemonic-input-10'
     twelve = 'mnemonic-input-11'
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, one))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, one))). \
         send_keys(read_sender_mnemonic_one())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, two))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, two))). \
         send_keys(read_sender_mnemonic_two())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, three))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, three))). \
         send_keys(read_sender_mnemonic_three())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, four))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, four))). \
         send_keys(read_sender_mnemonic_four())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, five))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, five))). \
         send_keys(read_sender_mnemonic_five())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, six))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, six))). \
         send_keys(read_sender_mnemonic_six())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, seven))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, seven))). \
         send_keys(read_sender_mnemonic_seven())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, eight))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, eight))). \
         send_keys(read_sender_mnemonic_eight())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, nine))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, nine))). \
         send_keys(read_sender_mnemonic_nine())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, ten))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, ten))). \
         send_keys(read_sender_mnemonic_ten())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, eleven))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, eleven))). \
         send_keys(read_sender_mnemonic_eleven())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, twelve))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, twelve))). \
         send_keys(read_sender_mnemonic_twelve())
 
 
 def reconnect_recipient_mnemonic():
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, textarea))).click()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, textarea))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, textarea))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, textarea))). \
         send_keys(" ".join([read_recipient_mnemonic_one(), read_recipient_mnemonic_two(), read_recipient_mnemonic_three(), read_recipient_mnemonic_four(), read_recipient_mnemonic_five(), read_recipient_mnemonic_six(), read_recipient_mnemonic_seven(), read_recipient_mnemonic_eight(), read_recipient_mnemonic_nine(), read_recipient_mnemonic_ten(), read_recipient_mnemonic_eleven(), read_recipient_mnemonic_twelve()]))
 
 
 def reconnect_sender_mnemonic():
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, textarea))).click()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, textarea))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, textarea))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, textarea))). \
         send_keys(" ".join(
         [read_sender_mnemonic_one(), read_sender_mnemonic_two(), read_sender_mnemonic_three(),
          read_sender_mnemonic_four(), read_sender_mnemonic_five(),read_sender_mnemonic_six(), read_sender_mnemonic_seven(), read_sender_mnemonic_eight(), read_sender_mnemonic_nine(), read_sender_mnemonic_ten(), read_sender_mnemonic_eleven(), read_recipient_mnemonic_twelve() ]))
@@ -428,7 +428,7 @@ def reconnect_sender_mnemonic():
 def allow_button_handler():
     try:
         handle_new_window()
-        WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
+        WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
     except TimeoutException:
         handle_second_window()
-        WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
+        WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()

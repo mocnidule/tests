@@ -75,7 +75,7 @@ toggle = 'headlessui-switch-2'
 
 
 def click_toggle():
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, toggle))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, toggle))).click()
     sleep(5)
 
 
@@ -90,23 +90,23 @@ def go_to_dev_stream():
 
 
 def click_on_stream_tab():
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, stream_tab))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, stream_tab))).click()
 
 
 def assert_page_is_loaded():
-    WebDriverWait(driver.instance, 10).until(ec.presence_of_element_located((By.XPATH, app_navigation)))
+    WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, app_navigation)))
 
 
 def click_connect_button():
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, connect_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, connect_button))).click()
 
 
 def select_phantom_wallet():
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, phantom))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, phantom))).click()
 
 
 def copy_wallet_address():
-    WebDriverWait(driver.instance, 10).until(ec.presence_of_element_located((By.XPATH, address_locator)))
+    WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, address_locator)))
     address = driver.instance.find_element(By.XPATH, address_locator).text
     with open('./reporting/wallets/wallet_address.txt', 'w') as file:
         file.write(str(address))
@@ -119,169 +119,169 @@ def read_wallet_address():
 
 
 def enter_deposited_amount():
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, deposited_amount_input_field))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, deposited_amount_input_field))). \
         send_keys(get_deposited_amount())
 
 
 def enter_amount():
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, amount_input))).\
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, amount_input))).\
         send_keys(get_amount())
 
 
 def enter_release_amount():
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, release_amount_input_field))).\
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, release_amount_input_field))).\
         send_keys(get_amount())
 
 
 def enter_negative_amount():
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, amount_input))).\
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, amount_input))).\
         send_keys('-1000')
 
 
 def enter_abnormal_amount():
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, amount_input))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, amount_input))). \
         send_keys('1000000000')
 
 
 def enter_contract_title():
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, title_input))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, title_input))). \
         send_keys(read_contract_title())
 
 
 def enter_wallet_address():
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, recipient_input))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, recipient_input))). \
         send_keys(read_wallet_address())
 
 
 def click_create_button():
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, create_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, create_button))).click()
 
 
 def select_frequency_picker():
     sleep(5)
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, release_frequency_picker))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, release_frequency_picker))).click()
 
 
 def sender_use_seconds():
     select_frequency_picker()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, second))).click()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, release_frequency))).clear()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, release_frequency))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, second))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, release_frequency))).clear()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, release_frequency))). \
         send_keys(get_seconds())
 
 
 def sender_use_minutes():
     select_frequency_picker()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, minute))).click()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, release_frequency))).clear()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, release_frequency))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, minute))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, release_frequency))).clear()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, release_frequency))). \
         send_keys(get_minutes())
 
 
 def sender_use_hours():
     select_frequency_picker()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, hour))).click()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, release_frequency))).clear()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, release_frequency))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, hour))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, release_frequency))).clear()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, release_frequency))). \
         send_keys(get_hours())
 
 
 def sender_use_days():
     select_frequency_picker()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, day))).click()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, release_frequency))).clear()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, release_frequency))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, day))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, release_frequency))).clear()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, release_frequency))). \
         send_keys(get_days())
 
 
 def sender_use_weeks():
     select_frequency_picker()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, week))).click()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, release_frequency))).clear()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, release_frequency))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, week))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, release_frequency))).clear()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, release_frequency))). \
         send_keys(get_weeks())
 
 
 def sender_use_months():
     select_frequency_picker()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, month))).click()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, release_frequency))).clear()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, release_frequency))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, month))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, release_frequency))).clear()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, release_frequency))). \
         send_keys(get_months())
 
 
 def sender_use_years():
     select_frequency_picker()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, year))).click()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, release_frequency))).clear()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, release_frequency))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, year))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, release_frequency))).clear()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, release_frequency))). \
         send_keys(get_years())
 
 
 def set_random_date():
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, start_date_input))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, start_date_input))). \
         send_keys(random_start_date())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, end_date_input))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, end_date_input))). \
         send_keys(random_end_date())
 
 
 def sender_use_past_date():
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, start_date_input))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, start_date_input))). \
         send_keys(random_start_past_date())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, end_date_input))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, end_date_input))). \
         send_keys(random_end_past_date())
 
 
 def set_random_time():
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, start_time_input))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, start_time_input))). \
         send_keys(random_start_time())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, end_time_input))). \
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, end_time_input))). \
         send_keys(random_end_time())
 
 
 def close_popup_alert():
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, alert_close_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, alert_close_button))).click()
 
 
 def select_solflare_web():
     click_connect_button()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, solflare))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, solflare))).click()
     click_connect_button()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, solflare))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, solflare))).click()
 
 
 def recipient_can_cancel_and_transfer():
     click_advanced_toggle()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, recipient_can_cancel_checkbox))).click()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, recipient_can_transfer_checkbox))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, recipient_can_cancel_checkbox))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, recipient_can_transfer_checkbox))).click()
 
 
 def non_can_cancel_and_transfer():
     click_advanced_toggle()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, sender_can_cancel_checkbox))).click()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, sender_can_transfer_checkbox))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, sender_can_cancel_checkbox))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, sender_can_transfer_checkbox))).click()
 
 
 def click_advanced_toggle():
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, advanced_toggle))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, advanced_toggle))).click()
 
 
 def transfer_to_new_recipient():
-    WebDriverWait(driver.instance, 10).until(ec.presence_of_element_located((By.XPATH, transfer_recipient_address_field))).send_keys('F7zQFckoPdSoCo4CZkEgrYk9r4JJ5BcizVNvj735cm19')
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, confirm_transfer_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, transfer_recipient_address_field))).send_keys('F7zQFckoPdSoCo4CZkEgrYk9r4JJ5BcizVNvj735cm19')
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, confirm_transfer_button))).click()
 
 
 def sender_transfer_to_self():
     click_on_transaction_confirmed_alert()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, transfer_button))).click()
-    WebDriverWait(driver.instance, 10).until(ec.presence_of_element_located((By.XPATH, transfer_recipient_address_field))).send_keys(read_sender_wallet_address())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, confirm_transfer_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, transfer_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, transfer_recipient_address_field))).send_keys(read_sender_wallet_address())
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, confirm_transfer_button))).click()
 
 
 def recipient_transfer_to_self():
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, transfer_button))).click()
-    WebDriverWait(driver.instance, 10).until(ec.presence_of_element_located((By.XPATH, transfer_recipient_address_field))).send_keys(read_wallet_address())
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, confirm_transfer_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, transfer_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, transfer_recipient_address_field))).send_keys(read_wallet_address())
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, confirm_transfer_button))).click()
 
 
 def read_sender_wallet_address():
@@ -292,58 +292,58 @@ def read_sender_wallet_address():
 
 def set_random_cliff():
     click_advanced_toggle()
-    WebDriverWait(driver.instance, 10).until(ec.presence_of_element_located((By.ID, cliff_date_input))).send_keys('12122026')
-    WebDriverWait(driver.instance, 10).until(ec.presence_of_element_located((By.ID, cliff_time_input))).send_keys(random_start_time())
-    WebDriverWait(driver.instance, 10).until(ec.presence_of_element_located((By.ID, cliff_percentage_input))).clear()
-    WebDriverWait(driver.instance, 10).until(ec.presence_of_element_located((By.ID, cliff_percentage_input))).send_keys(get_cliff_percentage())
+    WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.ID, cliff_date_input))).send_keys('12122026')
+    WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.ID, cliff_time_input))).send_keys(random_start_time())
+    WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.ID, cliff_percentage_input))).clear()
+    WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.ID, cliff_percentage_input))).send_keys(get_cliff_percentage())
 
 
 def set_past_cliff_date():
     click_advanced_toggle()
-    WebDriverWait(driver.instance, 10).until(ec.presence_of_element_located((By.ID, cliff_date_input))).send_keys('12122022')
-    WebDriverWait(driver.instance, 10).until(ec.presence_of_element_located((By.ID, cliff_time_input))).send_keys(random_start_time())
-    WebDriverWait(driver.instance, 10).until(ec.presence_of_element_located((By.ID, cliff_percentage_input))).send_keys(get_cliff_percentage())
+    WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.ID, cliff_date_input))).send_keys('12122022')
+    WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.ID, cliff_time_input))).send_keys(random_start_time())
+    WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.ID, cliff_percentage_input))).send_keys(get_cliff_percentage())
 
 
 def assert_stream_in_the_past_error_message():
-    WebDriverWait(driver.instance, 10).until(ec.presence_of_element_located((By.XPATH, no_streams_in_the_past_alert)))
+    WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, no_streams_in_the_past_alert)))
 
 
 def assert_no_negative_amount_error_message():
-    WebDriverWait(driver.instance, 10).until(ec.presence_of_element_located((By.XPATH, no_negative_amount_alert)))
+    WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, no_negative_amount_alert)))
 
 
 def assert_not_enough_tokens_error_message():
-    WebDriverWait(driver.instance, 10).until(ec.presence_of_element_located((By.XPATH, not_enough_tokens_alert)))
+    WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, not_enough_tokens_alert)))
 
 
 def assert_cliff_should_happen_after_start_error_message():
-    WebDriverWait(driver.instance, 10).until(ec.presence_of_element_located((By.XPATH, cliff_should_happen_after_start_alert)))
+    WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, cliff_should_happen_after_start_alert)))
 
 
 def click_on_view_on_explorer_button():
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, view_on_explorer_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, view_on_explorer_button))).click()
 
 
 def click_wallet_connected_alert():
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, wallet_connected_alert))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, wallet_connected_alert))).click()
 
 
 def click_on_transaction_confirmed_alert():
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, transaction_confirmed_alert))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, transaction_confirmed_alert))).click()
 
 
 def assert_must_have_fields_populated():
-    WebDriverWait(driver.instance, 10).until(
+    WebDriverWait(driver.instance, 20).until(
         ec.presence_of_element_located((By.XPATH, please_provide_title_alert)))
-    WebDriverWait(driver.instance, 10).until(
+    WebDriverWait(driver.instance, 20).until(
         ec.presence_of_element_located((By.XPATH, chose_recipient_alert)))
-    WebDriverWait(driver.instance, 10).until(
+    WebDriverWait(driver.instance, 20).until(
         ec.presence_of_element_located((By.XPATH, amount_is_required_alert)))
 
 
 def assert_cant_transfer_stream_to_yourself():
-    WebDriverWait(driver.instance, 10).until(
+    WebDriverWait(driver.instance, 20).until(
         ec.presence_of_element_located((By.XPATH, cant_transfer_stream_to_yourself_alert)))
 
 
@@ -353,24 +353,24 @@ def assert_overview_section():
 
 def withdraw_more_than_available():
     sleep(70)
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, withdraw_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, withdraw_button))).click()
     sleep(3)
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, withdraw_amount_input_field))).clear()
-    WebDriverWait(driver.instance, 10).until(
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, withdraw_amount_input_field))).clear()
+    WebDriverWait(driver.instance, 20).until(
         ec.presence_of_element_located((By.XPATH, withdraw_amount_input_field))).send_keys('50000')
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, confirm_withdraw_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, confirm_withdraw_button))).click()
     handle_second_window()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
     handle_default_window()
 
 
 def assert_failed_to_send_transaction_alert():
-    WebDriverWait(driver.instance, 10).until(
+    WebDriverWait(driver.instance, 20).until(
         ec.presence_of_element_located((By.XPATH, failed_to_send_transaction_alert)))
 
 
 def click_transaction_canceled_alert():
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, transaction_canceled_alert))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, transaction_canceled_alert))).click()
 
 
 

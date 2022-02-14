@@ -23,8 +23,8 @@ mnemonic_text_area = '//textarea[@placeholder="Secret phrase"]'
 
 def create_phantom_wallet_for_sender():
     handle_new_window()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, create_new_wallet_button))).click()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, phantom_mnemonic))).click()
+    WebDriverWait(driver.instance, ).until(ec.element_to_be_clickable((By.XPATH, create_new_wallet_button))).click()
+    WebDriverWait(driver.instance, ).until(ec.element_to_be_clickable((By.XPATH, phantom_mnemonic))).click()
     mnemonic_phase = driver.instance.find_element(By.XPATH, phantom_mnemonic).text
     with open('./reporting/wallets/sender_mnemonic.txt', 'w') as file:
         file.write(str(mnemonic_phase))
@@ -35,7 +35,7 @@ def create_phantom_wallet_for_sender():
 
 def create_phantom_wallet_for_recipient():
     handle_new_window()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, create_new_wallet_button))).click()
+    WebDriverWait(driver.instance, ).until(ec.element_to_be_clickable((By.XPATH, create_new_wallet_button))).click()
     WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, phantom_mnemonic))).click()
     mnemonic_phase = driver.instance.find_element(By.XPATH, phantom_mnemonic).text
     with open('./reporting/wallets/recipient_mnemonic.txt', 'w') as file:
