@@ -10,11 +10,11 @@ from helpers.app_helpers import sender_use_seconds, create_recipient_and_sender_
     recipient_can_cancel_and_transfer, sender_transfer_contract, recipient_cancel_contract, recipient_transfer_contract,\
     recipient_withdraw_partial, recipient_withdraw_full, non_can_cancel_and_transfer, reconnect_sender, \
     create_recipient_and_sender_fill_details_for_vesting, sender_use_random_date_and_time, \
-    sender_create_contract_and_recipient_assert_contract_vesting, set_random_cliff
+    sender_create_contract_and_recipient_assert_contract_vesting, set_random_cliff, click_toggle
 
 
 @pytest.mark.devs
-@flaky(max_runs=2, min_passes=1)
+# @flaky(max_runs=2, min_passes=1)
 class test_devsuite(unittest.TestCase):
 
     @classmethod

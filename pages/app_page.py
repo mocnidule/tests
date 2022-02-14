@@ -71,6 +71,12 @@ top_up_amount_input_field = '(//input[@type="number" and contains(@class,"py-1.5
 deposited_amount_input_field = 'depositedAmount'
 release_amount_input_field = 'releaseAmount'
 stream_tab = '//a[contains(text(),"Streams")]'
+toggle = 'headlessui-switch-2'
+
+
+def click_toggle():
+    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.ID, toggle))).click()
+    sleep(5)
 
 
 def go_to_dev_vesting():
@@ -288,6 +294,7 @@ def set_random_cliff():
     click_advanced_toggle()
     WebDriverWait(driver.instance, 10).until(ec.presence_of_element_located((By.ID, cliff_date_input))).send_keys('12122026')
     WebDriverWait(driver.instance, 10).until(ec.presence_of_element_located((By.ID, cliff_time_input))).send_keys(random_start_time())
+    WebDriverWait(driver.instance, 10).until(ec.presence_of_element_located((By.ID, cliff_percentage_input))).clear()
     WebDriverWait(driver.instance, 10).until(ec.presence_of_element_located((By.ID, cliff_percentage_input))).send_keys(get_cliff_percentage())
 
 

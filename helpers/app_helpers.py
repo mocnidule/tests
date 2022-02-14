@@ -6,6 +6,7 @@ from reporting.allure import attach_screenshot
 from selenium.webdriver.common.action_chains import ActionChains
 from pages.solana_explore import go_to_token_balances_and_assert
 from selenium.common.exceptions import TimeoutException
+from time import sleep
 
 
 def go_to_vesting_and_assert_page_is_loaded():
@@ -36,19 +37,23 @@ def create_recipient():
     go_to_vesting_and_assert_page_is_loaded()
     create_wallet_for_recipient()
     copy_wallet_address()
+    click_toggle()
     request_airdrop()
+    click_toggle()
     quit_driver_to_reconnect_for_vesting()
 
 
 def reconnect_recipient_and_assert_vesting():
     quit_driver_to_reconnect_for_vesting()
     go_to_vesting_and_assert_page_is_loaded()
+    click_toggle()
     reconnect_recipient_common()
 
 
 def reconnect_recipient_and_assert_streaming():
     quit_driver_to_reconnect_for_streaming()
     go_to_stream_and_assert_page_is_loaded()
+    click_toggle()
     reconnect_recipient_common()
 
 
@@ -72,16 +77,19 @@ def reconnect_sender():
     handle_second_window()
     WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
     handle_default_window()
+    click_toggle()
 
 
 def create_sender_and_fill_standard_details_for_vesting():
     create_wallet()
     request_airdrops_for_sender()
+    click_toggle()
     enter_amount()
+    sleep(10)
     create_contract_title()
     enter_contract_title()
     enter_wallet_address()
-    click_wallet_connected_alert()
+    # click_wallet_connected_alert()
     attach_screenshot(driver.instance, 'Filled Vesting Details')
 
 
@@ -89,19 +97,20 @@ def create_sender_and_fill_standard_details_for_streaming():
     create_wallet()
     request_airdrops_for_sender()
     click_on_stream_tab()
+    sleep(10)
+    click_toggle()
     enter_deposited_amount()
     enter_release_amount()
     create_contract_title()
     enter_contract_title()
     enter_wallet_address()
-    click_wallet_connected_alert()
+    # click_wallet_connected_alert()
     attach_screenshot(driver.instance, 'Filled Streaming Details')
 
 
 def sender_create_contract():
     click_create_button()
-    handle_new_window()
-    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
+    approve_button_handler()
     handle_default_window()
     find_contract_and_assert()
     attach_screenshot(driver.instance, 'Sender Contract')
@@ -131,19 +140,26 @@ def find_contract_and_assert():
 def create_recipient_and_sender_fill_details_for_vesting():
     create_recipient()
     create_sender_and_fill_standard_details_for_vesting()
+    click_toggle()
+    sleep(2)
 
 
 def create_recipient_and_sender_fill_details_for_streaming():
     create_recipient()
     create_sender_and_fill_standard_details_for_streaming()
+    click_toggle()
+    sleep(2)
 
 
 def sender_create_contract_and_recipient_assert_contract_vesting():
+    click_toggle()
     sender_create_contract()
     reconnect_recipient_and_assert_vesting()
+    sleep(2)
 
 
 def sender_create_contract_and_recipient_assert_contract_streaming():
+    click_toggle()
     sender_create_contract()
     reconnect_recipient_and_assert_streaming()
 
@@ -281,6 +297,7 @@ def request_airdrop():
 
 
 def request_airdrops_for_sender():
+    click_toggle()
     WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, request_airdrop_button))).click()
     sleep(6)
     approve_button_handler()
@@ -293,10 +310,11 @@ def request_airdrops_for_sender():
     handle_default_window()
     iterations = 4
     for _ in range(iterations):
+        click_toggle()
         WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, request_airdrop_button))).click()
         sleep(2)
         handle_new_window()
-        WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
+        WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
         handle_default_window()
         driver.instance.refresh()
         select_solflare_web()
