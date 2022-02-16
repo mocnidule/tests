@@ -5,8 +5,8 @@ from helpers.fakers_helpers import create_contract_title
 from reporting.allure import attach_screenshot
 from selenium.webdriver.common.action_chains import ActionChains
 from pages.solana_explore import go_to_token_balances_and_assert
-from selenium.common.exceptions import TimeoutException
 from time import sleep
+from selenium.common.exceptions import TimeoutException
 
 
 def go_to_vesting_and_assert_page_is_loaded():

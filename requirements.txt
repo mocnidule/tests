@@ -49,8 +49,6 @@ ipdb
 ipython
 itsdangerous
 jedi
-Jinja2
-jinja2-highlight
 jsonpickle
 jsonrpcclient
 jsonrpcserver
