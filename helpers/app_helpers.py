@@ -236,7 +236,7 @@ def cancel_contract():
 
 
 def withdraw_contract():
-    withdraw_contract_button = "//p[contains(text(),'" + read_contract_title() + "')]/parent::dl/button[contains(" \
+    withdraw_contract_button = "//p[contains(text(),'" + read_contract_title() + "')]/parent::dl//button[contains(" \
                                                                                  "text(),'Withdraw')] "
     withdraw = WebDriverWait(driver.instance, 20).until(
         ec.presence_of_element_located((By.XPATH, withdraw_contract_button)))
