@@ -150,15 +150,6 @@ def find_contract_and_assert():
     actions.move_to_element(title).perform()
 
 
-def cancel_contract():
-    cancel_contract_button = "//p[contains(text(),'" + read_contract_title() + "')]/parent::dl/button"
-    cancel = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, cancel_contract_button)))
-    cancel.click()
-    approve_button_handler()
-    handle_default_window()
-    find_contract_and_assert()
-
-
 def create_recipient_and_sender_fill_details_for_vesting():
     create_recipient()
     create_sender_and_fill_standard_details_for_vesting()
@@ -205,7 +196,7 @@ def recipient_cancel_contract():
     attach_screenshot(driver.instance, 'Contract Canceled')
 
 
-def recipient_transfer_contract():
+def transfer_contract():
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, transfer_button))).click()
     transfer_to_new_recipient()
     handle_second_window()
@@ -217,7 +208,6 @@ def recipient_transfer_contract():
 
 
 def sender_transfer_contract():
-    click_on_transaction_confirmed_alert()
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, transfer_button))).click()
     transfer_to_new_recipient()
     handle_new_window()
@@ -233,6 +223,27 @@ def recipient_withdraw_partial():
     handle_default_window()
     # assert_in_solana_explore()
     attach_screenshot(driver.instance, 'Partial Withdraw')
+
+
+def cancel_contract():
+    cancel_contract_button = "//p[contains(text(),'" + read_contract_title() + "')]/parent::dl//button[contains(text(" \
+                                                                               "),'Cancel')] "
+    cancel = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, cancel_contract_button)))
+    cancel.click()
+    approve_button_handler()
+    handle_default_window()
+    find_contract_and_assert()
+
+
+def withdraw_contract():
+    withdraw_contract_button = "//p[contains(text(),'" + read_contract_title() + "')]/parent::dl/button[contains(" \
+                                                                                 "text(),'Withdraw')] "
+    withdraw = WebDriverWait(driver.instance, 20).until(
+        ec.presence_of_element_located((By.XPATH, withdraw_contract_button)))
+    withdraw.click()
+    approve_button_handler()
+    handle_default_window()
+    find_contract_and_assert()
 
 
 def recipient_withdraw_full():
@@ -363,3 +374,9 @@ def connect_recipients_wallet():
     handle_new_window()
     click_already_have_wallet()
     handle_solflare_for_recipient()
+
+
+def sender_handle_standard_contract():
+    go_to_vesting_and_assert_page_is_loaded()
+    connect_senders_wallet()
+    sender_fill_standard_contract_details()

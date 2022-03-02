@@ -40,8 +40,8 @@ allow_button = '//*[contains(text(),"ALLOW")]'
 cancel_button = '(//button[contains(text(),"Cancel")])[3]'
 transfer_button = '(//button[contains(text(),"Transfer")])[1]'
 canceled_card = '//span[contains(text(),"canceled")]'
-recipient_can_transfer_checkbox = '//input[@name="recipientCanTransfer"]'
-recipient_can_cancel_checkbox = '//input[@name="recipientCanCancel"]'
+recipient_can_transfer_checkbox = 'recipientCanTransfer'
+recipient_can_cancel_checkbox = 'recipientCanCancel'
 sender_can_cancel_checkbox = 'senderCanCancel'
 sender_can_transfer_checkbox = 'senderCanTransfer'
 advanced_toggle = '(//button[@role="switch"])[4]'
@@ -254,22 +254,19 @@ def close_popup_alert():
 
 
 def select_solflare_web():
-    # click_connect_button()
-    # WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, solflare))).click()
-    # click_connect_button()
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, solflare))).click()
 
 
-def recipient_can_cancel_and_transfer():
+def all_can_transfer_and_cancel():
     click_advanced_toggle()
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, recipient_can_cancel_checkbox))).click()
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, recipient_can_transfer_checkbox))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, sender_can_transfer_checkbox))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, recipient_can_cancel_checkbox))).click()
 
 
 def non_can_cancel_and_transfer():
     click_advanced_toggle()
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, sender_can_cancel_checkbox))).click()
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, sender_can_transfer_checkbox))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, recipient_can_transfer_checkbox))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, sender_can_cancel_checkbox))).click()
 
 
 def click_advanced_toggle():
