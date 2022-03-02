@@ -3,7 +3,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as ec
 from pages.app_page import select_solflare_web
-from time import sleep
 from selenium.common.exceptions import TimeoutException
 
 create_new_wallet_button = '//*[contains(text(),"I NEED A NEW WALLET")]'
@@ -59,6 +58,7 @@ def solflare_common_outro():
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
     handle_default_window()
+    select_solflare_web()
     select_solflare_web()
     allow_button_handler()
     handle_default_window()
@@ -414,7 +414,7 @@ def collect_sender_mnemonics():
 def reconnect_recipient_mnemonic():
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, textarea))).click()
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, textarea))). \
-        send_keys(" ".join([read_recipient_mnemonic_one(), read_recipient_mnemonic_two(), read_recipient_mnemonic_three(), read_recipient_mnemonic_four(), read_recipient_mnemonic_five(), read_recipient_mnemonic_six(), read_recipient_mnemonic_seven(), read_recipient_mnemonic_eight(), read_recipient_mnemonic_nine(), read_recipient_mnemonic_ten(), read_recipient_mnemonic_eleven(), read_recipient_mnemonic_twelve()]))
+        send_keys('liquid frequent cook sport market web theory bag rookie hub half defy')
 
 
 def reconnect_sender_mnemonic():
@@ -428,7 +428,37 @@ def reconnect_sender_mnemonic():
 def allow_button_handler():
     try:
         handle_new_window()
-        WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
+        WebDriverWait(driver.instance, 5).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
     except TimeoutException:
         handle_second_window()
-        WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
+        WebDriverWait(driver.instance, 5).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
+
+
+def click_already_have_wallet():
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, already_have_wallet_button))).click()
+
+
+def handle_solflare_for_sender():
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, textarea))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, textarea))).send_keys('this apology orange snack merry couch gaze appear noble donkey hamster any')
+    handle_rest()
+
+
+def handle_solflare_for_recipient():
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, textarea))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, textarea))).send_keys('liquid frequent cook sport market web theory bag rookie hub half defy')
+    handle_rest()
+
+
+def handle_rest():
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, advanced_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, select_right_wallet))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
+    handle_default_window()
+    select_solflare_web()
+    select_solflare_web()
+    allow_button_handler()
+    handle_default_window()
+

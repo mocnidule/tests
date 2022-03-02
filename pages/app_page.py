@@ -16,6 +16,7 @@ solflare = '//p[contains(text(),"Solflare (Web)")]'
 request_airdrop_button = '//button[contains(text(),"Airdrop")]'
 address_locator = '(//span[contains(@class, "font-light") and contains(@class,"text-base")])[1]'
 amount_input = '//input[@id="amount"]'
+release_amount_input = 'releaseAmount'
 title_input = '//input[@id="subject"]'
 recipient_input = '//input[@id="recipient"]'
 create_button = '//button[contains(text(),"Create")]'
@@ -39,11 +40,11 @@ allow_button = '//*[contains(text(),"ALLOW")]'
 cancel_button = '(//button[contains(text(),"Cancel")])[3]'
 transfer_button = '(//button[contains(text(),"Transfer")])[1]'
 canceled_card = '//span[contains(text(),"canceled")]'
-recipient_can_transfer_checkbox = 'recipientCanTransfer'
-recipient_can_cancel_checkbox = 'recipientCanCancel'
+recipient_can_transfer_checkbox = '//input[@name="recipientCanTransfer"]'
+recipient_can_cancel_checkbox = '//input[@name="recipientCanCancel"]'
 sender_can_cancel_checkbox = 'senderCanCancel'
 sender_can_transfer_checkbox = 'senderCanTransfer'
-advanced_toggle = '(//button[@role="switch"])[3]'
+advanced_toggle = '(//button[@role="switch"])[4]'
 transfer_recipient_address_field = '(//input[@placeholder="Recipient address"])[1]'
 confirm_transfer_button = '(//button[contains(text(),"Transfer")])[2]'
 withdraw_button = '(//button[contains(text(),"Withdraw")])[1]'
@@ -72,20 +73,24 @@ deposited_amount_input_field = 'depositedAmount'
 release_amount_input_field = 'releaseAmount'
 stream_tab = '//a[contains(text(),"Streams")]'
 toggle = 'headlessui-switch-2'
+password = '//input[@type="password"]'
+submit_password = '//*[contains(text(),"Submit")]'
+auto_withdrawal = '(//button[@role="switch"])[3]'
 
 
 def click_toggle():
+    sleep(10)
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, toggle))).click()
     sleep(5)
 
 
 def go_to_dev_vesting():
-    driver.instance.get('https://streamflow-dev.netlify.app/' + vesting_screen)
+    driver.instance.get('https://staging.streamflow.finance/' + vesting_screen)
     driver.instance.maximize_window()
 
 
 def go_to_dev_stream():
-    driver.instance.get('https://streamflow-dev.netlify.app/' + streams_screen)
+    driver.instance.get('https://staging.streamflow.finance/' + streams_screen)
     driver.instance.maximize_window()
 
 
@@ -95,6 +100,11 @@ def click_on_stream_tab():
 
 def assert_page_is_loaded():
     WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, app_navigation)))
+
+
+def enter_password_and_submit():
+    WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, password))).send_keys('streamooor')
+    WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, submit_password))).click()
 
 
 def click_connect_button():
@@ -150,7 +160,7 @@ def enter_contract_title():
 
 def enter_wallet_address():
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, recipient_input))). \
-        send_keys(read_wallet_address())
+        send_keys('5tsGv3aUtUwADcsoc2QPKWY4xhGbYycNrXF5QgkpuUah')
 
 
 def click_create_button():
@@ -244,22 +254,22 @@ def close_popup_alert():
 
 
 def select_solflare_web():
-    click_connect_button()
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, solflare))).click()
-    click_connect_button()
+    # click_connect_button()
+    # WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, solflare))).click()
+    # click_connect_button()
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, solflare))).click()
 
 
 def recipient_can_cancel_and_transfer():
     click_advanced_toggle()
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, recipient_can_cancel_checkbox))).click()
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, recipient_can_transfer_checkbox))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, recipient_can_cancel_checkbox))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, recipient_can_transfer_checkbox))).click()
 
 
 def non_can_cancel_and_transfer():
     click_advanced_toggle()
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, sender_can_cancel_checkbox))).click()
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, sender_can_transfer_checkbox))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, sender_can_cancel_checkbox))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, sender_can_transfer_checkbox))).click()
 
 
 def click_advanced_toggle():
@@ -371,6 +381,15 @@ def assert_failed_to_send_transaction_alert():
 
 def click_transaction_canceled_alert():
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, transaction_canceled_alert))).click()
+
+
+def sender_select_autowithdrawal():
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, auto_withdrawal))).click()
+
+
+def recipient_wait_for_autowithdrawal():
+    sleep(60)
+
 
 
 

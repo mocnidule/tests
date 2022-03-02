@@ -14,7 +14,8 @@ from pages.app_page import recipient_can_cancel_and_transfer, non_can_cancel_and
     assert_no_negative_amount_error_message, enter_abnormal_amount, assert_not_enough_tokens_error_message, \
     set_past_cliff_date, assert_cliff_should_happen_after_start_error_message, assert_must_have_fields_populated, \
     sender_transfer_to_self, assert_cant_transfer_stream_to_yourself, recipient_transfer_to_self, \
-    withdraw_more_than_available, assert_failed_to_send_transaction_alert
+    withdraw_more_than_available, assert_failed_to_send_transaction_alert, sender_select_autowithdrawal, \
+    recipient_wait_for_autowithdrawal
 
 
 @pytest.mark.all
@@ -200,6 +201,12 @@ class test_vesting(unittest.TestCase):
     def test_vesting_sender_decline_then_approve_transaction_while_create(self):
         create_recipient_and_sender_fill_details_for_vesting()
         decline_then_approve_contract_creation()
+
+    def test_vesting_sender_select_autowithdrawal(self):
+        create_recipient_and_sender_fill_details_for_vesting()
+        sender_select_autowithdrawal()
+        sender_create_contract_and_recipient_assert_contract_vesting()
+        recipient_wait_for_autowithdrawal()
 
     @classmethod
     def tearDown(cls):
