@@ -6,7 +6,7 @@ from reporting.allure import attach_screenshot
 from selenium.webdriver.common.action_chains import ActionChains
 from pages.solana_explore import go_to_token_balances_and_assert
 from time import sleep
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import TimeoutException, ElementNotInteractableException
 
 
 def go_to_vesting_and_assert_page_is_loaded():
@@ -236,12 +236,13 @@ def cancel_contract():
 
 
 def withdraw_contract():
+    sleep(45)
     withdraw_contract_button = "//p[contains(text(),'" + read_contract_title() + "')]/parent::dl//button[contains(" \
                                                                                  "text(),'Withdraw')] "
     withdraw = WebDriverWait(driver.instance, 20).until(
         ec.presence_of_element_located((By.XPATH, withdraw_contract_button)))
     withdraw.click()
-    approve_button_handler()
+    confirm_withdrawal()
     handle_default_window()
     find_contract_and_assert()
 
@@ -380,3 +381,14 @@ def sender_handle_standard_contract():
     go_to_vesting_and_assert_page_is_loaded()
     connect_senders_wallet()
     sender_fill_standard_contract_details()
+
+
+def confirm_withdrawal():
+    while True:
+        try:
+            element = WebDriverWait(driver.instance, 2).until(ec.element_to_be_clickable((By.XPATH, '//p[contains(text(), "You can withdraw between 0")]/parent::div//button')))
+            print("clickable")
+            element.click()
+            approve_button_handler()
+        except TimeoutException:
+            break
