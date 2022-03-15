@@ -160,7 +160,7 @@ def enter_contract_title():
 
 def enter_wallet_address():
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, recipient_input))). \
-        send_keys('5tsGv3aUtUwADcsoc2QPKWY4xhGbYycNrXF5QgkpuUah')
+        send_keys('Cetz5BzrUQzRWtHYwVqUacvvp78CUScUU5LuTAH5WR34')
 
 
 def click_create_button():

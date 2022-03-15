@@ -414,7 +414,7 @@ def collect_sender_mnemonics():
 def reconnect_recipient_mnemonic():
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, textarea))).click()
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, textarea))). \
-        send_keys('liquid frequent cook sport market web theory bag rookie hub half defy')
+        send_keys('swallow lawsuit join sponsor empower wet boy swamp lemon ensure acid wrestle')
 
 
 def reconnect_sender_mnemonic():
@@ -440,13 +440,13 @@ def click_already_have_wallet():
 
 def handle_solflare_for_sender():
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, textarea))).click()
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, textarea))).send_keys('this apology orange snack merry couch gaze appear noble donkey hamster any')
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, textarea))).send_keys('fantasy advice denial harbor first picture unhappy stick omit inherit curtain stable')
     handle_rest()
 
 
 def handle_solflare_for_recipient():
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, textarea))).click()
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, textarea))).send_keys('liquid frequent cook sport market web theory bag rookie hub half defy')
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, textarea))).send_keys('swallow lawsuit join sponsor empower wet boy swamp lemon ensure acid wrestle')
     handle_rest()
 
 

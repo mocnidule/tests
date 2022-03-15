@@ -37,7 +37,6 @@ google-auth-oauthlib
 google-pasta
 grpcio
 h11
-h5py
 httpcore
 httpx
 hyperlink
