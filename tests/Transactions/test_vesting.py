@@ -6,7 +6,7 @@ from helpers.driver_helpers import tear_down_and_collect
 from helpers.app_helpers import create_recipient_and_sender_fill_details_for_vesting, \
     sender_create_contract_and_recipient_assert_contract_vesting, sender_use_seconds, sender_use_minutes, \
     sender_use_hours, sender_use_days, sender_use_random_date_and_time, sender_use_weeks, sender_use_months, \
-    sender_use_years, sender_create_contract, sender_cancel_contract, transfer_contract, \
+    sender_use_years, sender_create_vesting_contract, sender_cancel_contract, transfer_contract, \
     sender_transfer_contract, recipient_withdraw_partial, recipient_withdraw_full, reconnect_sender, create_recipient, \
     create_wallet, decline_then_approve_withdrawal, decline_then_approve_contract_creation, recipient_cancel_contract, \
     go_to_vesting_and_assert_page_is_loaded, connect_senders_wallet, sender_fill_standard_contract_details, \
@@ -75,7 +75,7 @@ class test_vesting(unittest.TestCase):
         sender_handle_standard_contract()
         sender_use_random_date_and_time()
         all_can_transfer_and_cancel()
-        sender_create_contract()
+        sender_create_vesting_contract()
         cancel_contract()
 
     def test_vesting_and_recipient_cancel(self):
@@ -89,7 +89,7 @@ class test_vesting(unittest.TestCase):
         sender_handle_standard_contract()
         sender_use_random_date_and_time()
         all_can_transfer_and_cancel()
-        sender_create_contract()
+        sender_create_vesting_contract()
         transfer_contract()
 
     def test_vesting_and_recipient_transfer(self):
@@ -181,7 +181,7 @@ class test_vesting(unittest.TestCase):
 
     def test_vesting_sender_transfer_to_himself(self):
         sender_handle_standard_contract()
-        sender_create_contract()
+        sender_create_vesting_contract()
         sender_transfer_to_self()
         assert_cant_transfer_stream_to_yourself()
 

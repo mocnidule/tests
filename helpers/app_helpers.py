@@ -9,6 +9,11 @@ from time import sleep
 from selenium.common.exceptions import TimeoutException, ElementNotInteractableException
 
 
+def select_devnet():
+    sleep(10)
+    click_dropdown_menu()
+    click_toggle()
+
 def go_to_vesting_and_assert_page_is_loaded():
     go_to_dev_vesting()
     enter_password_and_submit()
@@ -45,18 +50,15 @@ def create_recipient():
 
 def reconnect_recipient_and_assert_vesting():
     quit_driver_to_reconnect_for_vesting()
-    click_toggle()
     reconnect_recipient_common()
-    find_contract_and_assert()
+    find_all_streams_and_assert()
     attach_screenshot(driver.instance, 'Recipient Contract')
 
 
 def reconnect_recipient_and_assert_streaming():
     quit_driver_to_reconnect_for_streaming()
-    click_toggle()
     reconnect_recipient_common()
-    click_on_stream_tab()
-    find_contract_and_assert()
+    find_all_streams_and_assert()
     attach_screenshot(driver.instance, 'Recipient Contract')
 
 
@@ -68,6 +70,7 @@ def reconnect_recipient_common():
     handle_second_window()
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
     handle_default_window()
+    select_devnet()
 
 
 def reconnect_sender():
@@ -83,7 +86,6 @@ def reconnect_sender():
 
 
 def sender_fill_standard_contract_details():
-    click_toggle()
     enter_amount()
     sleep(2)
     create_contract_title()
@@ -105,7 +107,6 @@ def create_sender_and_fill_standard_details_for_vesting():
     create_contract_title()
     enter_contract_title()
     enter_wallet_address()
-    # click_wallet_connected_alert()
     attach_screenshot(driver.instance, 'Filled Vesting Details')
 
 
@@ -117,17 +118,23 @@ def fill_standard_details_for_streaming():
     create_contract_title()
     enter_contract_title()
     enter_wallet_address()
-    # click_wallet_connected_alert()
     attach_screenshot(driver.instance, 'Filled Streaming Details')
 
 
-def sender_create_contract():
+def sender_create_vesting_contract():
     click_create_button()
     approve_button_handler()
     handle_default_window()
-    find_contract_and_assert()
+    find_outgoing_and_assert()
     attach_screenshot(driver.instance, 'Sender Contract')
 
+
+def sender_create_streaming_contract():
+    click_create_stream_button()
+    approve_button_handler()
+    handle_default_window()
+    find_outgoing_and_assert()
+    attach_screenshot(driver.instance, 'Sender Contract')
 
 def quit_driver_to_reconnect_for_vesting():
     driver.quit_driver()
@@ -143,7 +150,24 @@ def quit_driver_to_reconnect_for_streaming():
     go_to_stream_and_assert_page_is_loaded()
 
 
-def find_contract_and_assert():
+def find_outgoing_and_assert():
+    click_to_outgoing_page()
+    transaction_title = "//p[contains(text(),'" + read_contract_title() + "')]"
+    title = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, transaction_title)))
+    actions = ActionChains(driver.instance)
+    actions.move_to_element(title).perform()
+
+
+def find_incoming_and_assert():
+    click_to_incoming_page()
+    transaction_title = "//p[contains(text(),'" + read_contract_title() + "')]"
+    title = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, transaction_title)))
+    actions = ActionChains(driver.instance)
+    actions.move_to_element(title).perform()
+
+
+def find_all_streams_and_assert():
+    click_to_all_streams_page()
     transaction_title = "//p[contains(text(),'" + read_contract_title() + "')]"
     title = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, transaction_title)))
     actions = ActionChains(driver.instance)
@@ -165,19 +189,20 @@ def create_recipient_and_sender_fill_details_for_streaming():
 
 
 def sender_create_contract_and_recipient_assert_contract_vesting():
-    sender_create_contract()
+    sender_create_vesting_contract()
     reconnect_recipient_and_assert_vesting()
     sleep(2)
 
 
 def sender_create_contract_and_recipient_assert_contract_streaming():
-    sender_create_contract()
+    sender_create_streaming_contract()
     reconnect_recipient_and_assert_streaming()
+    sleep(2)
 
 
 def sender_use_random_date_and_time():
-    set_random_date()
     set_random_time()
+    set_random_date()
 
 
 def sender_cancel_contract():
@@ -226,13 +251,15 @@ def recipient_withdraw_partial():
 
 
 def cancel_contract():
-    cancel_contract_button = "//p[contains(text(),'" + read_contract_title() + "')]/parent::dl//button[contains(text(" \
-                                                                               "),'Cancel')] "
-    cancel = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, cancel_contract_button)))
+    click_to_all_streams_page()
+    more_options_button = "((//p[contains(text(),'" + read_contract_title() + "')]/parent::div/parent::div)[2]//button)[2]"
+    options = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, more_options_button)))
+    options.click()
+    cancel_button_ui = "(((//p[contains(text(),'" + read_contract_title() + "')]/parent::div/parent::div)[2]//button)[2]/parent::div/parent::div//button[contains(text(),'Cancel')])"
+    cancel = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, cancel_button_ui)))
     cancel.click()
     approve_button_handler()
     handle_default_window()
-    find_contract_and_assert()
 
 
 def withdraw_contract():
@@ -244,7 +271,7 @@ def withdraw_contract():
     withdraw.click()
     confirm_withdrawal()
     handle_default_window()
-    find_contract_and_assert()
+    find_outgoing_and_assert()
 
 
 def recipient_withdraw_full():
@@ -283,7 +310,7 @@ def decline_then_approve_contract_creation():
     handle_new_window()
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
     handle_default_window()
-    find_contract_and_assert()
+    find_outgoing_and_assert()
 
 
 def assert_in_solana_explore():
@@ -387,7 +414,6 @@ def confirm_withdrawal():
     while True:
         try:
             element = WebDriverWait(driver.instance, 2).until(ec.element_to_be_clickable((By.XPATH, '//p[contains(text(), "You can withdraw between 0")]/parent::div//button')))
-            print("clickable")
             element.click()
             approve_button_handler()
         except TimeoutException:

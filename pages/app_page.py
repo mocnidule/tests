@@ -5,7 +5,7 @@ from time import sleep
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
 from helpers.fakers_helpers import *
-
+from selenium.webdriver.common.keys import Keys
 
 vesting_screen = 'vesting'
 streams_screen = 'streams'
@@ -19,7 +19,7 @@ amount_input = '//input[@id="amount"]'
 release_amount_input = 'releaseAmount'
 title_input = '//input[@id="subject"]'
 recipient_input = '//input[@id="recipient"]'
-create_button = '//button[contains(text(),"Create")]'
+create_button = '//button[contains(text(),"Create Vesting Contract")]'
 release_frequency = 'releaseFrequencyCounter'
 release_frequency_picker = 'releaseFrequencyPeriod'
 second = '//option[@value="1"]'
@@ -71,17 +71,53 @@ withdraw_amount_input_field = '(//input[@type="number" and contains(@class,"py-1
 top_up_amount_input_field = '(//input[@type="number" and contains(@class,"py-1.5")])[2]'
 deposited_amount_input_field = 'depositedAmount'
 release_amount_input_field = 'releaseAmount'
-stream_tab = '//a[contains(text(),"Streams")]'
-toggle = 'headlessui-switch-2'
+stream_tab = '//a[contains(text(),"New Stream")]'
+dev_toggle = '//button[@role="switch"]'
 password = '//input[@type="password"]'
 submit_password = '//*[contains(text(),"Submit")]'
-auto_withdrawal = '(//button[@role="switch"])[3]'
+auto_withdrawal = '//button[@role="switch"]'
+dropdown_button = '//button[@id="headlessui-menu-button-1"]'
+outgoing_page = '//button[contains(text(),"Outgoing")]'
+incoming_page = '//button[contains(text(),"Incoming")]'
+all_streams_page = '//button[contains(text(),"All Streams")]'
+who_can_transfer_vesting = '//select[@data-testid="vesting-who-can-transfer"]'
+who_can_cancel_vesting = '//select[@data-testid="vesting-who-can-cancel"]'
+both_can_cancel = '(//option[@value="both"])[2]'
+more_options_contract = '(((//p[contains(text(), "TestIo")]/parent::div/parent::div)[2]//button)[2])'
+stream_payment_button = '//button[contains(text(),"Create Streaming Contract")]'
+
+
+def select_both_can_cancel():
+    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, who_can_cancel_vesting))).click()
+    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, both_can_cancel))).click()
+
+
+def click_to_outgoing_page():
+    WebDriverWait(driver.instance, 10).until(ec.presence_of_element_located((By.TAG_NAME, 'body'))).send_keys(Keys.CONTROL + Keys.HOME)
+    sleep(5)
+    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, outgoing_page))).click()
+
+
+def click_to_incoming_page():
+    WebDriverWait(driver.instance, 10).until(ec.presence_of_element_located((By.TAG_NAME, 'body'))).send_keys(Keys.CONTROL + Keys.HOME)
+    sleep(5)
+    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, incoming_page))).click()
+
+
+def click_to_all_streams_page():
+    WebDriverWait(driver.instance, 10).until(ec.presence_of_element_located((By.TAG_NAME, 'body'))).send_keys(Keys.CONTROL + Keys.HOME)
+    sleep(5)
+    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, all_streams_page))).click()
+
+
+def click_dropdown_menu():
+    sleep(10)
+    WebDriverWait(driver.instance, 10).until(ec.element_to_be_clickable((By.XPATH, dropdown_button))).click()
 
 
 def click_toggle():
-    sleep(10)
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.ID, toggle))).click()
-    sleep(5)
+    sleep(3)
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, dev_toggle))).click()
 
 
 def go_to_dev_vesting():
@@ -165,6 +201,10 @@ def enter_wallet_address():
 
 def click_create_button():
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, create_button))).click()
+
+
+def click_create_stream_button():
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, stream_payment_button))).click()
 
 
 def select_frequency_picker():
@@ -298,7 +338,6 @@ def read_sender_wallet_address():
 
 
 def set_random_cliff():
-    click_advanced_toggle()
     WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.ID, cliff_date_input))).send_keys('12122026')
     WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.ID, cliff_time_input))).send_keys(random_start_time())
     WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.ID, cliff_percentage_input))).clear()

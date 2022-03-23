@@ -72,7 +72,7 @@ def random_start_date():
     day = (random.choice(days))
     month = (random.choice(months))
     year = (random.choice(years))
-    return month + day + year
+    return day + month + year
 
 
 def random_end_date():
@@ -82,7 +82,7 @@ def random_end_date():
     day = (random.choice(days))
     month = (random.choice(months))
     year = (random.choice(years))
-    return month + day + year
+    return day + month + year
 
 
 def random_start_time():
