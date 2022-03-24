@@ -444,22 +444,40 @@ def click_already_have_wallet():
 def handle_solflare_for_sender():
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, textarea))).click()
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, textarea))).send_keys('fantasy advice denial harbor first picture unhappy stick omit inherit curtain stable')
-    handle_rest()
+    handle_rest_for_sender()
 
 
 def handle_solflare_for_recipient():
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, textarea))).click()
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, textarea))).send_keys('swallow lawsuit join sponsor empower wet boy swamp lemon ensure acid wrestle')
-    handle_rest()
+    handle_rest_for_recipient()
 
 
-def handle_rest():
+def handle_rest_for_sender():
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
     try:
         WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
     except [NoSuchElementException, StaleElementReferenceException]:
         driver.instance.refresh()
         handle_solflare_for_sender()
+        WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, advanced_button))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, select_right_wallet))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
+    handle_default_window()
+    select_solflare_web()
+    select_solflare_web()
+    allow_button_handler()
+    handle_default_window()
+
+
+def handle_rest_for_recipient():
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
+    try:
+        WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
+    except [NoSuchElementException, StaleElementReferenceException]:
+        driver.instance.refresh()
+        handle_solflare_for_recipient()
         WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, advanced_button))).click()
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, select_right_wallet))).click()
