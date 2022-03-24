@@ -74,7 +74,7 @@ def mnemonic_reconnect_for_recipient():
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
     try:
         WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
-    except [NoSuchElementException, StaleElementReferenceException]:
+    except (NoSuchElementException, StaleElementReferenceException):
         driver.instance.refresh()
         handle_solflare_for_recipient()
         WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
@@ -462,7 +462,7 @@ def handle_rest_for_sender():
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
     try:
         WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
-    except [NoSuchElementException, StaleElementReferenceException]:
+    except (NoSuchElementException, StaleElementReferenceException):
         driver.instance.refresh()
         handle_solflare_for_sender()
         WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
@@ -480,7 +480,7 @@ def handle_rest_for_recipient():
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
     try:
         WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
-    except [NoSuchElementException, StaleElementReferenceException]:
+    except (NoSuchElementException, StaleElementReferenceException):
         driver.instance.refresh()
         handle_solflare_for_recipient()
         WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
