@@ -72,7 +72,12 @@ def mnemonic_reconnect_for_recipient():
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, already_have_wallet_button))).click()
     reconnect_recipient_mnemonic()
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
+    try:
+        WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
+    except [NoSuchElementException, StaleElementReferenceException]:
+        driver.instance.refresh()
+        handle_solflare_for_recipient()
+        WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, advanced_button))).click()
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, select_right_wallet))).click()
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, continue_button))).click()
