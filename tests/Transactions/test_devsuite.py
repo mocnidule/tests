@@ -18,7 +18,7 @@ from helpers.app_helpers import sender_use_seconds, create_recipient_and_sender_
 from time import sleep
 
 @pytest.mark.devs
-@flaky(max_runs=20, min_passes=1)
+@flaky(max_runs=30, min_passes=1)
 class test_devsuite(unittest.TestCase):
 
     @classmethod
