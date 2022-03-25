@@ -15,10 +15,10 @@ from helpers.app_helpers import sender_use_seconds, create_recipient_and_sender_
     connect_senders_wallet, connect_recipients_wallet, sender_fill_standard_contract_details, cancel_contract, \
     click_on_stream_tab, go_to_stream_and_assert_page_is_loaded, fill_standard_details_for_streaming, withdraw_contract, \
     select_devnet, select_both_can_cancel
-from time import sleep
+
 
 @pytest.mark.devs
-@flaky(max_runs=2, min_passes=1)
+@flaky(max_runs=50, min_passes=1)
 class test_devsuite(unittest.TestCase):
 
     @classmethod
