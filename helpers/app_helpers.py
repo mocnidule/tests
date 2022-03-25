@@ -6,7 +6,7 @@ from reporting.allure import attach_screenshot
 from selenium.webdriver.common.action_chains import ActionChains
 from pages.solana_explore import go_to_token_balances_and_assert
 from time import sleep
-from selenium.common.exceptions import TimeoutException, ElementNotInteractableException
+from selenium.common.exceptions import TimeoutException
 
 
 def select_devnet():
@@ -25,7 +25,6 @@ def go_to_stream_and_assert_page_is_loaded():
 
 
 def connect_phantom_wallet():
-    click_connect_button()
     select_phantom_wallet()
     phantom_connect_to_app()
 

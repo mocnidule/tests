@@ -417,7 +417,6 @@ def reconnect_recipient_mnemonic():
         send_keys('swallow lawsuit join sponsor empower wet boy swamp lemon ensure acid wrestle')
 
 
-
 def reconnect_sender_mnemonic():
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, textarea))).click()
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, textarea))). \
