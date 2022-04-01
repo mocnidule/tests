@@ -310,6 +310,7 @@ def set_random_cliff():
     wait_visibility(driver.instance, By.ID, cliff_date_input)
     driver.instance.find_element(By.ID, cliff_date_input).send_keys('12122026')
     driver.instance.find_element(By.ID, cliff_time_input).send_keys(random_start_time())
+    wait_visibility(driver.instance, By.ID, cliff_percentage_input)
     driver.instance.find_element(By.ID, cliff_percentage_input).clear()
     driver.instance.find_element(By.ID, cliff_percentage_input).send_keys(get_cliff_percentage())
 
