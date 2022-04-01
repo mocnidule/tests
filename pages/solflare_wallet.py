@@ -69,10 +69,10 @@ def reconnect_recipient_mnemonic():
 def allow_button_handler():
     try:
         handle_new_window()
-        WebDriverWait(driver.instance, 5).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
+        WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
     except TimeoutException:
         handle_second_window()
-        WebDriverWait(driver.instance, 5).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
+        WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
 
 
 def click_already_have_wallet():
