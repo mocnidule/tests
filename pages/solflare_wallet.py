@@ -48,7 +48,12 @@ def mnemonic_reconnect_for_recipient():
     click(driver.instance, By.XPATH, already_have_wallet_button)
     reconnect_recipient_mnemonic()
     click(driver.instance, By.XPATH, continue_button)
-    click(driver.instance, By.XPATH, continue_button)
+    explicit_wait(2)
+    continue_btn = '//*[contains(text(),"Continue")]'
+    ignored_exceptions = (NoSuchElementException, StaleElementReferenceException)
+    next_button = WebDriverWait(driver.instance, 120, ignored_exceptions=ignored_exceptions) \
+        .until(ec.presence_of_element_located((By.XPATH, continue_btn)))
+    next_button.click()
     click(driver.instance, By.XPATH, advanced_button)
     click(driver.instance, By.XPATH, select_right_wallet)
     click(driver.instance, By.XPATH, continue_button)
@@ -90,10 +95,10 @@ def handle_solflare_for_recipient():
 
 def handle_rest():
     click(driver.instance, By.XPATH, continue_button)
-
+    explicit_wait(2)
     continue_btn = '//*[contains(text(),"Continue")]'
-    ignored_exceptions = (NoSuchElementException, StaleElementReferenceException,)
-    next_button = WebDriverWait(driver.instance, 90, ignored_exceptions=ignored_exceptions) \
+    ignored_exceptions = (NoSuchElementException, StaleElementReferenceException)
+    next_button = WebDriverWait(driver.instance, 120, ignored_exceptions=ignored_exceptions) \
         .until(ec.presence_of_element_located((By.XPATH, continue_btn)))
     next_button.click()
     click(driver.instance, By.XPATH, advanced_button)
