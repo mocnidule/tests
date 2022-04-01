@@ -196,12 +196,10 @@ def enter_wallet_address():
 
 
 def click_create_button():
-    explicit_wait(3)
     click(driver.instance, By.XPATH, create_button)
 
 
 def click_create_stream_button():
-    explicit_wait(3)
     click(driver.instance, By.XPATH, stream_payment_button)
 
 
@@ -310,6 +308,7 @@ def set_random_cliff():
     wait_visibility(driver.instance, By.ID, cliff_date_input)
     driver.instance.find_element(By.ID, cliff_date_input).send_keys('12122026')
     driver.instance.find_element(By.ID, cliff_time_input).send_keys(random_start_time())
+    explicit_wait(2)
     wait_visibility(driver.instance, By.ID, cliff_percentage_input)
     driver.instance.find_element(By.ID, cliff_percentage_input).clear()
     driver.instance.find_element(By.ID, cliff_percentage_input).send_keys(get_cliff_percentage())

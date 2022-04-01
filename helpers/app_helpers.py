@@ -78,6 +78,7 @@ def fill_standard_details_for_streaming():
 
 
 def sender_create_vesting_contract():
+    explicit_wait(2)
     click_create_button()
     approve_button_handler()
     handle_default_window()
@@ -86,6 +87,7 @@ def sender_create_vesting_contract():
 
 
 def sender_create_streaming_contract():
+    explicit_wait(2)
     click_create_stream_button()
     approve_button_handler()
     handle_default_window()
@@ -285,11 +287,9 @@ def request_airdrop():
 
 def approve_button_handler():
     try:
-        explicit_wait(2)
         handle_new_window()
         WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
     except TimeoutException:
-        explicit_wait(2)
         handle_second_window()
         WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
 
