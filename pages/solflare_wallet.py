@@ -3,6 +3,8 @@ from selenium.webdriver.common.by import By
 from pages.app_page import select_solflare_web
 from helpers.element_helpers import *
 from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import StaleElementReferenceException
+from selenium.common.exceptions import NoSuchElementException
 
 create_new_wallet_button = '//*[contains(text(),"I NEED A NEW WALLET")]'
 already_have_wallet_button = '//*[contains(text(),"I ALREADY HAVE A WALLET")]'
@@ -88,7 +90,12 @@ def handle_solflare_for_recipient():
 
 def handle_rest():
     click(driver.instance, By.XPATH, continue_button)
-    click(driver.instance, By.XPATH, continue_button)
+
+    continue_btn = '//*[contains(text(),"Continue")]'
+    ignored_exceptions = (NoSuchElementException, StaleElementReferenceException,)
+    next_button = WebDriverWait(driver.instance, 90, ignored_exceptions=ignored_exceptions) \
+        .until(ec.presence_of_element_located((By.XPATH, continue_btn)))
+    next_button.click()
     click(driver.instance, By.XPATH, advanced_button)
     click(driver.instance, By.XPATH, select_right_wallet)
     click(driver.instance, By.XPATH, continue_button)
