@@ -1,6 +1,5 @@
 from pages.solflare_wallet import *
 from pages.app_page import *
-from pages.phantom_wallet import phantom_connect_to_app
 from helpers.fakers_helpers import create_contract_title
 from reporting.allure import attach_screenshot
 from selenium.webdriver.common.action_chains import ActionChains
@@ -10,9 +9,10 @@ from selenium.common.exceptions import TimeoutException
 
 
 def select_devnet():
-    sleep(10)
+    sleep(15)
     click_dropdown_menu()
     click_toggle()
+
 
 def go_to_vesting_and_assert_page_is_loaded():
     go_to_dev_vesting()
@@ -22,29 +22,6 @@ def go_to_vesting_and_assert_page_is_loaded():
 def go_to_stream_and_assert_page_is_loaded():
     go_to_dev_stream()
     enter_password_and_submit()
-
-
-def connect_phantom_wallet():
-    select_phantom_wallet()
-    phantom_connect_to_app()
-
-
-def create_wallet():
-    create_wallet_for_sender()
-    WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, address_locator)))
-    address = driver.instance.find_element(By.XPATH, address_locator).text
-    with open('./reporting/wallets/sender_address.txt', 'w') as file:
-        file.write(str(address))
-
-
-def create_recipient():
-    go_to_vesting_and_assert_page_is_loaded()
-    create_wallet_for_recipient()
-    copy_wallet_address()
-    click_toggle()
-    request_airdrop()
-    click_toggle()
-    quit_driver_to_reconnect_for_vesting()
 
 
 def reconnect_recipient_and_assert_vesting():
@@ -72,41 +49,21 @@ def reconnect_recipient_common():
     select_devnet()
 
 
-def reconnect_sender():
-    quit_driver_to_reconnect_for_vesting()
-    go_to_vesting_and_assert_page_is_loaded()
-    select_solflare_web()
-    mnemonic_reconnect_for_sender()
-    select_solflare_web()
-    handle_second_window()
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
-    handle_default_window()
-    click_toggle()
-
-
 def sender_fill_standard_contract_details():
     enter_amount()
-    sleep(2)
-    create_contract_title()
-    enter_contract_title()
-    enter_wallet_address()
-
-
-def sender_fill_standard_streaming_contract():
-    go_to_stream_and_assert_page_is_loaded()
-
-
-
-def create_sender_and_fill_standard_details_for_vesting():
-    create_wallet()
-    request_airdrops_for_sender()
-    click_toggle()
-    enter_amount()
-    sleep(2)
+    explicit_wait(2)
     create_contract_title()
     enter_contract_title()
     enter_wallet_address()
     attach_screenshot(driver.instance, 'Filled Vesting Details')
+
+
+def sender_fill_big_amount_contract_details():
+    enter_big_number()
+    explicit_wait(2)
+    create_contract_title()
+    enter_contract_title()
+    enter_wallet_address()
 
 
 def fill_standard_details_for_streaming():
@@ -173,20 +130,6 @@ def find_all_streams_and_assert():
     actions.move_to_element(title).perform()
 
 
-def create_recipient_and_sender_fill_details_for_vesting():
-    create_recipient()
-    create_sender_and_fill_standard_details_for_vesting()
-    click_toggle()
-    sleep(2)
-
-
-def create_recipient_and_sender_fill_details_for_streaming():
-    create_recipient()
-    fill_standard_details_for_streaming()
-    click_toggle()
-    sleep(2)
-
-
 def sender_create_contract_and_recipient_assert_contract_vesting():
     sender_create_vesting_contract()
     reconnect_recipient_and_assert_vesting()
@@ -251,7 +194,8 @@ def recipient_withdraw_partial():
 
 def cancel_contract():
     click_to_all_streams_page()
-    more_options_button = "((//p[contains(text(),'" + read_contract_title() + "')]/parent::div/parent::div)[2]//button)[2]"
+    more_options_button = "((//p[contains(text(),'" + read_contract_title() + \
+                          "')]/parent::div/parent::div)[2]//button)[2]"
     options = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, more_options_button)))
     options.click()
     cancel_button_ui = "(((//p[contains(text(),'" + read_contract_title() + "')]/parent::div/parent::div)[2]//button)[2]/parent::div/parent::div//button[contains(text(),'Cancel')])"

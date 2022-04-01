@@ -25,6 +25,12 @@ def get_amount():
     return amount
 
 
+def get_big_amount():
+    amount = ['1000000', '10000000', '50000000']
+    big = (random.choice(amount))
+    return big
+
+
 def get_cliff_percentage():
     cliff_amount = random.randint(1, 100)
     return cliff_amount

@@ -3,15 +3,15 @@ import pytest
 from flaky import flaky
 from driver import driver
 from helpers.driver_helpers import tear_down_and_collect
-from helpers.app_helpers import create_recipient_and_sender_fill_details_for_vesting, \
+from helpers.app_helpers import \
     sender_create_contract_and_recipient_assert_contract_vesting, sender_use_seconds, sender_use_minutes, \
     sender_use_hours, sender_use_days, sender_use_random_date_and_time, sender_use_weeks, sender_use_months, \
     sender_use_years, sender_create_vesting_contract, sender_cancel_contract, transfer_contract, \
-    sender_transfer_contract, recipient_withdraw_partial, recipient_withdraw_full, reconnect_sender, create_recipient, \
-    create_wallet, decline_then_approve_withdrawal, decline_then_approve_contract_creation, recipient_cancel_contract, \
+    sender_transfer_contract, recipient_withdraw_partial, recipient_withdraw_full, decline_then_approve_withdrawal, \
+    decline_then_approve_contract_creation, recipient_cancel_contract, \
     go_to_vesting_and_assert_page_is_loaded, connect_senders_wallet, sender_fill_standard_contract_details, \
-    sender_handle_standard_contract, all_can_transfer_and_cancel, cancel_contract, withdraw_contract
-from pages.app_page import non_can_cancel_and_transfer, set_random_cliff, \
+    sender_handle_standard_contract, cancel_contract, withdraw_contract
+from pages.app_page import set_random_cliff, \
     sender_use_past_date, assert_stream_in_the_past_error_message, click_create_button, enter_negative_amount, \
     assert_no_negative_amount_error_message, enter_abnormal_amount, assert_not_enough_tokens_error_message, \
     set_past_cliff_date, assert_cliff_should_happen_after_start_error_message, assert_must_have_fields_populated, \
