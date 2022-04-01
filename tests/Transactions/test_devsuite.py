@@ -65,7 +65,6 @@ class test_devsuite(unittest.TestCase):
         sender_fill_standard_contract_details()
         sender_select_autowithdrawal()
         sender_create_contract_and_recipient_assert_contract_vesting()
-        recipient_wait_for_autowithdrawal()
 
     def test_vesting_sender_big_number(self):
         go_to_vesting_and_assert_page_is_loaded()

@@ -390,7 +390,7 @@ def sender_select_autowithdrawal():
 
 
 def recipient_wait_for_autowithdrawal():
-    explicit_wait(60)
+    explicit_wait(30)
 
 
 def scroll_to_top():
