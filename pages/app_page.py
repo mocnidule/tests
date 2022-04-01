@@ -196,10 +196,12 @@ def enter_wallet_address():
 
 
 def click_create_button():
+    explicit_wait(3)
     click(driver.instance, By.XPATH, create_button)
 
 
 def click_create_stream_button():
+    explicit_wait(3)
     click(driver.instance, By.XPATH, stream_payment_button)
 
 

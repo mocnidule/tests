@@ -6,7 +6,7 @@ from helpers.driver_helpers import tear_down_and_collect
 from helpers.app_helpers import sender_use_seconds, \
     sender_create_contract_and_recipient_assert_contract_streaming, sender_use_minutes, sender_use_hours, \
     sender_use_days, sender_use_weeks, sender_use_months, sender_use_years, sender_create_vesting_contract, \
-    sender_top_up_while_streaming, sender_top_up_before_stream_started, sender_cancel_contract, \
+    sender_top_up_while_streaming, sender_top_up_before_stream_started, \
     sender_use_random_date_and_time, sender_fill_big_amount_contract_details, \
     sender_create_contract_and_recipient_assert_contract_vesting, set_random_cliff, click_toggle, \
     sender_select_autowithdrawal, recipient_wait_for_autowithdrawal, go_to_vesting_and_assert_page_is_loaded, \

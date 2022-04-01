@@ -6,9 +6,9 @@ from helpers.driver_helpers import tear_down_and_collect
 from helpers.app_helpers import \
     sender_create_contract_and_recipient_assert_contract_vesting, sender_use_seconds, sender_use_minutes, \
     sender_use_hours, sender_use_days, sender_use_random_date_and_time, sender_use_weeks, sender_use_months, \
-    sender_use_years, sender_create_vesting_contract, sender_cancel_contract, transfer_contract, \
+    sender_use_years, sender_create_vesting_contract, transfer_contract, \
     sender_transfer_contract, recipient_withdraw_partial, recipient_withdraw_full, decline_then_approve_withdrawal, \
-    decline_then_approve_contract_creation, recipient_cancel_contract, \
+    decline_then_approve_contract_creation, \
     go_to_vesting_and_assert_page_is_loaded, connect_senders_wallet, sender_fill_standard_contract_details, \
     sender_handle_standard_contract, cancel_contract, withdraw_contract
 from pages.app_page import set_random_cliff, \

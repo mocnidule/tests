@@ -92,6 +92,7 @@ def sender_create_streaming_contract():
     find_outgoing_and_assert()
     attach_screenshot(driver.instance, 'Sender Contract')
 
+
 def quit_driver_to_reconnect_for_vesting():
     driver.quit_driver()
     sleep(2)
@@ -147,22 +148,6 @@ def sender_use_random_date_and_time():
     set_random_date()
 
 
-def sender_cancel_contract():
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, cancel_button))).click()
-    approve_button_handler()
-    handle_default_window()
-    WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, canceled_card)))
-    attach_screenshot(driver.instance, 'Contract Canceled')
-
-
-def recipient_cancel_contract():
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, cancel_button))).click()
-    approve_button_handler()
-    handle_default_window()
-    WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, canceled_card)))
-    attach_screenshot(driver.instance, 'Contract Canceled')
-
-
 def transfer_contract():
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, transfer_button))).click()
     transfer_to_new_recipient()
@@ -198,15 +183,17 @@ def cancel_contract():
                           "')]/parent::div/parent::div)[2]//button)[2]"
     options = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, more_options_button)))
     options.click()
-    cancel_button_ui = "(((//p[contains(text(),'" + read_contract_title() + "')]/parent::div/parent::div)[2]//button)[2]/parent::div/parent::div//button[contains(text(),'Cancel')])"
+    cancel_button_ui = "(((//p[contains(text(),'" + read_contract_title() + "')]/parent::div/parent::div)[2]//button)[2\
+    ]/parent::div/parent::div//button[contains(text(),'Cancel')])"
     cancel = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, cancel_button_ui)))
     cancel.click()
     approve_button_handler()
     handle_default_window()
+    attach_screenshot(driver.instance, 'Contract Canceled')
 
 
 def withdraw_contract():
-    sleep(45)
+    explicit_wait(45)
     withdraw_contract_button = "//p[contains(text(),'" + read_contract_title() + "')]/parent::dl//button[contains(" \
                                                                                  "text(),'Withdraw')] "
     withdraw = WebDriverWait(driver.instance, 20).until(
@@ -218,7 +205,7 @@ def withdraw_contract():
 
 
 def recipient_withdraw_full():
-    sleep(370)
+    explicit_wait(370)
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, withdraw_button))).click()
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, confirm_withdraw_button))).click()
     handle_second_window()
@@ -229,7 +216,7 @@ def recipient_withdraw_full():
 
 
 def decline_then_approve_withdrawal():
-    sleep(70)
+    explicit_wait(70)
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, withdraw_button))).click()
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, confirm_withdraw_button))).click()
     handle_second_window()
@@ -296,34 +283,6 @@ def request_airdrop():
     handle_default_window()
 
 
-def request_airdrops_for_sender():
-    click_toggle()
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, request_airdrop_button))).click()
-    sleep(6)
-    approve_button_handler()
-    handle_default_window()
-    driver.instance.refresh()
-    select_solflare_web()
-    sleep(6)
-    handle_new_window()
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
-    handle_default_window()
-    iterations = 4
-    for _ in range(iterations):
-        click_toggle()
-        WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, request_airdrop_button))).click()
-        sleep(2)
-        handle_new_window()
-        WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
-        handle_default_window()
-        driver.instance.refresh()
-        select_solflare_web()
-        sleep(2)
-        handle_new_window()
-        WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
-        handle_default_window()
-
-
 def approve_button_handler():
     try:
         handle_new_window()
@@ -356,7 +315,8 @@ def sender_handle_standard_contract():
 def confirm_withdrawal():
     while True:
         try:
-            element = WebDriverWait(driver.instance, 2).until(ec.element_to_be_clickable((By.XPATH, '//p[contains(text(), "You can withdraw between 0")]/parent::div//button')))
+            element = WebDriverWait(driver.instance, 2).until(ec.element_to_be_clickable((By.XPATH, '//p[contains(text()\
+            , "You can withdraw between 0")]/parent::div//button')))
             element.click()
             approve_button_handler()
         except TimeoutException:
