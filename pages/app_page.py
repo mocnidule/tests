@@ -5,6 +5,7 @@ from helpers.fakers_helpers import *
 from selenium.webdriver.common.keys import Keys
 from helpers.element_helpers import *
 
+
 vesting_screen = 'vesting'
 streams_screen = 'streams'
 app_navigation = '(//ul)[2]'
@@ -43,10 +44,8 @@ sender_can_cancel_checkbox = 'senderCanCancel'
 sender_can_transfer_checkbox = 'senderCanTransfer'
 advanced_toggle = '(//button[@role="switch"])[4]'
 transfer_recipient_address_field = '(//input[@placeholder="Recipient address"])[1]'
-confirm_transfer_button = '(//button[contains(text(),"Transfer")])[2]'
 withdraw_button = '(//button[contains(text(),"Withdraw")])[1]'
 top_up_button = '(//button[contains(text(),"Top Up")])[1]'
-confirm_withdraw_button = '(//button[contains(text(),"Withdraw")])[2]'
 confirm_top_up_button = '(//button[contains(text(),"Top Up")])[2]'
 cliff_date_input = 'cliffDate'
 cliff_time_input = 'cliffTime'
@@ -80,13 +79,22 @@ all_streams_page = '//button[contains(text(),"All Streams")]'
 who_can_transfer_vesting = '//select[@data-testid="vesting-who-can-transfer"]'
 who_can_cancel_vesting = '//select[@data-testid="vesting-who-can-cancel"]'
 both_can_cancel = '(//option[@value="both"])[2]'
+both_can_transfer = '(//option[@value="both"])[1]'
 more_options_contract = '(((//p[contains(text(), "TestIo")]/parent::div/parent::div)[2]//button)[2])'
 stream_payment_button = '//button[contains(text(),"Create Streaming Contract")]'
+transfer_address_input = '//input[@placeholder="Recipient address"]'
+confirm_transfer_button = '//input[@value="HG4sYqvkTfgBvGgZZhYfws4f8BoytTr1NmcDEwkKC2z8"]/following-sibling::div//button[2]'
+confirm_withdraw_button = '//input[@value="HG4sYqvkTfgBvGgZZhYfws4f8BoytTr1NmcDEwkKC2z8"]/following-sibling::div//button[2]'
 
 
 def select_both_can_cancel():
     click(driver.instance, By.XPATH, who_can_cancel_vesting)
     click(driver.instance, By.XPATH, both_can_cancel)
+
+
+def select_both_can_transfer():
+    click(driver.instance, By.XPATH, who_can_transfer_vesting)
+    click(driver.instance, By.XPATH, both_can_transfer)
 
 
 def click_to_outgoing_page():
@@ -287,7 +295,20 @@ def select_solflare_web():
 
 
 def transfer_to_new_recipient():
-    pass
+    try_transfer()
+
+
+def try_transfer():
+    try:
+        elements = driver.instance.find_elements(By.XPATH, '//input[@placeholder="Recipient address"]')
+        for element in elements:
+            if element.is_displayed() and element.is_enabled():
+                element.send_keys('HG4sYqvkTfgBvGgZZhYfws4f8BoytTr1NmcDEwkKC2z8')
+            else:
+                print('Could not find the element')
+    except TimeoutException:
+        pass
+    click(driver.instance, By.XPATH, confirm_transfer_button)
 
 
 def sender_transfer_to_self():
@@ -396,3 +417,5 @@ def scroll_to_top():
     wait_visibility(driver.instance, By.TAG_NAME, 'body')
     driver.instance.find_element(By.TAG_NAME, 'body').send_keys(Keys.CONTROL + Keys.HOME)
     explicit_wait(5)
+
+

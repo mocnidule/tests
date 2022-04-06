@@ -7,7 +7,7 @@ from helpers.app_helpers import sender_use_seconds, \
     sender_create_contract_and_recipient_assert_contract_streaming, sender_use_minutes, sender_use_hours, \
     sender_use_days, sender_use_weeks, sender_use_months, sender_use_years, sender_create_vesting_contract, \
     sender_top_up_while_streaming, sender_top_up_before_stream_started, \
-    sender_transfer_contract, transfer_contract,\
+    transfer_contract,\
     recipient_withdraw_partial, recipient_withdraw_full
 
 
@@ -106,6 +106,9 @@ class test_streaming(unittest.TestCase):
         pass
 
     def test_streaming_more_amount_than_deposited(self):
+        pass
+
+    def test_streaming_big_number(self):
         pass
 
     @classmethod

@@ -12,7 +12,8 @@ from helpers.app_helpers import sender_use_seconds, \
     sender_select_autowithdrawal, recipient_wait_for_autowithdrawal, go_to_vesting_and_assert_page_is_loaded, \
     connect_senders_wallet, connect_recipients_wallet, sender_fill_standard_contract_details, cancel_contract, \
     click_on_stream_tab, go_to_stream_and_assert_page_is_loaded, fill_standard_details_for_streaming, withdraw_contract, \
-    select_devnet, select_both_can_cancel
+    select_devnet, select_both_can_cancel, sender_go_vesting_select_devnet_connect_wallet, \
+    sender_go_streaming_select_devnet_connect_wallet
 
 
 @pytest.mark.devs
@@ -24,52 +25,41 @@ class test_devsuite(unittest.TestCase):
         driver.initialize()
 
     def test_vesting_minutes(self):
-        go_to_vesting_and_assert_page_is_loaded()
-        connect_senders_wallet()
-        select_devnet()
+        sender_go_vesting_select_devnet_connect_wallet()
         sender_fill_standard_contract_details()
         sender_use_random_date_and_time()
         sender_use_minutes()
         sender_create_contract_and_recipient_assert_contract_vesting()
 
     def test_vesting_and_recipient_cancel(self):
-        go_to_vesting_and_assert_page_is_loaded()
-        connect_senders_wallet()
-        select_devnet()
+        sender_go_vesting_select_devnet_connect_wallet()
         sender_fill_standard_contract_details()
+        sender_use_random_date_and_time()
         select_both_can_cancel()
         sender_create_contract_and_recipient_assert_contract_vesting()
         cancel_contract()
 
     def test_vesting_and_sender_set_cliff(self):
-        go_to_vesting_and_assert_page_is_loaded()
-        connect_senders_wallet()
-        select_devnet()
+        sender_go_vesting_select_devnet_connect_wallet()
         sender_fill_standard_contract_details()
         sender_use_random_date_and_time()
         set_random_cliff()
         sender_create_contract_and_recipient_assert_contract_vesting()
 
     def test_streaming_hours(self):
-        go_to_stream_and_assert_page_is_loaded()
-        connect_senders_wallet()
-        select_devnet()
+        sender_go_streaming_select_devnet_connect_wallet()
         sender_use_hours()
         fill_standard_details_for_streaming()
         sender_create_contract_and_recipient_assert_contract_streaming()
 
     def test_vesting_sender_select_autowithdrawal(self):
-        go_to_vesting_and_assert_page_is_loaded()
-        connect_senders_wallet()
-        select_devnet()
+        sender_go_vesting_select_devnet_connect_wallet()
         sender_fill_standard_contract_details()
         sender_select_autowithdrawal()
         sender_create_contract_and_recipient_assert_contract_vesting()
 
     def test_vesting_sender_big_number(self):
-        go_to_vesting_and_assert_page_is_loaded()
-        connect_senders_wallet()
-        select_devnet()
+        sender_go_vesting_select_devnet_connect_wallet()
         sender_fill_big_amount_contract_details()
         sender_create_contract_and_recipient_assert_contract_vesting()
 

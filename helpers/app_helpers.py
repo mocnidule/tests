@@ -6,6 +6,22 @@ from selenium.webdriver.common.action_chains import ActionChains
 from pages.solana_explore import go_to_token_balances_and_assert
 from time import sleep
 from selenium.common.exceptions import TimeoutException
+from helpers.element_helpers import explicit_wait
+
+
+def sender_go_vesting_select_devnet_connect_wallet():
+    go_to_vesting_and_assert_page_is_loaded()
+    connect_sender_wallet_and_select_devnet()
+
+
+def sender_go_streaming_select_devnet_connect_wallet():
+    go_to_stream_and_assert_page_is_loaded()
+    connect_sender_wallet_and_select_devnet()
+
+
+def connect_sender_wallet_and_select_devnet():
+    connect_senders_wallet()
+    select_devnet()
 
 
 def select_devnet():
@@ -150,25 +166,6 @@ def sender_use_random_date_and_time():
     set_random_date()
 
 
-def transfer_contract():
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, transfer_button))).click()
-    transfer_to_new_recipient()
-    handle_second_window()
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
-    handle_default_window()
-    transaction_title = "//p[contains(text(),'" + read_contract_title() + "')]"
-    WebDriverWait(driver.instance, 20).until(ec.invisibility_of_element((By.XPATH, transaction_title)))
-    attach_screenshot(driver.instance, 'Contract Transferred')
-
-
-def sender_transfer_contract():
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, transfer_button))).click()
-    transfer_to_new_recipient()
-    handle_new_window()
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
-    handle_default_window()
-
-
 def recipient_withdraw_partial():
     sleep(30)
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, withdraw_button))).click()
@@ -194,16 +191,37 @@ def cancel_contract():
     attach_screenshot(driver.instance, 'Contract Canceled')
 
 
+def transfer_contract():
+    click_to_all_streams_page()
+    more_options_button = "((//p[contains(text(),'" + read_contract_title() + \
+                          "')]/parent::div/parent::div)[2]//button)[2]"
+    options = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, more_options_button)))
+    options.click()
+    transfer_button_ui = "(((//p[contains(text(),'" + read_contract_title() + "')]/parent::div/parent::div)[2]//button)[2\
+    ]/parent::div/parent::div//button[contains(text(),'Transfer')])"
+    transfer = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, transfer_button_ui)))
+    transfer.click()
+    transfer_to_new_recipient()
+    approve_button_handler()
+    handle_default_window()
+    attach_screenshot(driver.instance, 'Contract Transferred')
+
+
 def withdraw_contract():
+    click_to_all_streams_page()
+    more_options_button = "((//p[contains(text(),'" + read_contract_title() + \
+                          "')]/parent::div/parent::div)[2]//button)[2]"
+    options = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, more_options_button)))
+    options.click()
     explicit_wait(45)
-    withdraw_contract_button = "//p[contains(text(),'" + read_contract_title() + "')]/parent::dl//button[contains(" \
-                                                                                 "text(),'Withdraw')] "
+    withdraw_contract_button = "(((//p[contains(text(),'" + read_contract_title() + "')]/parent::div/parent::div)[2]//button)[2\
+    ]/parent::div/parent::div//button[contains(text(),'Withdraw')])"
     withdraw = WebDriverWait(driver.instance, 20).until(
         ec.presence_of_element_located((By.XPATH, withdraw_contract_button)))
     withdraw.click()
     confirm_withdrawal()
     handle_default_window()
-    find_outgoing_and_assert()
+    find_all_streams_and_assert()
 
 
 def recipient_withdraw_full():
