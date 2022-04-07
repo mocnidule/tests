@@ -84,7 +84,7 @@ more_options_contract = '(((//p[contains(text(), "TestIo")]/parent::div/parent::
 stream_payment_button = '//button[contains(text(),"Create Streaming Contract")]'
 transfer_address_input = '//input[@placeholder="Recipient address"]'
 confirm_transfer_button = '//input[@value="HG4sYqvkTfgBvGgZZhYfws4f8BoytTr1NmcDEwkKC2z8"]/following-sibling::div//button[2]'
-confirm_withdraw_button = '//input[@value="HG4sYqvkTfgBvGgZZhYfws4f8BoytTr1NmcDEwkKC2z8"]/following-sibling::div//button[2]'
+confirm_withdraw_button = '//p[contains(text(), "You can withdraw between 0")]/parent::div//button[2]'
 
 
 def select_both_can_cancel():

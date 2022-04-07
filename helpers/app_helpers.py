@@ -219,7 +219,8 @@ def withdraw_contract():
     withdraw = WebDriverWait(driver.instance, 20).until(
         ec.presence_of_element_located((By.XPATH, withdraw_contract_button)))
     withdraw.click()
-    confirm_withdrawal()
+    click(driver.instance, By.XPATH, confirm_withdraw_button)
+    approve_button_handler()
     handle_default_window()
     find_all_streams_and_assert()
 
@@ -332,12 +333,4 @@ def sender_handle_standard_contract():
     sender_fill_standard_contract_details()
 
 
-def confirm_withdrawal():
-    while True:
-        try:
-            element = WebDriverWait(driver.instance, 2).until(ec.element_to_be_clickable((By.XPATH, '//p[contains(text()\
-            , "You can withdraw between 0")]/parent::div//button')))
-            element.click()
-            approve_button_handler()
-        except TimeoutException:
-            break
+
