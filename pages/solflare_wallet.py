@@ -12,7 +12,8 @@ advanced_button = '//*[contains(text(),"Advanced")]'
 skip_button = '//span[contains(text(),"Skip")]'
 wrote_down_mnemonic_button = '//*[contains(text(),"I SAVED MY RECOVERY PHRASE")]'
 verify_button = '//span[contains(text(),"Verify")]'
-allow_button = '//span[contains(text(),"ALLOW")]'
+allow_button = '//span[contains(text(),"Allow")]'
+allow_button_capital = '//span[contains(text(),"ALLOW")]'
 next_step_button = '//span[contains(text(),"Next step")]'
 close_button = '//span[contains(text(),"Close")]'
 copy_mnemonic_button = '//*[contains(text(),"Copy")]'
@@ -23,6 +24,8 @@ field_set = '//*[@aria-haspopup="listbox"]'
 select_right_wallet = '(//div[contains(@class, "MuiListItemText-multiline")])[2]'
 continue_button = '//*[contains(text(),"Continue")]'
 textarea = '//*[@name="mnemonic"]'
+password = '//input[@name="password"]'
+repeat_password = '//input[@name="password2"]'
 
 
 def solflare_common_intro():
@@ -53,6 +56,27 @@ def mnemonic_reconnect_for_recipient():
     ignored_exceptions = (NoSuchElementException, StaleElementReferenceException)
     next_button = WebDriverWait(driver.instance, 120, ignored_exceptions=ignored_exceptions) \
         .until(ec.presence_of_element_located((By.XPATH, continue_btn)))
+    driver.instance.find_element(By.XPATH, password).send_keys('mocMOC123')
+    driver.instance.find_element(By.XPATH, repeat_password).send_keys('mocMOC123')
+    next_button.click()
+    click(driver.instance, By.XPATH, advanced_button)
+    click(driver.instance, By.XPATH, select_right_wallet)
+    click(driver.instance, By.XPATH, continue_button)
+    handle_default_window()
+
+
+def mnemonic_reconnect_for_sender():
+    handle_new_window()
+    click(driver.instance, By.XPATH, already_have_wallet_button)
+    reconnect_sender_mnemonic()
+    click(driver.instance, By.XPATH, continue_button)
+    explicit_wait(5)
+    continue_btn = '//*[contains(text(),"Continue")]'
+    ignored_exceptions = (NoSuchElementException, StaleElementReferenceException)
+    next_button = WebDriverWait(driver.instance, 120, ignored_exceptions=ignored_exceptions) \
+        .until(ec.presence_of_element_located((By.XPATH, continue_btn)))
+    driver.instance.find_element(By.XPATH, password).send_keys('mocMOC123')
+    driver.instance.find_element(By.XPATH, repeat_password).send_keys('mocMOC123')
     next_button.click()
     click(driver.instance, By.XPATH, advanced_button)
     click(driver.instance, By.XPATH, select_right_wallet)
@@ -63,16 +87,29 @@ def mnemonic_reconnect_for_recipient():
 def reconnect_recipient_mnemonic():
     click(driver.instance, By.XPATH, textarea)
     driver.instance.find_element(By.XPATH, textarea).send_keys \
-        ('fantasy advice denial harbor first picture unhappy stick omit inherit curtain stable')
+        ('item cricket man casino twin treat web someone stool absurd vague ocean')
+
+
+def reconnect_sender_mnemonic():
+    click(driver.instance, By.XPATH, textarea)
+    driver.instance.find_element(By.XPATH, textarea).send_keys \
+        ('annual bachelor flock genre sleep ghost border hour uncle enroll industry birth')
 
 
 def allow_button_handler():
     try:
         handle_new_window()
-        WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
+        if allow_button is not None:
+            WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
+        else:
+            WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, allow_button_capital))).click()
     except TimeoutException:
         handle_second_window()
-        WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
+        if allow_button is not None:
+            WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
+        else:
+            WebDriverWait(driver.instance, 20).until(
+                ec.element_to_be_clickable((By.XPATH, allow_button_capital))).click()
 
 
 def click_already_have_wallet():
@@ -82,20 +119,22 @@ def click_already_have_wallet():
 def handle_solflare_for_sender():
     click(driver.instance, By.XPATH, textarea)
     driver.instance.find_element(By.XPATH, textarea).send_keys \
-        ('swallow lawsuit join sponsor empower wet boy swamp lemon ensure acid wrestle')
+        ('annual bachelor flock genre sleep ghost border hour uncle enroll industry birth')
     handle_rest()
 
 
 def handle_solflare_for_recipient():
     click(driver.instance, By.XPATH, textarea)
     driver.instance.find_element(By.XPATH, textarea).send_keys \
-        ('fantasy advice denial harbor first picture unhappy stick omit inherit curtain stable')
+        ('item cricket man casino twin treat web someone stool absurd vague ocean')
     handle_rest()
 
 
 def handle_rest():
     click(driver.instance, By.XPATH, continue_button)
     explicit_wait(5)
+    driver.instance.find_element(By.XPATH, password).send_keys('mocMOC123')
+    driver.instance.find_element(By.XPATH, repeat_password).send_keys('mocMOC123')
     continue_btn = '//*[contains(text(),"Continue")]'
     ignored_exceptions = (NoSuchElementException, StaleElementReferenceException)
     next_button = WebDriverWait(driver.instance, 120, ignored_exceptions=ignored_exceptions) \

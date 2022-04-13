@@ -80,11 +80,20 @@ who_can_transfer_vesting = '//select[@data-testid="vesting-who-can-transfer"]'
 who_can_cancel_vesting = '//select[@data-testid="vesting-who-can-cancel"]'
 both_can_cancel = '(//option[@value="both"])[2]'
 both_can_transfer = '(//option[@value="both"])[1]'
+none_can_transfer = '(//option[@value="neither"])[1]'
+none_can_cancel = '(//option[@value="neither"])[2]'
 more_options_contract = '(((//p[contains(text(), "TestIo")]/parent::div/parent::div)[2]//button)[2])'
 stream_payment_button = '//button[contains(text(),"Create Streaming Contract")]'
 transfer_address_input = '//input[@placeholder="Recipient address"]'
 confirm_transfer_button = '//input[@value="HG4sYqvkTfgBvGgZZhYfws4f8BoytTr1NmcDEwkKC2z8"]/following-sibling::div//button[2]'
+confirm_transfer_sender = '//input[@value="57TCgyLw4pT48A1z5fWwQ9eUWuwfpo2izzYcWVRiqEnP"]/following-sibling::div//button[2]'
+confirm_transfer_recipient = '//input[@value="954fBxNr25X31DbvMkw2ta5KBjkxmMUSFHeUHuXA1VqD"]/following-sibling::div//button[2]'
 confirm_withdraw_button = '//p[contains(text(), "You can withdraw between 0")]/parent::div//button[2]'
+recipient_email_input = '//input[@data-testid="vesting-email"]'
+
+
+def sender_send_email():
+    driver.instance.find_element(By.XPATH, recipient_email_input).send_keys('dusankovacevic01@gmail.com')
 
 
 def select_both_can_cancel():
@@ -93,6 +102,11 @@ def select_both_can_cancel():
 
 
 def select_both_can_transfer():
+    click(driver.instance, By.XPATH, who_can_transfer_vesting)
+    click(driver.instance, By.XPATH, both_can_transfer)
+
+
+def select_none_can_transfer():
     click(driver.instance, By.XPATH, who_can_transfer_vesting)
     click(driver.instance, By.XPATH, both_can_transfer)
 
@@ -163,6 +177,12 @@ def read_wallet_address():
     return address
 
 
+def read_amount():
+    with open('./reporting/wallets/amount.txt', 'r') as file:
+        address = file.read()
+    return address
+
+
 def enter_deposited_amount():
     wait_visibility(driver.instance, By.ID, deposited_amount_input_field)
     driver.instance.find_element(By.ID, deposited_amount_input_field).send_keys(get_deposited_amount())
@@ -200,7 +220,7 @@ def enter_contract_title():
 
 def enter_wallet_address():
     wait_visibility(driver.instance, By.XPATH, recipient_input)
-    driver.instance.find_element(By.XPATH, recipient_input).send_keys('81ZbGn3VC87EAiKDGkah447MKkqSDGikrTdEPvyGoGvC')
+    driver.instance.find_element(By.XPATH, recipient_input).send_keys('954fBxNr25X31DbvMkw2ta5KBjkxmMUSFHeUHuXA1VqD')
 
 
 def click_create_button():
@@ -309,14 +329,6 @@ def try_transfer():
     except TimeoutException:
         pass
     click(driver.instance, By.XPATH, confirm_transfer_button)
-
-
-def sender_transfer_to_self():
-    pass
-
-
-def recipient_transfer_to_self():
-    pass
 
 
 def read_sender_wallet_address():

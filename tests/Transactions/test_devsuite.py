@@ -3,22 +3,17 @@ import pytest
 from flaky import flaky
 from driver import driver
 from helpers.driver_helpers import tear_down_and_collect
-from helpers.app_helpers import sender_use_seconds, \
-    sender_create_contract_and_recipient_assert_contract_streaming, sender_use_minutes, sender_use_hours, \
-    sender_use_days, sender_use_weeks, sender_use_months, sender_use_years, sender_create_vesting_contract, \
-    sender_top_up_while_streaming, sender_top_up_before_stream_started, \
-    sender_use_random_date_and_time, sender_fill_big_amount_contract_details, \
-    sender_create_contract_and_recipient_assert_contract_vesting, set_random_cliff, click_toggle, \
-    sender_select_autowithdrawal, recipient_wait_for_autowithdrawal, go_to_vesting_and_assert_page_is_loaded, \
-    connect_senders_wallet, connect_recipients_wallet, sender_fill_standard_contract_details, cancel_contract, \
-    click_on_stream_tab, go_to_stream_and_assert_page_is_loaded, fill_standard_details_for_streaming, withdraw_contract, \
-    select_devnet, select_both_can_cancel, sender_go_vesting_select_devnet_connect_wallet, \
+from helpers.app_helpers import sender_create_contract_and_recipient_assert_contract_streaming, sender_use_minutes, \
+    sender_use_hours, sender_use_random_date_and_time, sender_fill_big_amount_contract_details, \
+    sender_create_contract_and_recipient_assert_contract_vesting, set_random_cliff, \
+    sender_select_autowithdrawal, sender_fill_standard_contract_details, cancel_contract, \
+    fill_standard_details_for_streaming, select_both_can_cancel, sender_go_vesting_select_devnet_connect_wallet, \
     sender_go_streaming_select_devnet_connect_wallet
 
 
 @pytest.mark.devs
 @flaky(max_runs=5, min_passes=1)
-class test_devsuite(unittest.TestCase):
+class test_dev(unittest.TestCase):
 
     @classmethod
     def setUp(cls):
@@ -52,7 +47,7 @@ class test_devsuite(unittest.TestCase):
         fill_standard_details_for_streaming()
         sender_create_contract_and_recipient_assert_contract_streaming()
 
-    def test_vesting_sender_select_autowithdrawal(self):
+    def test_vesting_sender_select_autowithdraw(self):
         sender_go_vesting_select_devnet_connect_wallet()
         sender_fill_standard_contract_details()
         sender_select_autowithdrawal()

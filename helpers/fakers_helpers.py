@@ -22,8 +22,9 @@ def get_deposited_amount():
 
 def get_amount():
     amount = random.randint(1, 300)
+    with open('./reporting/wallets/amount.txt', 'w') as file:
+        file.write(str(amount))
     return amount
-
 
 def get_big_amount():
     amount = ['1000000', '10000000', '50000000', '1500000000']
@@ -114,7 +115,7 @@ def random_start_past_date():
     day = (random.choice(days))
     month = (random.choice(months))
     year = (random.choice(years))
-    return month + day + year
+    return day + month + year
 
 
 def random_end_past_date():
@@ -124,4 +125,4 @@ def random_end_past_date():
     day = (random.choice(days))
     month = (random.choice(months))
     year = (random.choice(years))
-    return month + day + year
+    return day + month + year

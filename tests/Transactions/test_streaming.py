@@ -8,7 +8,7 @@ from helpers.app_helpers import sender_use_seconds, \
     sender_use_days, sender_use_weeks, sender_use_months, sender_use_years, sender_create_vesting_contract, \
     sender_top_up_while_streaming, sender_top_up_before_stream_started, \
     transfer_contract,\
-    recipient_withdraw_partial, recipient_withdraw_full
+    recipient_withdraw_partial
 
 
 @pytest.mark.all
