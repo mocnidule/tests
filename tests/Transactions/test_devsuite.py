@@ -34,12 +34,12 @@ class test_dev(unittest.TestCase):
         sender_create_contract_and_recipient_assert_contract_vesting()
         cancel_contract()
 
-    def test_vesting_and_sender_set_cliff(self):
-        sender_go_vesting_select_devnet_connect_wallet()
-        sender_fill_standard_contract_details()
-        sender_use_random_date_and_time()
-        set_random_cliff()
-        sender_create_contract_and_recipient_assert_contract_vesting()
+    # def test_vesting_and_sender_set_cliff(self):
+    #     sender_go_vesting_select_devnet_connect_wallet()
+    #     sender_fill_standard_contract_details()
+    #     sender_use_random_date_and_time()
+    #     set_random_cliff()
+    #     sender_create_contract_and_recipient_assert_contract_vesting()
 
     def test_streaming_hours(self):
         sender_go_streaming_select_devnet_connect_wallet()

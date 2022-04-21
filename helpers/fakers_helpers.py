@@ -26,8 +26,9 @@ def get_amount():
         file.write(str(amount))
     return amount
 
+
 def get_big_amount():
-    amount = ['1000000', '10000000', '50000000', '1500000000']
+    amount = ['1000000', '10000000', '50000000']
     big = (random.choice(amount))
     return big
 

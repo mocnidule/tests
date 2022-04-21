@@ -288,60 +288,12 @@ def withdraw_contract():
     attach_screenshot(driver.instance, 'Contract Withdrawn')
 
 
-def decline_then_approve_withdrawal():
-    explicit_wait(70)
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, withdraw_button))).click()
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, confirm_withdraw_button))).click()
-    handle_second_window()
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, reject_button))).click()
-    handle_default_window()
-    click_transaction_canceled_alert()
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, withdraw_button))).click()
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, confirm_withdraw_button))).click()
-    handle_second_window()
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
-    handle_default_window()
-
-
-def decline_then_approve_contract_creation():
-    click_create_button()
-    handle_new_window()
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, reject_button))).click()
-    sleep(5)
-    handle_default_window()
-    click_create_button()
-    handle_new_window()
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
-    handle_default_window()
-    find_outgoing_and_assert()
-
+def top_up_contract():
+    pass
 
 def assert_in_solana_explore():
     click_on_view_on_explorer_button()
     go_to_token_balances_and_assert()
-
-
-def sender_top_up_while_streaming():
-    sleep(80)
-    top_up_common()
-    attach_screenshot(driver.instance, 'Topped up while streaming')
-
-
-def sender_top_up_before_stream_started():
-    top_up_common()
-    attach_screenshot(driver.instance, 'Topped up before streaming')
-
-
-def top_up_common():
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, top_up_button))).click()
-    WebDriverWait(driver.instance, 20).until(
-        ec.presence_of_element_located((By.XPATH, top_up_amount_input_field))).clear()
-    WebDriverWait(driver.instance, 20).until(
-        ec.presence_of_element_located((By.XPATH, top_up_amount_input_field))).send_keys('50')
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, confirm_top_up_button))).click()
-    handle_new_window()
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
-    handle_default_window()
 
 
 def request_airdrop():

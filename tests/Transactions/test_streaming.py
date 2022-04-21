@@ -5,8 +5,7 @@ from driver import driver
 from helpers.driver_helpers import tear_down_and_collect
 from helpers.app_helpers import sender_use_seconds, \
     sender_create_contract_and_recipient_assert_contract_streaming, sender_use_minutes, sender_use_hours, \
-    sender_use_days, sender_use_weeks, sender_use_months, sender_use_years, sender_create_vesting_contract, \
-    sender_top_up_while_streaming, sender_top_up_before_stream_started, \
+    sender_use_days, sender_use_weeks, sender_use_months, sender_use_years, sender_create_vesting_contract,  \
     transfer_contract,\
     recipient_withdraw_partial, sender_go_streaming_select_devnet_connect_wallet, fill_standard_details_for_streaming
 
@@ -63,8 +62,12 @@ class test_streaming(unittest.TestCase):
         fill_standard_details_for_streaming()
         sender_create_contract_and_recipient_assert_contract_streaming()
 
-    # def test_streaming_top_up_while_streaming(self):
-    #     pass
+    def test_streaming_top_up_while_streaming(self):
+        sender_go_streaming_select_devnet_connect_wallet()
+        fill_standard_details_for_streaming()
+
+
+
     #
     # def test_streaming_top_up_before_stream_started(self):
     #     pass
