@@ -48,11 +48,11 @@ class test_dev(unittest.TestCase):
         set_random_cliff()
         sender_create_contract_and_recipient_assert_contract_vesting()
 
-    def test_streaming_hours(self):
-        sender_go_streaming_select_devnet_connect_wallet()
-        sender_use_hours()
-        fill_standard_details_for_streaming()
-        sender_create_contract_and_recipient_assert_contract_streaming()
+    # def test_streaming_hours(self):
+    #     sender_go_streaming_select_devnet_connect_wallet()
+    #     sender_use_hours()
+    #     fill_standard_details_for_streaming()
+    #     sender_create_contract_and_recipient_assert_contract_streaming()
 
     def test_vesting_sender_select_autowithdraw(self):
         sender_go_vesting_select_devnet_connect_wallet()
