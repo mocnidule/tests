@@ -21,7 +21,7 @@ def get_deposited_amount():
 
 
 def get_amount():
-    amount = random.randint(1, 300)
+    amount = random.randint(1000000, 5000000)
     with open('./reporting/wallets/amount.txt', 'w') as file:
         file.write(str(amount))
     return amount
