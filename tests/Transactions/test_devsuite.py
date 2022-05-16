@@ -12,7 +12,7 @@ from helpers.app_helpers import sender_create_contract_and_recipient_assert_cont
 from time import sleep
 
 @pytest.mark.devs
-@flaky(max_runs=1, min_passes=1)
+@flaky(max_runs=2, min_passes=1)
 class test_dev(unittest.TestCase):
 
     @classmethod
@@ -29,7 +29,6 @@ class test_dev(unittest.TestCase):
     def test_vesting_minutes(self):
         sender_go_vesting_select_devnet_connect_wallet()
         sender_fill_standard_contract_details()
-        sleep(10000)
         sender_use_random_date_and_time()
         sender_use_minutes()
         sender_create_contract_and_recipient_assert_contract_vesting()
