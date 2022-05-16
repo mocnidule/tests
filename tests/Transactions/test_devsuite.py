@@ -12,7 +12,7 @@ from helpers.app_helpers import sender_create_contract_and_recipient_assert_cont
 from time import sleep
 
 @pytest.mark.devs
-@flaky(max_runs=2, min_passes=1)
+@flaky(max_runs=5, min_passes=1)
 class test_dev(unittest.TestCase):
 
     @classmethod
