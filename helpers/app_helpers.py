@@ -25,10 +25,8 @@ def connect_sender_wallet_and_select_devnet():
 
 
 def select_devnet():
-    sleep(10)
     click_dropdown_menu()
     click_toggle()
-    sleep(10)
 
 
 def go_to_vesting_and_assert_page_is_loaded():
