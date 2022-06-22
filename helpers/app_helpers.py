@@ -65,7 +65,7 @@ def reconnect_recipient_common():
     select_solflare_web()
     select_solflare_web()
     handle_second_window()
-    allow_button_handler()
+    connect_button_handler()
     handle_default_window()
     select_devnet()
 

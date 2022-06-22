@@ -28,6 +28,7 @@ textarea = '//*[@name="mnemonic"]'
 password = '//input[@name="password"]'
 repeat_password = '//input[@name="password2"]'
 connect_button = '//*[contains(text(),"Connect")]'
+import_all_button = '//*[contains(text(),"Import all")]'
 
 
 def solflare_common_intro():
@@ -61,9 +62,9 @@ def mnemonic_reconnect_for_recipient():
     driver.instance.find_element(By.XPATH, password).send_keys('mocMOC123')
     driver.instance.find_element(By.XPATH, repeat_password).send_keys('mocMOC123')
     next_button.click()
-    click(driver.instance, By.XPATH, advanced_button)
-    click(driver.instance, By.XPATH, select_right_wallet)
-    click(driver.instance, By.XPATH, continue_button)
+    # click(driver.instance, By.XPATH, advanced_button)
+    click(driver.instance, By.XPATH, quick_setup)
+    # click(driver.instance, By.XPATH, continue_button)
     handle_default_window()
 
 
@@ -95,7 +96,7 @@ def reconnect_recipient_mnemonic():
 def reconnect_sender_mnemonic():
     click(driver.instance, By.XPATH, textarea)
     driver.instance.find_element(By.XPATH, textarea).send_keys \
-        ('item cricket man casino twin treat web someone stool absurd vague ocean')
+        ('pact mountain explain away lawsuit chuckle creek prepare motion try token loyal')
 
 
 def allow_button_handler():
@@ -137,7 +138,7 @@ def click_already_have_wallet():
 def handle_solflare_for_sender():
     click(driver.instance, By.XPATH, textarea)
     driver.instance.find_element(By.XPATH, textarea).send_keys \
-        ('item cricket man casino twin treat web someone stool absurd vague ocean')
+        ('pact mountain explain away lawsuit chuckle creek prepare motion try token loyal')
     handle_rest()
 
 
@@ -158,7 +159,9 @@ def handle_rest():
     next_button = WebDriverWait(driver.instance, 120, ignored_exceptions=ignored_exceptions) \
         .until(ec.presence_of_element_located((By.XPATH, continue_btn)))
     next_button.click()
-    click(driver.instance, By.XPATH, quick_setup)
+    click(driver.instance, By.XPATH, import_all_button)
+    # sleep(100)
+    # click(driver.instance, By.XPATH, quick_setup)
     handle_default_window()
     select_solflare_web()
     select_solflare_web()
