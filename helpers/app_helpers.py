@@ -290,6 +290,7 @@ def withdraw_contract():
 def top_up_contract():
     pass
 
+
 def assert_in_solana_explore():
     click_on_view_on_explorer_button()
     go_to_token_balances_and_assert()

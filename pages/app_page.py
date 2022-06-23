@@ -66,7 +66,7 @@ chose_recipient_alert = '//p[contains(text(),"You must choose a recipient.")]'
 failed_to_send_transaction_alert = '//*[contains(text(),"failed to send transaction")]'
 withdraw_amount_input_field = '(//input[@type="number" and contains(@class,"py-1.5")])[1]'
 top_up_amount_input_field = '(//input[@type="number" and contains(@class,"py-1.5")])[2]'
-deposited_amount_input_field = 'depositedAmount'
+deposited_amount_input_field = 'recipients.0.depositedAmount'
 release_amount_input_field = 'releaseAmount'
 stream_tab = '//a[contains(text(),"New Stream")]'
 dev_toggle = '//button[@role="switch"]'
@@ -92,6 +92,9 @@ confirm_transfer_recipient = '//input[@value="954fBxNr25X31DbvMkw2ta5KBjkxmMUSFH
 confirm_withdraw_button = '//p[contains(text(), "You can withdraw between 0")]/parent::div//button[2]'
 recipient_email_input = '//input[@data-testid="vesting-email"]'
 add_recipient = '//button[contains(text(), "+ Add Recipient")]'
+status_filter = '(//select[@id="filter"])[1]'
+types_filter = '(//select[@id="filter"])[2]'
+directions_filter = '(//select[@id="filter"])[3]'
 
 
 def sender_send_email():
@@ -187,7 +190,7 @@ def read_amount():
 
 def enter_deposited_amount():
     wait_visibility(driver.instance, By.ID, deposited_amount_input_field)
-    driver.instance.find_element(By.ID, deposited_amount_input_field).send_keys(get_deposited_amount())
+    driver.instance.find_element(By.ID, deposited_amount_input_field).send_keys(get_amount())
 
 
 def enter_amount():
@@ -197,7 +200,7 @@ def enter_amount():
 
 def enter_release_amount():
     wait_visibility(driver.instance, By.ID, release_amount_input_field)
-    driver.instance.find_element(By.ID, release_amount_input_field).send_keys(get_amount())
+    driver.instance.find_element(By.ID, release_amount_input_field).send_keys(get_deposited_amount())
 
 
 def enter_negative_amount():
@@ -247,42 +250,42 @@ def sender_use_seconds():
 
 def sender_use_minutes():
     select_frequency_picker()
-    click(driver.instance, By.XPATH, second)
+    click(driver.instance, By.XPATH, minute)
     driver.instance.find_element(By.ID, release_frequency).clear()
     driver.instance.find_element(By.ID, release_frequency).send_keys(get_minutes())
 
 
 def sender_use_hours():
     select_frequency_picker()
-    click(driver.instance, By.XPATH, second)
+    click(driver.instance, By.XPATH, hour)
     driver.instance.find_element(By.ID, release_frequency).clear()
     driver.instance.find_element(By.ID, release_frequency).send_keys(get_hours())
 
 
 def sender_use_days():
     select_frequency_picker()
-    click(driver.instance, By.XPATH, second)
+    click(driver.instance, By.XPATH, day)
     driver.instance.find_element(By.ID, release_frequency).clear()
     driver.instance.find_element(By.ID, release_frequency).send_keys(get_days())
 
 
 def sender_use_weeks():
     select_frequency_picker()
-    click(driver.instance, By.XPATH, second)
+    click(driver.instance, By.XPATH, week)
     driver.instance.find_element(By.ID, release_frequency).clear()
     driver.instance.find_element(By.ID, release_frequency).send_keys(get_weeks())
 
 
 def sender_use_months():
     select_frequency_picker()
-    click(driver.instance, By.XPATH, second)
+    click(driver.instance, By.XPATH, month)
     driver.instance.find_element(By.ID, release_frequency).clear()
     driver.instance.find_element(By.ID, release_frequency).send_keys(get_months())
 
 
 def sender_use_years():
     select_frequency_picker()
-    click(driver.instance, By.XPATH, second)
+    click(driver.instance, By.XPATH, year)
     driver.instance.find_element(By.ID, release_frequency).clear()
     driver.instance.find_element(By.ID, release_frequency).send_keys(get_years())
 
