@@ -104,7 +104,7 @@ def sender_fill_big_amount_contract_details():
 
 def fill_standard_details_for_streaming():
     click_on_stream_tab()
-    click_toggle()
+    # click_toggle()
     enter_deposited_amount()
     enter_release_amount()
     create_contract_title()
@@ -192,7 +192,6 @@ def recipient_withdraw_partial():
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, confirm_withdraw_button))).click()
     approve_button_handler()
     handle_default_window()
-    # assert_in_solana_explore()
     attach_screenshot(driver.instance, 'Partial Withdraw')
 
 
@@ -277,13 +276,13 @@ def withdraw_contract():
                           "')]/parent::div/parent::div)[2]//button)[2]"
     options = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, more_options_button)))
     options.click()
-    explicit_wait(300)
+    explicit_wait(100)
     withdraw_contract_button = "(((//p[contains(text(),'" + read_contract_title() + "')]/parent::div/parent::div)[2]//button)[2\
     ]/parent::div/parent::div//button[contains(text(),'Withdraw')])"
     withdraw = WebDriverWait(driver.instance, 20).until(
         ec.presence_of_element_located((By.XPATH, withdraw_contract_button)))
     withdraw.click()
-    withdraw_button_confirm = "//p[contains(text(),'" + str(read_amount()) + "')]/parent::div//button[2]"
+    withdraw_button_confirm = "//p[contains(text(),'" + str(read_amount()) + "')]/parent::div//button[1]"
     button = WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, withdraw_button_confirm)))
     button.click()
     approve_button_handler()
