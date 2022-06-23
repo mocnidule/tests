@@ -86,15 +86,19 @@ none_can_cancel = '(//option[@value="neither"])[2]'
 more_options_contract = '(((//p[contains(text(), "TestIo")]/parent::div/parent::div)[2]//button)[2])'
 stream_payment_button = '//button[contains(text(),"Create Streaming Contract")]'
 transfer_address_input = '//input[@placeholder="Recipient address"]'
-confirm_transfer_button = '//input[@value="HG4sYqvkTfgBvGgZZhYfws4f8BoytTr1NmcDEwkKC2z8"]/following-sibling::div//button[2]'
-confirm_transfer_sender = '//input[@value="57TCgyLw4pT48A1z5fWwQ9eUWuwfpo2izzYcWVRiqEnP"]/following-sibling::div//button[2]'
-confirm_transfer_recipient = '//input[@value="954fBxNr25X31DbvMkw2ta5KBjkxmMUSFHeUHuXA1VqD"]/following-sibling::div//button[2]'
+confirm_transfer_button = '//input[@value="HG4sYqvkTfgBvGgZZhYfws4f8BoytTr1NmcDEwkKC2z8"]/following-sibling::div' \
+                          '//button[2] '
+confirm_transfer_sender = '//input[@value="57TCgyLw4pT48A1z5fWwQ9eUWuwfpo2izzYcWVRiqEnP"]/following-sibling::div' \
+                          '//button[2] '
+confirm_transfer_recipient = '//input[@value="954fBxNr25X31DbvMkw2ta5KBjkxmMUSFHeUHuXA1VqD"]/following-sibling::div' \
+                             '//button[2] '
 confirm_withdraw_button = '//p[contains(text(), "You can withdraw between 0")]/parent::div//button[2]'
 recipient_email_input = '//input[@data-testid="vesting-email"]'
 add_recipient = '//button[contains(text(), "+ Add Recipient")]'
 status_filter = '(//select[@id="filter"])[1]'
 types_filter = '(//select[@id="filter"])[2]'
 directions_filter = '(//select[@id="filter"])[3]'
+search_contracts_input_field = '//input[@id="globalSearch"]'
 
 
 def sender_send_email():

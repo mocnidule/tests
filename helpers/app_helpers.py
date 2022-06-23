@@ -9,6 +9,10 @@ from selenium.common.exceptions import TimeoutException
 from helpers.element_helpers import explicit_wait
 
 
+def search_contract_and_assert():
+    driver.instance.find_element(By.XPATH, search_contracts_input_field).send_keys(read_contract_title())
+    attach_screenshot(driver.instance, 'Recipient Contract')
+
 def sender_go_vesting_select_devnet_connect_wallet():
     go_to_vesting_and_assert_page_is_loaded()
     connect_sender_wallet_and_select_devnet()
