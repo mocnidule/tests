@@ -24,7 +24,19 @@ mnemonic_input_reconnect = '// textarea[1]'
 field_set = '//*[@aria-haspopup="listbox"]'
 select_right_wallet = '(//div[contains(@class, "MuiListItemText-multiline")])[2]'
 continue_button = '//*[contains(text(),"Continue")]'
-textarea = '//*[@name="mnemonic"]'
+phase_12 = '//button[contains(text(),"12")]'
+mnemonic_1 = '//input[@id="mnemonic-input-0"]'
+mnemonic_2 = '//input[@id="mnemonic-input-1"]'
+mnemonic_3 = '//input[@id="mnemonic-input-2"]'
+mnemonic_4 = '//input[@id="mnemonic-input-3"]'
+mnemonic_5 = '//input[@id="mnemonic-input-4"]'
+mnemonic_6 = '//input[@id="mnemonic-input-5"]'
+mnemonic_7 = '//input[@id="mnemonic-input-6"]'
+mnemonic_8 = '//input[@id="mnemonic-input-7"]'
+mnemonic_9 = '//input[@id="mnemonic-input-8"]'
+mnemonic_10 = '//input[@id="mnemonic-input-9"]'
+mnemonic_11 = '//input[@id="mnemonic-input-10"]'
+mnemonic_12 = '//input[@id="mnemonic-input-11"]'
 password = '//input[@name="password"]'
 repeat_password = '//input[@name="password2"]'
 connect_button = '//*[contains(text(),"Connect")]'
@@ -88,15 +100,33 @@ def mnemonic_reconnect_for_sender():
 
 
 def reconnect_recipient_mnemonic():
-    click(driver.instance, By.XPATH, textarea)
-    driver.instance.find_element(By.XPATH, textarea).send_keys \
-        ('animal black credit chunk kid issue powder detail strategy hurdle art ring')
+    driver.instance.find_element(By.XPATH, mnemonic_1).send_keys('animal')
+    driver.instance.find_element(By.XPATH, mnemonic_2).send_keys('black')
+    driver.instance.find_element(By.XPATH, mnemonic_3).send_keys('credit')
+    driver.instance.find_element(By.XPATH, mnemonic_4).send_keys('chunk')
+    driver.instance.find_element(By.XPATH, mnemonic_5).send_keys('kid')
+    driver.instance.find_element(By.XPATH, mnemonic_6).send_keys('issue')
+    driver.instance.find_element(By.XPATH, mnemonic_7).send_keys('powder')
+    driver.instance.find_element(By.XPATH, mnemonic_8).send_keys('detail')
+    driver.instance.find_element(By.XPATH, mnemonic_9).send_keys('strategy')
+    driver.instance.find_element(By.XPATH, mnemonic_10).send_keys('hurdle')
+    driver.instance.find_element(By.XPATH, mnemonic_11).send_keys('art')
+    driver.instance.find_element(By.XPATH, mnemonic_12).send_keys('ring')
 
 
 def reconnect_sender_mnemonic():
-    click(driver.instance, By.XPATH, textarea)
-    driver.instance.find_element(By.XPATH, textarea).send_keys \
-        ('pact mountain explain away lawsuit chuckle creek prepare motion try token loyal')
+    driver.instance.find_element(By.XPATH, mnemonic_1).send_keys('pact')
+    driver.instance.find_element(By.XPATH, mnemonic_2).send_keys('mountain')
+    driver.instance.find_element(By.XPATH, mnemonic_3).send_keys('explain')
+    driver.instance.find_element(By.XPATH, mnemonic_4).send_keys('away')
+    driver.instance.find_element(By.XPATH, mnemonic_5).send_keys('lawsuit')
+    driver.instance.find_element(By.XPATH, mnemonic_6).send_keys('chuckle')
+    driver.instance.find_element(By.XPATH, mnemonic_7).send_keys('creek')
+    driver.instance.find_element(By.XPATH, mnemonic_8).send_keys('prepare')
+    driver.instance.find_element(By.XPATH, mnemonic_9).send_keys('motion')
+    driver.instance.find_element(By.XPATH, mnemonic_10).send_keys('try')
+    driver.instance.find_element(By.XPATH, mnemonic_11).send_keys('token')
+    driver.instance.find_element(By.XPATH, mnemonic_12).send_keys('loyal')
 
 
 def allow_button_handler():
@@ -136,16 +166,35 @@ def click_already_have_wallet():
 
 
 def handle_solflare_for_sender():
-    click(driver.instance, By.XPATH, textarea)
-    driver.instance.find_element(By.XPATH, textarea).send_keys \
-        ('pact mountain explain away lawsuit chuckle creek prepare motion try token loyal')
+    click(driver.instance, By.XPATH, phase_12)
+    driver.instance.find_element(By.XPATH, mnemonic_1).send_keys('pact')
+    driver.instance.find_element(By.XPATH, mnemonic_2).send_keys('mountain')
+    driver.instance.find_element(By.XPATH, mnemonic_3).send_keys('explain')
+    driver.instance.find_element(By.XPATH, mnemonic_4).send_keys('away')
+    driver.instance.find_element(By.XPATH, mnemonic_5).send_keys('lawsuit')
+    driver.instance.find_element(By.XPATH, mnemonic_6).send_keys('chuckle')
+    driver.instance.find_element(By.XPATH, mnemonic_7).send_keys('creek')
+    driver.instance.find_element(By.XPATH, mnemonic_8).send_keys('prepare')
+    driver.instance.find_element(By.XPATH, mnemonic_9).send_keys('motion')
+    driver.instance.find_element(By.XPATH, mnemonic_10).send_keys('try')
+    driver.instance.find_element(By.XPATH, mnemonic_11).send_keys('token')
+    driver.instance.find_element(By.XPATH, mnemonic_12).send_keys('loyal')
     handle_rest()
 
 
 def handle_solflare_for_recipient():
-    click(driver.instance, By.XPATH, textarea)
-    driver.instance.find_element(By.XPATH, textarea).send_keys \
-        ('animal black credit chunk kid issue powder detail strategy hurdle art ring')
+    driver.instance.find_element(By.XPATH, mnemonic_1).send_keys('animal')
+    driver.instance.find_element(By.XPATH, mnemonic_2).send_keys('black')
+    driver.instance.find_element(By.XPATH, mnemonic_3).send_keys('credit')
+    driver.instance.find_element(By.XPATH, mnemonic_4).send_keys('chunk')
+    driver.instance.find_element(By.XPATH, mnemonic_5).send_keys('kid')
+    driver.instance.find_element(By.XPATH, mnemonic_6).send_keys('issue')
+    driver.instance.find_element(By.XPATH, mnemonic_7).send_keys('powder')
+    driver.instance.find_element(By.XPATH, mnemonic_8).send_keys('detail')
+    driver.instance.find_element(By.XPATH, mnemonic_9).send_keys('strategy')
+    driver.instance.find_element(By.XPATH, mnemonic_10).send_keys('hurdle')
+    driver.instance.find_element(By.XPATH, mnemonic_11).send_keys('art')
+    driver.instance.find_element(By.XPATH, mnemonic_12).send_keys('ring')
     handle_rest()
 
 
@@ -160,8 +209,6 @@ def handle_rest():
         .until(ec.presence_of_element_located((By.XPATH, continue_btn)))
     next_button.click()
     click(driver.instance, By.XPATH, import_all_button)
-    # sleep(100)
-    # click(driver.instance, By.XPATH, quick_setup)
     handle_default_window()
     select_solflare_web()
     select_solflare_web()
