@@ -3,10 +3,9 @@ from driver import driver
 
 
 @pytest.fixture(autouse=True)
-def setup(request, url):
+def setup(url):
     driver.initialize()
     driver.instance.get(url)
-    request.cls.driver = driver.instance
 
 
 @pytest.fixture(scope='class', autouse=True)

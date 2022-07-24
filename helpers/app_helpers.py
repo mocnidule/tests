@@ -9,23 +9,11 @@ from selenium.common.exceptions import TimeoutException
 from helpers.element_helpers import explicit_wait
 
 
-def search_contract_and_assert():
+def find_contract_and_assert():
+    go_to_all_streams_page()
     driver.instance.find_element(By.XPATH, search_contracts_input_field).send_keys(read_contract_title())
-    attach_screenshot(driver.instance, 'Recipient Contract')
-
-def sender_go_vesting_select_devnet_connect_wallet():
-    go_to_vesting_and_assert_page_is_loaded()
-    connect_sender_wallet_and_select_devnet()
-
-
-def sender_go_streaming_select_devnet_connect_wallet():
-    go_to_stream_and_assert_page_is_loaded()
-    connect_sender_wallet_and_select_devnet()
-
-
-def connect_sender_wallet_and_select_devnet():
-    connect_senders_wallet()
-    select_devnet()
+    WebDriverWait(driver.instance, 10).until(ec.presence_of_element_located((By.XPATH, "//p[contains(text(),'" + read_contract_title() + "')]")))
+    attach_screenshot(driver.instance, 'Contract')
 
 
 def select_devnet():
@@ -33,59 +21,7 @@ def select_devnet():
     click_toggle()
 
 
-def go_to_vesting_and_assert_page_is_loaded():
-    go_to_dev_vesting()
-    enter_password_and_submit()
-
-
-def go_to_stream_and_assert_page_is_loaded():
-    go_to_dev_stream()
-    enter_password_and_submit()
-
-
-def reconnect_sender():
-    quit_driver_to_reconnect_for_vesting()
-    reconnect_sender_common()
-    find_all_streams_and_assert()
-
-
-def reconnect_recipient_and_assert_vesting():
-    quit_driver_to_reconnect_for_vesting()
-    reconnect_recipient_common()
-    find_all_streams_and_assert()
-    attach_screenshot(driver.instance, 'Recipient Contract')
-
-
-def reconnect_recipient_and_assert_streaming():
-    quit_driver_to_reconnect_for_streaming()
-    reconnect_recipient_common()
-    find_all_streams_and_assert()
-    attach_screenshot(driver.instance, 'Recipient Contract')
-
-
-def reconnect_recipient_common():
-    select_solflare_web()
-    mnemonic_reconnect_for_recipient()
-    select_solflare_web()
-    select_solflare_web()
-    handle_second_window()
-    connect_button_handler()
-    handle_default_window()
-    select_devnet()
-
-
-def reconnect_sender_common():
-    select_solflare_web()
-    mnemonic_reconnect_for_sender()
-    select_solflare_web()
-    select_solflare_web()
-    handle_second_window()
-    allow_button_handler()
-    handle_default_window()
-    select_devnet()
-
-
-def sender_fill_standard_contract_details():
+def enter_standard_contract_details():
     enter_amount()
     explicit_wait(2)
     create_contract_title()
@@ -103,8 +39,6 @@ def sender_fill_big_amount_contract_details():
 
 
 def fill_standard_details_for_streaming():
-    click_on_stream_tab()
-    # click_toggle()
     enter_deposited_amount()
     enter_release_amount()
     create_contract_title()
@@ -113,36 +47,18 @@ def fill_standard_details_for_streaming():
     attach_screenshot(driver.instance, 'Filled Streaming Details')
 
 
-def sender_create_vesting_contract():
-    explicit_wait(2)
+def create_vesting_contract_and_assert():
     click_create_button()
     approve_button_handler()
     handle_default_window()
-    find_outgoing_and_assert()
-    attach_screenshot(driver.instance, 'Sender Contract')
+    find_contract_and_assert()
 
 
-def sender_create_streaming_contract():
-    explicit_wait(2)
+def sender_create_payment_contract():
     click_create_stream_button()
     approve_button_handler()
     handle_default_window()
-    find_outgoing_and_assert()
-    attach_screenshot(driver.instance, 'Sender Contract')
-
-
-def quit_driver_to_reconnect_for_vesting():
-    driver.quit_driver()
-    sleep(2)
-    driver.initialize()
-    go_to_vesting_and_assert_page_is_loaded()
-
-
-def quit_driver_to_reconnect_for_streaming():
-    driver.quit_driver()
-    sleep(2)
-    driver.initialize()
-    go_to_stream_and_assert_page_is_loaded()
+    find_contract_and_assert()
 
 
 def find_outgoing_and_assert():
@@ -162,26 +78,14 @@ def find_incoming_and_assert():
 
 
 def find_all_streams_and_assert():
-    click_to_all_streams_page()
+    go_to_all_streams_page()
     transaction_title = "//p[contains(text(),'" + read_contract_title() + "')]"
     title = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, transaction_title)))
     actions = ActionChains(driver.instance)
     actions.move_to_element(title).perform()
 
 
-def sender_create_contract_and_recipient_assert_contract_vesting():
-    sender_create_vesting_contract()
-    reconnect_recipient_and_assert_vesting()
-    sleep(2)
-
-
-def sender_create_contract_and_recipient_assert_contract_streaming():
-    sender_create_streaming_contract()
-    reconnect_recipient_and_assert_streaming()
-    sleep(2)
-
-
-def sender_use_random_date_and_time():
+def use_random_date_and_time():
     set_random_time()
     set_random_date()
 
@@ -196,7 +100,6 @@ def recipient_withdraw_partial():
 
 
 def cancel_contract():
-    click_to_all_streams_page()
     more_options_button = "((//p[contains(text(),'" + read_contract_title() + \
                           "')]/parent::div/parent::div)[2]//button)[2]"
     options = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, more_options_button)))
@@ -211,7 +114,7 @@ def cancel_contract():
 
 
 def transfer_contract():
-    click_to_all_streams_page()
+    go_to_all_streams_page()
     more_options_button = "((//p[contains(text(),'" + read_contract_title() + \
                           "')]/parent::div/parent::div)[2]//button)[2]"
     options = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, more_options_button)))
@@ -227,7 +130,7 @@ def transfer_contract():
 
 
 def sender_transfer_to_self():
-    click_to_all_streams_page()
+    go_to_all_streams_page()
     more_options_button = "((//p[contains(text(),'" + read_contract_title() + \
                           "')]/parent::div/parent::div)[2]//button)[2]"
     options = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, more_options_button)))
@@ -249,7 +152,7 @@ def sender_transfer_to_self():
 
 
 def recipient_transfer_to_self():
-    click_to_all_streams_page()
+    go_to_all_streams_page()
     more_options_button = "((//p[contains(text(),'" + read_contract_title() + \
                           "')]/parent::div/parent::div)[2]//button)[2]"
     options = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, more_options_button)))
@@ -271,7 +174,7 @@ def recipient_transfer_to_self():
 
 
 def withdraw_contract():
-    click_to_all_streams_page()
+    go_to_all_streams_page()
     more_options_button = "((//p[contains(text(),'" + read_contract_title() + \
                           "')]/parent::div/parent::div)[2]//button)[2]"
     options = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, more_options_button)))
@@ -314,30 +217,11 @@ def request_airdrop():
 def approve_button_handler():
     try:
         handle_new_window()
-        WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
+        WebDriverWait(driver.instance, 3).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
     except TimeoutException:
         handle_second_window()
-        WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
+        WebDriverWait(driver.instance, 3).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
 
-
-def connect_senders_wallet():
-    select_solflare_web()
-    handle_new_window()
-    click_already_have_wallet()
-    handle_solflare_for_sender()
-
-
-def connect_recipients_wallet():
-    select_solflare_web()
-    handle_new_window()
-    click_already_have_wallet()
-    handle_solflare_for_recipient()
-
-
-def sender_handle_standard_contract():
-    go_to_vesting_and_assert_page_is_loaded()
-    connect_senders_wallet()
-    sender_fill_standard_contract_details()
 
 
 
