@@ -20,7 +20,6 @@ def test_vesting_months_cliff_and_cancel(setup):
     select_both_can_cancel()
     enter_standard_contract_details()
     use_random_date_and_time()
-    set_random_cliff()
     create_vesting_contract_and_assert()
     connect_recipient_wallet()
     select_devnet()
