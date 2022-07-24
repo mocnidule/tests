@@ -55,16 +55,16 @@ def allow_button_handler():
     try:
         handle_new_window()
         if allow_button is not None:
-            WebDriverWait(driver.instance, 3).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
+            WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
         else:
-            WebDriverWait(driver.instance, 3).until(
+            WebDriverWait(driver.instance, 20).until(
                 ec.element_to_be_clickable((By.XPATH, allow_button_capital))).click()
     except TimeoutException:
         handle_second_window()
         if allow_button is not None:
-            WebDriverWait(driver.instance, 3).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
+            WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
         else:
-            WebDriverWait(driver.instance, 3).until(
+            WebDriverWait(driver.instance, 20).until(
                 ec.element_to_be_clickable((By.XPATH, allow_button_capital))).click()
 
 
@@ -72,15 +72,15 @@ def connect_button_handler():
     try:
         handle_new_window()
         if connect_button is not None:
-            WebDriverWait(driver.instance, 3).until(ec.element_to_be_clickable((By.XPATH, connect_button))).click()
+            WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, connect_button))).click()
         else:
-            WebDriverWait(driver.instance, 3).until(ec.element_to_be_clickable((By.XPATH, connect_button))).click()
+            WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, connect_button))).click()
     except TimeoutException:
         handle_second_window()
         if connect_button is not None:
-            WebDriverWait(driver.instance, 3).until(ec.element_to_be_clickable((By.XPATH, connect_button))).click()
+            WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, connect_button))).click()
         else:
-            WebDriverWait(driver.instance, 3).until(
+            WebDriverWait(driver.instance, 20).until(
                 ec.element_to_be_clickable((By.XPATH, connect_button))).click()
 
 
@@ -124,7 +124,7 @@ def connect_recipient_wallet():
     driver.instance.refresh()
     select_solflare_web()
     handle_new_window()
-    WebDriverWait(driver.instance, 3).until(ec.element_to_be_clickable((By.XPATH, menu_var))).click()
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, menu_var))).click()
     click(driver.instance, By.XPATH, main_account_button)
     click(driver.instance, By.XPATH, add_new_account_button)
     click(driver.instance, By.XPATH, pick_recipient_wallet)
@@ -136,6 +136,6 @@ def connect_recipient_wallet():
     handle_second_window()
     # uncomment if not using headless
     # connect_button_handler()
-    WebDriverWait(driver.instance, 3).until(ec.element_to_be_clickable((By.XPATH, connect_button))).click()  # comment
+    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, connect_button))).click()  # comment
     # out if using headless
     handle_default_window()
