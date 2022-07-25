@@ -12,7 +12,7 @@ from pages.solflare_wallet import connect_sender_wallet, connect_recipient_walle
 
 
 @pytest.mark.smoke
-@flaky(max_runs=1, min_passes=1)
+@flaky(max_runs=2, min_passes=1)
 def test_vesting_months_cliff_and_cancel(setup):
     connect_sender_wallet()
     select_devnet()
@@ -29,7 +29,7 @@ def test_vesting_months_cliff_and_cancel(setup):
 
 
 @pytest.mark.smoke
-@flaky(max_runs=1, min_passes=1)
+@flaky(max_runs=2, min_passes=1)
 def test_streaming_minutes_top_up_and_transfer(setup):
     connect_sender_wallet()
     click_on_payment_tab()
