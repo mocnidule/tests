@@ -123,7 +123,7 @@ def connect_recipient_wallet():
     driver.instance.refresh()
     select_solflare_web()
     handle_new_window()
-    WebDriverWait(driver.instance, 90).until(ec.element_to_be_clickable((By.XPATH, menu_var))).click()
+    click(driver.instance, By.XPATH, menu_var)
     click(driver.instance, By.XPATH, main_account_button)
     click(driver.instance, By.XPATH, add_new_account_button)
     click(driver.instance, By.XPATH, pick_recipient_wallet)
@@ -135,7 +135,8 @@ def connect_recipient_wallet():
     handle_second_window()
     # uncomment if not using headless
     # connect_button_handler()
-    WebDriverWait(driver.instance, 90).until(ec.element_to_be_clickable((By.XPATH, connect_button))).click()  # comment
+    click(driver.instance, By.XPATH, connect_button)
+    # comment
     # out if using headless
     handle_default_window()
 
