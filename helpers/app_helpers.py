@@ -217,10 +217,10 @@ def request_airdrop():
 def approve_button_handler():
     try:
         handle_new_window()
-        WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
+        WebDriverWait(driver.instance, 45).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
     except TimeoutException:
         handle_second_window()
-        WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
+        WebDriverWait(driver.instance, 45).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
 
 
 

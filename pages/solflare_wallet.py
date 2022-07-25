@@ -89,18 +89,18 @@ def click_already_have_wallet():
 
 
 def enter_mnemonic():
-    driver.instance.find_element(By.XPATH, mnemonic_1).send_keys('pact')
-    driver.instance.find_element(By.XPATH, mnemonic_2).send_keys('mountain')
-    driver.instance.find_element(By.XPATH, mnemonic_3).send_keys('explain')
-    driver.instance.find_element(By.XPATH, mnemonic_4).send_keys('away')
-    driver.instance.find_element(By.XPATH, mnemonic_5).send_keys('lawsuit')
-    driver.instance.find_element(By.XPATH, mnemonic_6).send_keys('chuckle')
-    driver.instance.find_element(By.XPATH, mnemonic_7).send_keys('creek')
-    driver.instance.find_element(By.XPATH, mnemonic_8).send_keys('prepare')
-    driver.instance.find_element(By.XPATH, mnemonic_9).send_keys('motion')
-    driver.instance.find_element(By.XPATH, mnemonic_10).send_keys('try')
-    driver.instance.find_element(By.XPATH, mnemonic_11).send_keys('token')
-    driver.instance.find_element(By.XPATH, mnemonic_12).send_keys('loyal')
+    driver.instance.find_element(By.XPATH, mnemonic_1).send_keys('various')
+    driver.instance.find_element(By.XPATH, mnemonic_2).send_keys('when')
+    driver.instance.find_element(By.XPATH, mnemonic_3).send_keys('layer')
+    driver.instance.find_element(By.XPATH, mnemonic_4).send_keys('medal')
+    driver.instance.find_element(By.XPATH, mnemonic_5).send_keys('shock')
+    driver.instance.find_element(By.XPATH, mnemonic_6).send_keys('surprise')
+    driver.instance.find_element(By.XPATH, mnemonic_7).send_keys('anchor')
+    driver.instance.find_element(By.XPATH, mnemonic_8).send_keys('coffee')
+    driver.instance.find_element(By.XPATH, mnemonic_9).send_keys('fragile')
+    driver.instance.find_element(By.XPATH, mnemonic_10).send_keys('wood')
+    driver.instance.find_element(By.XPATH, mnemonic_11).send_keys('series')
+    driver.instance.find_element(By.XPATH, mnemonic_12).send_keys('month')
 
 
 def connect_sender_wallet():
@@ -129,7 +129,7 @@ def connect_recipient_wallet():
     click(driver.instance, By.XPATH, add_new_account_button)
     click(driver.instance, By.XPATH, pick_recipient_wallet)
     click(driver.instance, By.XPATH, save_button)
-    click(driver.instance, By.XPATH, '//span[contains(text(),"5zgdLooxjCPFFeeAC7ypBToGZheMmciVuFfEbSj9miHA")]')
+    click(driver.instance, By.XPATH, '//span[contains(text(),"BarpKdmxv3K8FaJ1KsH6mvGo9GrWNKsRbWu7CLEahAzv")]')
     handle_default_window()
     select_solflare_web()
     select_solflare_web()
@@ -139,3 +139,5 @@ def connect_recipient_wallet():
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, connect_button))).click()  # comment
     # out if using headless
     handle_default_window()
+
+

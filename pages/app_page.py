@@ -161,19 +161,6 @@ def click_connect_button():
     click(driver.instance, By.XPATH, connect_button)
 
 
-def copy_wallet_address():
-    wait_visibility(driver.instance, By.XPATH, address_locator)
-    address = driver.instance.find_element(By.XPATH, address_locator).text
-    with open('./reporting/wallets/wallet_address.txt', 'w') as file:
-        file.write(str(address))
-
-
-def read_wallet_address():
-    with open('./reporting/wallets/wallet_address.txt', 'r') as file:
-        address = file.read()
-    return address
-
-
 def read_amount():
     with open('./reporting/wallets/amount.txt', 'r') as file:
         address = file.read()
@@ -217,7 +204,7 @@ def enter_contract_title():
 
 def enter_wallet_address():
     wait_visibility(driver.instance, By.XPATH, recipient_input)
-    driver.instance.find_element(By.XPATH, recipient_input).send_keys('5zgdLooxjCPFFeeAC7ypBToGZheMmciVuFfEbSj9miHA')
+    driver.instance.find_element(By.XPATH, recipient_input).send_keys('BarpKdmxv3K8FaJ1KsH6mvGo9GrWNKsRbWu7CLEahAzv')
 
 
 def click_create_button():
