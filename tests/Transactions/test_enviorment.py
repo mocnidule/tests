@@ -15,10 +15,10 @@ from pages.solflare_wallet import connect_sender_wallet, connect_recipient_walle
 def test_vesting_months_cliff_and_cancel(setup):
     connect_sender_wallet()
     select_devnet()
+    enter_standard_contract_details()
     use_random_date_and_time()
     use_months()
     select_both_can_cancel()
-    enter_standard_contract_details()
     create_vesting_contract_and_assert()
     connect_recipient_wallet()
     select_devnet()
