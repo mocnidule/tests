@@ -12,7 +12,7 @@ from helpers.element_helpers import explicit_wait
 def find_contract_and_assert():
     go_to_all_streams_page()
     driver.instance.find_element(By.XPATH, search_contracts_input_field).send_keys(read_contract_title())
-    WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, "//p[contains(text(),'" + read_contract_title() + "')]")))
+    WebDriverWait(driver.instance, 90).until(ec.presence_of_element_located((By.XPATH, "//p[contains(text(),'" + read_contract_title() + "')]")))
     attach_screenshot(driver.instance, 'Contract')
 
 
@@ -218,14 +218,14 @@ def approve_button_handler():
     try:
         handle_new_window()
         if approve_button is not None:
-            WebDriverWait(driver.instance, 60).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
+            WebDriverWait(driver.instance, 90).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
         else:
-            WebDriverWait(driver.instance, 60).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
+            WebDriverWait(driver.instance, 90).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
     except TimeoutException:
         handle_second_window()
         if approve_button is not None:
-            WebDriverWait(driver.instance, 60).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
+            WebDriverWait(driver.instance, 90).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
         else:
-            WebDriverWait(driver.instance, 60).until(
+            WebDriverWait(driver.instance, 90).until(
                 ec.element_to_be_clickable((By.XPATH, approve_button))).click()
 
