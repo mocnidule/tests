@@ -6,7 +6,7 @@ instance = None
 def initialize():
     global instance
     options = webdriver.ChromeOptions()
-    options.add_argument('--headed')
+    options.add_argument('--headless')
     options.add_argument('--window-size=1920,1080')
     instance = webdriver.Chrome(options=options)
     instance.implicitly_wait(2)
