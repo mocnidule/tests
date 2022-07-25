@@ -49,15 +49,14 @@ def fill_standard_details_for_streaming():
 
 def create_vesting_contract_and_assert():
     click_create_button()
-    sleep(3)
-    approve_button_handler()
+    approve_transaction_in_solflare()
     handle_default_window()
     find_contract_and_assert()
 
 
 def sender_create_payment_contract():
     click_create_stream_button()
-    approve_button_handler()
+    approve_transaction_in_solflare()
     handle_default_window()
     find_contract_and_assert()
 
@@ -95,7 +94,7 @@ def recipient_withdraw_partial():
     sleep(30)
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, withdraw_button))).click()
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, confirm_withdraw_button))).click()
-    approve_button_handler()
+    approve_transaction_in_solflare()
     handle_default_window()
     attach_screenshot(driver.instance, 'Partial Withdraw')
 
@@ -109,7 +108,7 @@ def cancel_contract():
     ]/parent::div/parent::div//button[contains(text(),'Cancel')])"
     cancel = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, cancel_button_ui)))
     cancel.click()
-    approve_button_handler()
+    approve_transaction_in_solflare()
     handle_default_window()
     attach_screenshot(driver.instance, 'Contract Canceled')
 
@@ -125,7 +124,7 @@ def transfer_contract():
     transfer = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, transfer_button_ui)))
     transfer.click()
     transfer_to_new_recipient()
-    approve_button_handler()
+    approve_transaction_in_solflare()
     handle_default_window()
     attach_screenshot(driver.instance, 'Contract Transferred')
 
@@ -189,7 +188,7 @@ def withdraw_contract():
     withdraw_button_confirm = "//p[contains(text(),'" + str(read_amount()) + "')]/parent::div//button[1]"
     button = WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, withdraw_button_confirm)))
     button.click()
-    approve_button_handler()
+    approve_transaction_in_solflare()
     handle_default_window()
     attach_screenshot(driver.instance, 'Contract Withdrawn')
 
@@ -206,7 +205,7 @@ def assert_in_solana_explore():
 def request_airdrop():
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, request_airdrop_button))).click()
     sleep(2)
-    approve_button_handler()
+    approve_transaction_in_solflare()
     handle_default_window()
     driver.instance.refresh()
     select_solflare_web()
@@ -215,12 +214,11 @@ def request_airdrop():
     handle_default_window()
 
 
-def approve_button_handler():
-    try:
-        handle_new_window()
-        click(driver.instance, By.XPATH, approve_button)
-    except TimeoutException:
-        handle_second_window()
-        click(driver.instance, By.XPATH, approve_button)
+def approve_transaction_in_solflare():
+    handle_new_window()
+    click(driver.instance, By.XPATH, approve_button)
+
+
+
 
 
