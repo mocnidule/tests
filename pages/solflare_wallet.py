@@ -54,16 +54,16 @@ def allow_button_handler():
     try:
         handle_new_window()
         if allow_button is not None:
-            WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
+            WebDriverWait(driver.instance, 60).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
         else:
-            WebDriverWait(driver.instance, 20).until(
+            WebDriverWait(driver.instance, 60).until(
                 ec.element_to_be_clickable((By.XPATH, allow_button_capital))).click()
     except TimeoutException:
         handle_second_window()
         if allow_button is not None:
-            WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
+            WebDriverWait(driver.instance, 60).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
         else:
-            WebDriverWait(driver.instance, 20).until(
+            WebDriverWait(driver.instance, 60).until(
                 ec.element_to_be_clickable((By.XPATH, allow_button_capital))).click()
 
 
