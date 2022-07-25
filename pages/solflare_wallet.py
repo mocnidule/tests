@@ -4,7 +4,6 @@ from selenium.webdriver.common.by import By
 from pages.app_page import select_solflare_web
 from helpers.element_helpers import *
 from selenium.common.exceptions import TimeoutException
-from reporting.allure import attach_screenshot
 
 create_new_wallet_button = '//*[contains(text(),"I NEED A NEW WALLET")]'
 already_have_wallet_button = '//*[contains(text(),"I ALREADY HAVE A WALLET")]'
@@ -112,7 +111,7 @@ def connect_sender_wallet():
     driver.instance.find_element(By.XPATH, password).send_keys('mocMOC123')
     driver.instance.find_element(By.XPATH, repeat_password).send_keys('mocMOC123')
     click(driver.instance, By.XPATH, continue_button)
-    click(driver.instance, By.XPATH, import_all_button)
+    click(driver.instance, By.XPATH, quick_setup)
     handle_default_window()
     select_solflare_web()
     select_solflare_web()

@@ -222,6 +222,3 @@ def approve_button_handler():
         handle_second_window()
         WebDriverWait(driver.instance, 45).until(ec.element_to_be_clickable((By.XPATH, approve_button))).click()
 
-
-
-
