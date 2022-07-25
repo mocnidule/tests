@@ -49,6 +49,7 @@ def fill_standard_details_for_streaming():
 
 def create_vesting_contract_and_assert():
     click_create_button()
+    sleep(3)
     approve_button_handler()
     handle_default_window()
     find_contract_and_assert()

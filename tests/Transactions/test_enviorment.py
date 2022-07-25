@@ -11,15 +11,15 @@ from pages.solflare_wallet import connect_sender_wallet, connect_recipient_walle
 
 
 @pytest.mark.smoke
-@flaky(max_runs=3, min_passes=1)
+@flaky(max_runs=2, min_passes=1)
 def test_vesting_months_cliff_and_cancel(setup):
     enter_password_and_submit()
     connect_sender_wallet()
     select_devnet()
+    use_random_date_and_time()
     use_months()
     select_both_can_cancel()
     enter_standard_contract_details()
-    use_random_date_and_time()
     create_vesting_contract_and_assert()
     connect_recipient_wallet()
     select_devnet()
@@ -28,7 +28,7 @@ def test_vesting_months_cliff_and_cancel(setup):
 
 
 @pytest.mark.smoke
-@flaky(max_runs=3, min_passes=1)
+@flaky(max_runs=2, min_passes=1)
 def test_streaming_minutes_top_up_and_transfer(setup):
     enter_password_and_submit()
     connect_sender_wallet()
