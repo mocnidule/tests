@@ -53,34 +53,19 @@ menu_var = '(//button)[1]'
 def allow_button_handler():
     try:
         handle_new_window()
-        if allow_button is not None:
-            WebDriverWait(driver.instance, 90).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
-        else:
-            WebDriverWait(driver.instance, 90).until(
-                ec.element_to_be_clickable((By.XPATH, allow_button_capital))).click()
+        click(driver.instance, By.XPATH, allow_button)
     except TimeoutException:
         handle_second_window()
-        if allow_button is not None:
-            WebDriverWait(driver.instance, 90).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
-        else:
-            WebDriverWait(driver.instance, 90).until(
-                ec.element_to_be_clickable((By.XPATH, allow_button_capital))).click()
+        click(driver.instance, By.XPATH, allow_button)
 
 
 def connect_button_handler():
     try:
         handle_new_window()
-        if connect_button is not None:
-            WebDriverWait(driver.instance, 90).until(ec.element_to_be_clickable((By.XPATH, connect_button))).click()
-        else:
-            WebDriverWait(driver.instance, 90).until(ec.element_to_be_clickable((By.XPATH, connect_button))).click()
+        click(driver.instance, By.XPATH, connect_button)
     except TimeoutException:
         handle_second_window()
-        if connect_button is not None:
-            WebDriverWait(driver.instance, 90).until(ec.element_to_be_clickable((By.XPATH, connect_button))).click()
-        else:
-            WebDriverWait(driver.instance, 90).until(
-                ec.element_to_be_clickable((By.XPATH, connect_button))).click()
+        click(driver.instance, By.XPATH, connect_button)
 
 
 def click_already_have_wallet():
@@ -112,6 +97,8 @@ def connect_sender_wallet():
     driver.instance.find_element(By.XPATH, repeat_password).send_keys('mocMOC123')
     click(driver.instance, By.XPATH, continue_button)
     click(driver.instance, By.XPATH, quick_setup)
+    explicit_wait(3)
+    driver.instance.close()
     handle_default_window()
     select_solflare_web()
     select_solflare_web()
@@ -123,7 +110,7 @@ def connect_recipient_wallet():
     driver.instance.refresh()
     select_solflare_web()
     handle_new_window()
-    click(driver.instance, By.XPATH, menu_var)
+    click(driver.instance, By.XPATH, solflare_settings_button)
     click(driver.instance, By.XPATH, main_account_button)
     click(driver.instance, By.XPATH, add_new_account_button)
     click(driver.instance, By.XPATH, pick_recipient_wallet)
@@ -134,8 +121,8 @@ def connect_recipient_wallet():
     select_solflare_web()
     handle_second_window()
     # uncomment if not using headless
-    # connect_button_handler()
-    click(driver.instance, By.XPATH, connect_button)
+    connect_button_handler()
+    # click(driver.instance, By.XPATH, connect_button)
     # comment
     # out if using headless
     handle_default_window()

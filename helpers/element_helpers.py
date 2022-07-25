@@ -21,7 +21,7 @@ def wait_visibility(
             assert False
 
 
-def click(web_driver: Remote, by: str, selector: str, time_to_wait: int = 120) -> None:
+def click(web_driver: Remote, by: str, selector: str, time_to_wait: int = 5) -> None:
     try:
         WebDriverWait(web_driver, time_to_wait, poll_frequency=1).until(
             ec.element_to_be_clickable((by, selector))
@@ -33,7 +33,7 @@ def click(web_driver: Remote, by: str, selector: str, time_to_wait: int = 120) -
 def wait_invisibility(
         web_driver: Remote,
         by: str, selector: str,
-        time_to_wait: int = 30,
+        time_to_wait: int = 120,
         fail_on_timeout: bool = True
 ) -> None:
     try:

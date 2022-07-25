@@ -12,7 +12,7 @@ from helpers.element_helpers import explicit_wait
 def find_contract_and_assert():
     go_to_all_streams_page()
     driver.instance.find_element(By.XPATH, search_contracts_input_field).send_keys(read_contract_title())
-    WebDriverWait(driver.instance, 90).until(ec.presence_of_element_located((By.XPATH, "//p[contains(text(),'" + read_contract_title() + "')]")))
+    wait_visibility(driver.instance, By.XPATH, "//p[contains(text(),'" + read_contract_title() + "')]")
     attach_screenshot(driver.instance, 'Contract')
 
 
@@ -64,7 +64,7 @@ def sender_create_payment_contract():
 def find_outgoing_and_assert():
     click_to_outgoing_page()
     transaction_title = "//p[contains(text(),'" + read_contract_title() + "')]"
-    title = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, transaction_title)))
+    title = WebDriverWait(driver.instance, 120).until(ec.presence_of_element_located((By.XPATH, transaction_title)))
     actions = ActionChains(driver.instance)
     actions.move_to_element(title).perform()
 
@@ -72,7 +72,7 @@ def find_outgoing_and_assert():
 def find_incoming_and_assert():
     click_to_incoming_page()
     transaction_title = "//p[contains(text(),'" + read_contract_title() + "')]"
-    title = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, transaction_title)))
+    title = WebDriverWait(driver.instance, 120).until(ec.presence_of_element_located((By.XPATH, transaction_title)))
     actions = ActionChains(driver.instance)
     actions.move_to_element(title).perform()
 
@@ -80,7 +80,7 @@ def find_incoming_and_assert():
 def find_all_streams_and_assert():
     go_to_all_streams_page()
     transaction_title = "//p[contains(text(),'" + read_contract_title() + "')]"
-    title = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, transaction_title)))
+    title = WebDriverWait(driver.instance, 120).until(ec.presence_of_element_located((By.XPATH, transaction_title)))
     actions = ActionChains(driver.instance)
     actions.move_to_element(title).perform()
 

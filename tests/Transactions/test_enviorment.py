@@ -6,8 +6,7 @@ from helpers.app_helpers import use_minutes, \
     select_both_can_cancel, \
     create_vesting_contract_and_assert, sender_create_payment_contract, find_contract_and_assert, select_devnet, \
     use_months, transfer_contract, select_both_can_transfer, fill_standard_details_for_streaming, \
-    click_on_payment_tab, set_random_cliff
-from helpers.driver_helpers import tear_down
+    click_on_payment_tab
 from pages.solflare_wallet import connect_sender_wallet, connect_recipient_wallet
 
 
@@ -25,7 +24,6 @@ def test_vesting_months_cliff_and_cancel(setup):
     select_devnet()
     find_contract_and_assert()
     cancel_contract()
-    tear_down()
 
 
 @pytest.mark.smoke
@@ -43,4 +41,3 @@ def test_streaming_minutes_top_up_and_transfer(setup):
     select_devnet()
     find_contract_and_assert()
     transfer_contract()
-    tear_down()
