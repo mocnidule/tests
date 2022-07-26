@@ -174,9 +174,7 @@ def enter_deposited_amount():
 
 
 def enter_amount():
-    amount = driver.instance.find_element_by_xpath('//input[@id="recipients.0.depositedAmount"]')
-    actions = ActionChains(driver.instance)
-    actions.move_to_element(amount).perform()
+    wait_visibility(driver.instance, By.XPATH, amount_input)
     driver.instance.find_element(By.XPATH, amount_input).send_keys(get_amount())
 
 
@@ -212,9 +210,9 @@ def enter_wallet_address():
 
 def click_create_button():
     button = driver.instance.find_element_by_xpath('//button[contains(text(),"Create Vesting Contract")]')
-    actions = ActionChains(driver.instance)
+    actions = ActionChains(driver)
     actions.move_to_element(button).perform()
-    click(driver.instance, By.XPATH, '//button[contains(text(),"Create Vesting Contract")]')
+    click(driver.instance, By.XPATH, button)
 
 
 def click_create_stream_button():
@@ -276,10 +274,7 @@ def sender_use_years():
 
 
 def set_random_date():
-    date = driver.instance.find_element(By.ID, 'startDate')
-    actions = ActionChains(driver.instance)
-    actions.move_to_element(date).perform()
-    # wait_visibility(driver.instance, By.ID, start_date_input)
+    wait_visibility(driver.instance, By.ID, start_date_input)
     driver.instance.find_element(By.ID, start_date_input).send_keys(random_start_date())
     wait_visibility(driver.instance, By.ID, end_date_input)
     driver.instance.find_element(By.ID, end_date_input).send_keys(random_end_date())
