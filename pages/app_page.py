@@ -210,7 +210,7 @@ def enter_wallet_address():
 
 def click_create_button():
     button = driver.instance.find_element('xpath', '//button[contains(text(),"Create Vesting Contract")]')
-    actions = ActionChains(driver)
+    actions = ActionChains(driver.instance)
     actions.move_to_element(button).perform()
     click(driver.instance, By.XPATH, button)
 
