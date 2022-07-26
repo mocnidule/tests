@@ -26,7 +26,7 @@ def test_vesting_months_cliff_and_cancel(setup):
     cancel_contract()
 
 
-@pytest.mark.smoke
+@pytest.mark.smokex
 @flaky(max_runs=1, min_passes=1)
 def test_streaming_minutes_top_up_and_transfer(setup):
     connect_sender_wallet()

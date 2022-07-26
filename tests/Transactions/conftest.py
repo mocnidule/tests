@@ -11,6 +11,7 @@ def setup(url):
     for logs in driver.instance.get_log('browser'):
         print(logs)
     attach_screenshot(driver.instance, 'Test Done')
+    driver.instance.get_screenshot_as_file('reporting/done.png')
     driver.quit_driver()
 
 
