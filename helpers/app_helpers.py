@@ -49,8 +49,10 @@ def fill_standard_details_for_streaming():
 
 def create_vesting_contract_and_assert():
     click_create_button()
+    driver.instance.get_screenshot_as_file('after create button clicked/done.png')
     approve_transaction_in_solflare()
     handle_default_window()
+    driver.instance.get_screenshot_as_file('reporting/after coming back from approve.png')
     find_contract_and_assert()
 
 
@@ -216,6 +218,7 @@ def request_airdrop():
 
 def approve_transaction_in_solflare():
     handle_new_window()
+    driver.instance.get_screenshot_as_file('reporting/in solflare approve.png')
     click(driver.instance, By.XPATH, approve_button)
 
 
