@@ -56,7 +56,7 @@ def create_vesting_contract_and_assert():
     find_contract_and_assert()
 
 
-def sender_create_payment_contract():
+def create_payment_contract():
     click_create_stream_button()
     approve_transaction_in_solflare()
     handle_default_window()

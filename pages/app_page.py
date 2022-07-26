@@ -5,6 +5,7 @@ from helpers.fakers_helpers import *
 from selenium.webdriver.common.keys import Keys
 from helpers.element_helpers import *
 from helpers.batch_locators import *
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 vesting_screen = 'vesting'
@@ -208,8 +209,10 @@ def enter_wallet_address():
 
 
 def click_create_button():
-    driver.instance.execute_script("arguments[0].click();", create_button)
-    # click(driver.instance, By.XPATH, create_button)
+    button = driver.instance.find_element_by_xpath('//button[contains(text(),"Create Vesting Contract")]')
+    actions = ActionChains(driver.instance)
+    actions.move_to_element(button).perform()
+    click(driver.instance, By.XPATH, '//button[contains(text(),"Create Vesting Contract")]')
 
 
 def click_create_stream_button():
