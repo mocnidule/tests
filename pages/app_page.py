@@ -276,7 +276,10 @@ def sender_use_years():
 
 
 def set_random_date():
-    wait_visibility(driver.instance, By.ID, start_date_input)
+    date = driver.instance.find_element(By.ID, 'startDate')
+    actions = ActionChains(driver.instance)
+    actions.move_to_element(date).perform()
+    # wait_visibility(driver.instance, By.ID, start_date_input)
     driver.instance.find_element(By.ID, start_date_input).send_keys(random_start_date())
     wait_visibility(driver.instance, By.ID, end_date_input)
     driver.instance.find_element(By.ID, end_date_input).send_keys(random_end_date())
