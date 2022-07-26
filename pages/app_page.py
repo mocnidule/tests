@@ -174,7 +174,9 @@ def enter_deposited_amount():
 
 
 def enter_amount():
-    wait_visibility(driver.instance, By.XPATH, amount_input)
+    amount = driver.instance.find_element_by_xpath('//input[@id="recipients.0.depositedAmount"]')
+    actions = ActionChains(driver.instance)
+    actions.move_to_element(amount).perform()
     driver.instance.find_element(By.XPATH, amount_input).send_keys(get_amount())
 
 
