@@ -6,7 +6,7 @@ from helpers.app_helpers import use_minutes, \
     select_both_can_cancel, \
     create_vesting_contract_and_assert, create_payment_contract, find_contract_and_assert, select_devnet, \
     use_months, transfer_contract, select_both_can_transfer, fill_standard_details_for_streaming, \
-    click_on_payment_tab, enter_password_and_submit
+    click_on_payment_tab, use_seconds
 from pages.solflare_wallet import connect_sender_wallet, connect_recipient_wallet
 
 
@@ -16,8 +16,7 @@ def test_vesting_months_cliff_and_cancel(setup):
     connect_sender_wallet()
     select_devnet()
     enter_standard_contract_details()
-    use_random_date_and_time()
-    use_months()
+    use_seconds()
     select_both_can_cancel()
     create_vesting_contract_and_assert()
     connect_recipient_wallet()

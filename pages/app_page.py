@@ -224,7 +224,7 @@ def select_frequency_picker():
     click(driver.instance, By.ID, release_frequency_picker)
 
 
-def sender_use_seconds():
+def use_seconds():
     select_frequency_picker()
     click(driver.instance, By.XPATH, second)
     driver.instance.find_element(By.ID, release_frequency).clear()
