@@ -8,6 +8,7 @@ def initialize():
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')
     options.add_argument('--window-size=1920,1080')
+    options.add_argument("--start-maximized")
     instance = webdriver.Chrome(options=options)
     instance.implicitly_wait(2)
     return instance
