@@ -208,7 +208,9 @@ def enter_wallet_address():
 
 
 def click_create_button():
-    click(driver.instance, By.XPATH, create_button)
+    create = driver.instance.find_element_by_xpath('//button[contains(text(),"Create Vesting Contract")]')
+    driver.instance.execute_script("arguments[0].click();", create)
+    # click(driver.instance, By.XPATH, create_button)
 
 
 def click_create_stream_button():
