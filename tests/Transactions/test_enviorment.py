@@ -10,7 +10,7 @@ from helpers.app_helpers import use_minutes, \
 from pages.solflare_wallet import connect_sender_wallet, connect_recipient_wallet
 
 
-@pytest.mark.smoke
+@pytest.mark.app
 @flaky(max_runs=1, min_passes=1)
 def test_vesting_seconds_cliff_and_cancel(setup):
     connect_sender_wallet()
@@ -25,7 +25,7 @@ def test_vesting_seconds_cliff_and_cancel(setup):
     cancel_contract()
 
 
-@pytest.mark.smoke
+@pytest.mark.app
 @flaky(max_runs=1, min_passes=1)
 def test_streaming_minutes_top_up_and_transfer(setup):
     connect_sender_wallet()
