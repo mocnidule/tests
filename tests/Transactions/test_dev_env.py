@@ -10,7 +10,8 @@ from helpers.app_helpers import use_minutes, \
 from pages.solflare_wallet import connect_sender_wallet, connect_recipient_wallet
 from driver import driver
 
-@pytest.mark.devnnet
+
+@pytest.mark.devnet
 @flaky(max_runs=1, min_passes=1)
 def test_vesting_seconds_cliff_and_cancel(setup):
     enter_password_and_submit()
@@ -26,7 +27,7 @@ def test_vesting_seconds_cliff_and_cancel(setup):
     cancel_contract()
 
 
-@pytest.mark.devnnet
+@pytest.mark.devnet
 @flaky(max_runs=1, min_passes=1)
 def test_streaming_minutes_top_up_and_transfer(setup):
     enter_password_and_submit()
@@ -45,7 +46,7 @@ def test_streaming_minutes_top_up_and_transfer(setup):
     transfer_contract()
 
 
-@pytest.mark.devnnet
+@pytest.mark.devnet
 @flaky(max_runs=1, min_passes=1)
 def test_bulk_vesting(setup):
     pass
