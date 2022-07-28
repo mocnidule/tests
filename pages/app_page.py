@@ -153,9 +153,13 @@ def assert_page_is_loaded():
 
 
 def enter_password_and_submit():
-    wait_visibility(driver.instance, By.XPATH, password)
-    driver.instance.find_element(By.XPATH, password).send_keys('streamooor')
-    click(driver.instance, By.XPATH, submit_password)
+    try:
+        WebDriverWait(driver.instance, 3).until(ec.url_to_be('https://app.streamflow.finance/'))
+        pass
+    except TimeoutException:
+        wait_visibility(driver.instance, By.XPATH, password)
+        driver.instance.find_element(By.XPATH, password).send_keys('streamooor')
+        click(driver.instance, By.XPATH, submit_password)
 
 
 def click_connect_button():
@@ -180,7 +184,7 @@ def enter_amount():
 
 def enter_release_amount():
     wait_visibility(driver.instance, By.ID, release_amount_input_field)
-    driver.instance.find_element(By.ID, release_amount_input_field).send_keys(get_deposited_amount())
+    driver.instance.find_element(By.ID, release_amount_input_field).send_keys(get_released_amount())
 
 
 def enter_negative_amount():

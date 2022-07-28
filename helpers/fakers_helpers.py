@@ -15,7 +15,7 @@ def read_contract_title():
     return name
 
 
-def get_deposited_amount():
+def get_released_amount():
     amount = random.randint(350, 450)
     return amount
 

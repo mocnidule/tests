@@ -30,6 +30,16 @@ def enter_standard_contract_details():
     attach_screenshot(driver.instance, 'Filled Vesting Details')
 
 
+def enter_mainnet_vesting_contract_details():
+    wait_visibility(driver.instance, By.XPATH, amount_input)
+    driver.instance.find_element(By.XPATH, amount_input).send_keys('0.1')
+    explicit_wait(2)
+    create_contract_title()
+    enter_contract_title()
+    enter_wallet_address()
+    attach_screenshot(driver.instance, 'Filled Vesting Details')
+
+
 def sender_fill_big_amount_contract_details():
     enter_big_number()
     explicit_wait(2)
@@ -41,6 +51,17 @@ def sender_fill_big_amount_contract_details():
 def fill_standard_details_for_streaming():
     enter_deposited_amount()
     enter_release_amount()
+    create_contract_title()
+    enter_contract_title()
+    enter_wallet_address()
+    attach_screenshot(driver.instance, 'Filled Streaming Details')
+
+
+def fill_mainnet_details_for_streaming():
+    wait_visibility(driver.instance, By.ID, deposited_amount_input_field)
+    driver.instance.find_element(By.ID, deposited_amount_input_field).send_keys('0.1')
+    wait_visibility(driver.instance, By.ID, release_amount_input_field)
+    driver.instance.find_element(By.ID, release_amount_input_field).send_keys('0.01')
     create_contract_title()
     enter_contract_title()
     enter_wallet_address()
