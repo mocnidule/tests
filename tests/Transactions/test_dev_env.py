@@ -22,7 +22,6 @@ def test_vesting_seconds_cliff_and_cancel(setup):
     select_devnet()
     enter_standard_contract_details()
     select_both_can_cancel()
-    sender_select_autowithdrawal()
     create_vesting_contract_and_assert()
     driver.instance.refresh()
     connect_recipient_wallet()
@@ -52,17 +51,17 @@ def test_streaming_minutes_top_up_and_transfer(setup):
     transfer_contract()
 
 
-@pytest.mark.devnet
-@flaky(max_runs=2, min_passes=1)
-def test_bulk_vesting(setup):
-    enter_password_and_submit()
-    connect_sender_wallet()
-    click_on_vesting_tab()
-    select_devnet()
-    click_add_recipient_4_times()
-    fill_batch_details()
-    wait_wallet_connect_alert_to_disappear()
-    click_create_button()
-    approve_transaction_in_solflare()
-    handle_default_window()
-    wait_transaction_confirmed_alert()
+# @pytest.mark.devnet
+# @flaky(max_runs=2, min_passes=1)
+# def test_bulk_vesting(setup):
+#     enter_password_and_submit()
+#     connect_sender_wallet()
+#     click_on_vesting_tab()
+#     select_devnet()
+#     wait_wallet_connect_alert_to_disappear()
+#     click_add_recipient_4_times()
+#     fill_batch_details()
+#     click_create_button()
+#     approve_transaction_in_solflare()
+#     handle_default_window()
+#     wait_transaction_confirmed_alert()
