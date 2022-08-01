@@ -73,6 +73,7 @@ def click_already_have_wallet():
 
 
 def enter_mnemonic():
+    # CNKTpPfLkvSjauF2UnbYFyKzw9z1x5T6KxGFcgzk5uP9
     driver.instance.find_element(By.XPATH, mnemonic_1).send_keys('various')
     driver.instance.find_element(By.XPATH, mnemonic_2).send_keys('when')
     driver.instance.find_element(By.XPATH, mnemonic_3).send_keys('layer')
@@ -125,5 +126,3 @@ def connect_recipient_wallet():
     # comment
     # out if using headless
     handle_default_window()
-
-
