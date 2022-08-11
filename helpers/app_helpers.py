@@ -27,6 +27,7 @@ def enter_standard_contract_details():
     create_contract_title()
     enter_contract_title()
     enter_wallet_address()
+    enter_email_address()
     attach_screenshot(driver.instance, 'Filled Vesting Details')
 
 
@@ -71,6 +72,16 @@ def fill_mainnet_details_for_streaming():
 def create_vesting_contract_and_assert():
     click_create_button()
     approve_transaction_in_solflare()
+    handle_default_window()
+    find_contract_and_assert()
+
+
+def create_vesting_contract_and_email_and_assert():
+    click_create_button()
+    approve_transaction_in_solflare()
+    # sign email message and assert
+    approve_transaction_in_solflare(sleep_time=10)
+    wait_visibility(driver.instance, By.XPATH, email_sent_alert, time_to_wait=5)
     handle_default_window()
     find_contract_and_assert()
 
@@ -235,8 +246,8 @@ def request_airdrop():
     handle_default_window()
 
 
-def approve_transaction_in_solflare():
-    handle_new_window()
+def approve_transaction_in_solflare(sleep_time=1):
+    handle_new_window(sleep_time)
     click(driver.instance, By.XPATH, approve_button)
 
 

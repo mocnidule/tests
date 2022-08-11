@@ -58,6 +58,8 @@ not_enough_tokens_alert = '//p[contains(text(),"have enough tokens.")]'
 cliff_should_happen_after_start_alert = '//p[contains(text(),"Cliff should happen after start.")]'
 view_on_explorer_button = '//a[contains(text(),"View on explorer")]'
 wallet_connected_alert = '//*[contains(text(),"Wallet connected!")]'
+email_sent_alert = '//*[contains(text(),"Notification sent.")]'
+email_failed_alert = '//*[contains(text(),"Sending notifications failed.")]'
 transaction_canceled_alert = '//*[contains(text(),"Transaction cancelled")]'
 transaction_confirmed_alert = '//*[contains(text(),"Transaction confirmed!")]'
 cant_transfer_stream_to_yourself_alert = '//*[contains(text(),"transfer stream to yourself.")]'
@@ -215,6 +217,11 @@ def enter_contract_title():
 def enter_wallet_address():
     wait_visibility(driver.instance, By.XPATH, recipient_input)
     driver.instance.find_element(By.XPATH, recipient_input).send_keys('BarpKdmxv3K8FaJ1KsH6mvGo9GrWNKsRbWu7CLEahAzv')
+
+
+def enter_email_address():
+    wait_visibility(driver.instance, By.XPATH, email_one)
+    driver.instance.find_element(By.XPATH, email_one).send_keys('dusankovacevic01@gmail.com')
 
 
 def click_create_button():

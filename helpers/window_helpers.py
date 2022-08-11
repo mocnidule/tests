@@ -2,8 +2,8 @@ from driver import driver
 from time import sleep
 
 
-def handle_new_window():
-    sleep(1)
+def handle_new_window(sleep_time=1):
+    sleep(sleep_time)
     new_window = driver.instance.window_handles[1]
     driver.instance.switch_to.window(new_window)
 
