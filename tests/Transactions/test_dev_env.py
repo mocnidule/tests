@@ -36,7 +36,7 @@ def test_vesting_seconds_cliff_and_cancel(setup):
     cancel_contract()
 
 
-@pytest.mark.devnetx
+@pytest.mark.devnet
 @flaky(max_runs=2, min_passes=1)
 def test_streaming_minutes_top_up_and_transfer(setup):
     enter_password_and_submit()
