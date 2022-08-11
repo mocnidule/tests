@@ -1,6 +1,6 @@
 import pytest
 from flaky import flaky
-
+from driver import driver
 from helpers.app_helpers import use_minutes, \
     use_random_date_and_time, enter_standard_contract_details, cancel_contract, \
     select_both_can_cancel, \
@@ -9,7 +9,8 @@ from helpers.app_helpers import use_minutes, \
     click_on_payment_tab, use_seconds, enter_password_and_submit, enter_mainnet_vesting_contract_details, \
     fill_mainnet_details_for_streaming, click_add_recipient_4_times, fill_batch_details, click_create_button, \
     approve_transaction_in_solflare, handle_default_window, wait_transaction_confirmed_alert, \
-    wait_wallet_connect_alert_to_disappear, sender_select_autowithdrawal, click_on_vesting_tab
+    wait_wallet_connect_alert_to_disappear, sender_select_autowithdrawal, click_on_vesting_tab, sender_send_email, approve, \
+    email_sent_alert, email_alert_success
 
 from pages.solflare_wallet import connect_sender_wallet, connect_recipient_wallet
 
@@ -21,8 +22,14 @@ def test_vesting_seconds_set_cliff_and_cancel(setup):
     connect_sender_wallet()
     click_on_vesting_tab()
     enter_mainnet_vesting_contract_details()
+    sender_send_email()
     select_both_can_cancel()
-    create_vesting_contract_and_assert()
+    click_create_button()
+    approve_transaction_in_solflare()
+    approve()
+    handle_default_window()
+    email_alert_success()
+    driver.instance.refresh()
     connect_recipient_wallet()
     find_contract_and_assert()
     cancel_contract()

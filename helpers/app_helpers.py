@@ -240,6 +240,8 @@ def approve_transaction_in_solflare():
     click(driver.instance, By.XPATH, approve_button)
 
 
+def approve():
+    click(driver.instance, By.XPATH, approve_button)
 
 
 

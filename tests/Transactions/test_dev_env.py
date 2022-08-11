@@ -8,7 +8,8 @@ from helpers.app_helpers import use_minutes, \
     use_months, transfer_contract, select_both_can_transfer, fill_standard_details_for_streaming, \
     click_on_payment_tab, use_seconds, enter_password_and_submit, click_add_recipient_4_times, fill_batch_details, \
     wait_wallet_connect_alert_to_disappear, click_create_button, approve_transaction_in_solflare, \
-    handle_default_window, wait_transaction_confirmed_alert, sender_select_autowithdrawal, click_on_vesting_tab
+    handle_default_window, wait_transaction_confirmed_alert, sender_select_autowithdrawal, click_on_vesting_tab, \
+    sender_send_email, approve, email_alert_success
 from pages.solflare_wallet import connect_sender_wallet, connect_recipient_wallet
 from driver import driver
 
@@ -21,8 +22,13 @@ def test_vesting_seconds_cliff_and_cancel(setup):
     click_on_vesting_tab()
     select_devnet()
     enter_standard_contract_details()
+    sender_send_email()
     select_both_can_cancel()
-    create_vesting_contract_and_assert()
+    click_create_button()
+    approve_transaction_in_solflare()
+    approve()
+    handle_default_window()
+    email_alert_success()
     driver.instance.refresh()
     connect_recipient_wallet()
     select_devnet()
@@ -30,7 +36,7 @@ def test_vesting_seconds_cliff_and_cancel(setup):
     cancel_contract()
 
 
-@pytest.mark.devnet
+@pytest.mark.devnetx
 @flaky(max_runs=2, min_passes=1)
 def test_streaming_minutes_top_up_and_transfer(setup):
     enter_password_and_submit()

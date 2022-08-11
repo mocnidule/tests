@@ -95,16 +95,22 @@ confirm_transfer_sender = '//input[@value="57TCgyLw4pT48A1z5fWwQ9eUWuwfpo2izzYcW
 confirm_transfer_recipient = '//input[@value="954fBxNr25X31DbvMkw2ta5KBjkxmMUSFHeUHuXA1VqD"]/following-sibling::div' \
                              '//button[2] '
 confirm_withdraw_button = '//p[contains(text(), "You can withdraw between 0")]/parent::div//button[2]'
-recipient_email_input = '//input[@data-testid="vesting-email"]'
+recipient_email_input = 'recipients.0.recipientEmail'
 add_recipient = '//button[contains(text(), "+ Add Recipient")]'
 status_filter = '(//select[@id="filter"])[1]'
 types_filter = '(//select[@id="filter"])[2]'
 directions_filter = '(//select[@id="filter"])[3]'
 search_contracts_input_field = '//input[@id="globalSearch"]'
+email_sent_alert = '//*[contains(text(),"Notification sent.")]'
+email_failed_alert = '//*[contains(text(),"Sending notifications failed.")]'
+
+
+def email_alert_success():
+    wait_visibility(driver.instance, By.XPATH, email_sent_alert)
 
 
 def sender_send_email():
-    driver.instance.find_element(By.XPATH, recipient_email_input).send_keys('dusankovacevic01@gmail.com')
+    driver.instance.find_element(By.ID, recipient_email_input).send_keys('dusankovacevic01@gmail.com')
 
 
 def select_both_can_cancel():
