@@ -1,53 +1,18 @@
 import driver.driver
-from helpers.window_helpers import *
 from selenium.webdriver.common.by import By
-from pages.app_page import select_solflare_web
+from pages.wallet_picker_page import select_solflare_web
 from helpers.element_helpers import *
-from selenium.common.exceptions import TimeoutException
+from locators.element_locators import *
+from helpers.window_helpers import *
 
-create_new_wallet_button = '//*[contains(text(),"I NEED A NEW WALLET")]'
-already_have_wallet_button = '//*[contains(text(),"I ALREADY HAVE A WALLET")]'
-advanced_button = '//*[contains(text(),"Advanced")]'
-quick_setup = '//*[contains(text(),"Quick setup")]'
-skip_button = '//span[contains(text(),"Skip")]'
-wrote_down_mnemonic_button = '//*[contains(text(),"I SAVED MY RECOVERY PHRASE")]'
-verify_button = '//span[contains(text(),"Verify")]'
-allow_button = '//span[contains(text(),"Allow")]'
-allow_button_capital = '//span[contains(text(),"ALLOW")]'
-next_step_button = '//span[contains(text(),"Next step")]'
-close_button = '//span[contains(text(),"Close")]'
-copy_mnemonic_button = '//*[contains(text(),"Copy")]'
-access_button = '//span[contains(text(),"Access")]'
-mnemonic_input = '//input[@id="mnemonic-input-0"]'
-mnemonic_input_reconnect = '// textarea[1]'
-field_set = '//*[@aria-haspopup="listbox"]'
-select_right_wallet = '(//div[contains(@class, "MuiListItemText-multiline")])[2]'
-continue_button = '//*[contains(text(),"Continue")]'
-phase_12 = '//button[contains(text(),"12")]'
-mnemonic_1 = '//input[@id="mnemonic-input-0"]'
-mnemonic_2 = '//input[@id="mnemonic-input-1"]'
-mnemonic_3 = '//input[@id="mnemonic-input-2"]'
-mnemonic_4 = '//input[@id="mnemonic-input-3"]'
-mnemonic_5 = '//input[@id="mnemonic-input-4"]'
-mnemonic_6 = '//input[@id="mnemonic-input-5"]'
-mnemonic_7 = '//input[@id="mnemonic-input-6"]'
-mnemonic_8 = '//input[@id="mnemonic-input-7"]'
-mnemonic_9 = '//input[@id="mnemonic-input-8"]'
-mnemonic_10 = '//input[@id="mnemonic-input-9"]'
-mnemonic_11 = '//input[@id="mnemonic-input-10"]'
-mnemonic_12 = '//input[@id="mnemonic-input-11"]'
-password = '//input[@name="password"]'
-repeat_password = '//input[@name="password2"]'
-connect_button = '//*[contains(text(),"Connect")]'
-import_all_button = '//*[contains(text(),"Import all")]'
-menu_button = '//button[@id="headlessui-menu-button-1"]'
-disconnect_wallet = '//span[contains(text(),"Disconnect Wallet")]'
-solflare_settings_button = '//p[contains(text(),"Settings")]'
-main_account_button = '(//div[@role="button"])[1]'
-add_new_account_button = '//span[contains(text(),"Add a new account")]'
-pick_recipient_wallet = '(//span[@data-id="mnemonic_account_checkbox"])[2]'
-save_button = '//button[@data-id="save_button"]'
-menu_var = '(//button)[1]'
+
+def approve_in_wallet():
+    handle_new_window()
+    click(driver.instance, By.XPATH, approve_button)
+
+
+def additional_approve_in_wallet():
+    click(driver.instance, By.XPATH, approve_button)
 
 
 def allow_button_handler():
@@ -120,9 +85,5 @@ def connect_recipient_wallet():
     select_solflare_web()
     select_solflare_web()
     handle_second_window()
-    # uncomment if not using headless
     connect_button_handler()
-    # click(driver.instance, By.XPATH, connect_button)
-    # comment
-    # out if using headless
     handle_default_window()

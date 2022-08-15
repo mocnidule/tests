@@ -1,17 +1,16 @@
 import pytest
 from flaky import flaky
 from helpers.global_helpers import *
-from pages.solflare_wallet_page import connect_sender_wallet, connect_recipient_wallet
-from driver import driver
+from pages.new_payment_page import fill_standard_details_for_payment, create_payment_contract
 
 
-@pytest.mark.devnet
-@flaky(max_runs=2, min_passes=1)
-def test_vesting_seconds_cliff_and_cancel(setup):
+@pytest.mark.smoke
+@flaky(max_runs=1, min_passes=1)
+def test_vesting(setup):
     enter_password_and_submit()
     connect_sender_wallet()
-    click_on_vesting_tab()
     select_devnet()
+    click_on_vesting_tab()
     enter_standard_contract_details()
     sender_send_email()
     select_both_can_cancel()
@@ -27,9 +26,9 @@ def test_vesting_seconds_cliff_and_cancel(setup):
     cancel_contract()
 
 
-@pytest.mark.devnet
-@flaky(max_runs=2, min_passes=1)
-def test_streaming_minutes_top_up_and_transfer(setup):
+@pytest.mark.smoke
+@flaky(max_runs=1, min_passes=1)
+def test_payment(setup):
     enter_password_and_submit()
     connect_sender_wallet()
     click_on_vesting_tab()
@@ -37,7 +36,7 @@ def test_streaming_minutes_top_up_and_transfer(setup):
     select_devnet()
     use_minutes()
     select_both_can_transfer()
-    fill_standard_details_for_streaming()
+    fill_standard_details_for_payment()
     create_payment_contract()
     driver.instance.refresh()
     connect_recipient_wallet()
@@ -46,19 +45,3 @@ def test_streaming_minutes_top_up_and_transfer(setup):
     click_on_payment_tab()
     find_contract_and_assert()
     transfer_contract()
-
-
-# @pytest.mark.devnet
-# @flaky(max_runs=2, min_passes=1)
-# def test_bulk_vesting(setup):
-#     enter_password_and_submit()
-#     connect_sender_wallet()
-#     click_on_vesting_tab()
-#     select_devnet()
-#     wait_wallet_connect_alert_to_disappear()
-#     click_add_recipient_4_times()
-#     fill_batch_details()
-#     click_create_button()
-#     approve_transaction_in_solflare()
-#     handle_default_window()
-#     wait_transaction_confirmed_alert()
