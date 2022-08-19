@@ -100,6 +100,10 @@ def select_devnet():
         click_toggle()
 
 
+def click_home_button():
+    click(driver.instance, By.XPATH, dashboard_tab)
+
+
 def use_seconds():
     select_frequency_picker()
     click(driver.instance, By.XPATH, second)
@@ -114,21 +118,21 @@ def use_minutes():
     driver.instance.find_element(By.ID, release_frequency).send_keys(get_minutes())
 
 
-def sender_use_hours():
+def use_hours():
     select_frequency_picker()
     click(driver.instance, By.XPATH, hour)
     driver.instance.find_element(By.ID, release_frequency).clear()
     driver.instance.find_element(By.ID, release_frequency).send_keys(get_hours())
 
 
-def sender_use_days():
+def use_days():
     select_frequency_picker()
     click(driver.instance, By.XPATH, day)
     driver.instance.find_element(By.ID, release_frequency).clear()
     driver.instance.find_element(By.ID, release_frequency).send_keys(get_days())
 
 
-def sender_use_weeks():
+def use_weeks():
     select_frequency_picker()
     click(driver.instance, By.XPATH, week)
     driver.instance.find_element(By.ID, release_frequency).clear()
@@ -142,7 +146,7 @@ def use_months():
     driver.instance.find_element(By.ID, release_frequency).send_keys(get_months())
 
 
-def sender_use_years():
+def use_years():
     select_frequency_picker()
     click(driver.instance, By.XPATH, year)
     driver.instance.find_element(By.ID, release_frequency).clear()
@@ -280,7 +284,7 @@ def recipient_wait_for_auto_withdrawal():
 
 def scroll_to_top():
     driver.instance.find_element(By.TAG_NAME, 'body').send_keys(Keys.CONTROL + Keys.HOME)
-    explicit_wait(5)
+    explicit_wait(2)
 
 
 def find_contract_and_assert():
@@ -291,7 +295,6 @@ def find_contract_and_assert():
 
 
 def select_frequency_picker():
-    explicit_wait(5)
     click(driver.instance, By.ID, release_frequency_picker)
 
 
@@ -310,3 +313,9 @@ def try_transfer():
     except TimeoutException:
         pass
     click(driver.instance, By.XPATH, confirm_transfer_button)
+
+
+def connect_sender_to_app():
+    enter_password_and_submit()
+    connect_sender_wallet()
+    select_devnet()

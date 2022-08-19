@@ -87,3 +87,4 @@ def connect_recipient_wallet():
     handle_second_window()
     connect_button_handler()
     handle_default_window()
+

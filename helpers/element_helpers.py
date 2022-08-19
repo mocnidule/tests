@@ -22,10 +22,6 @@ def wait_visibility(
 
 
 def click(web_driver: Remote, by: str, selector: str, time_to_wait: int = 5) -> None:
-    """
-
-    :rtype: object
-    """
     try:
         WebDriverWait(web_driver, time_to_wait, poll_frequency=1).until(
             ec.element_to_be_clickable((by, selector))

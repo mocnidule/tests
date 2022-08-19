@@ -3,7 +3,6 @@ from helpers.fakers_helpers import *
 from helpers.batch_helpers import *
 from pages.solflare_wallet_page import *
 from selenium.webdriver.common.action_chains import ActionChains
-from reporting.allure import attach_screenshot
 
 
 def create_vesting_contract_and_assert():
@@ -13,16 +12,6 @@ def create_vesting_contract_and_assert():
     find_contract_and_assert()
 
 
-def enter_mainnet_vesting_contract_details():
-    wait_visibility(driver.instance, By.XPATH, amount_input)
-    driver.instance.find_element(By.XPATH, amount_input).send_keys('0.1')
-    explicit_wait(2)
-    create_contract_title()
-    enter_contract_title()
-    enter_wallet_address()
-    attach_screenshot(driver.instance, 'Filled Vesting Details')
-
-
 def read_amount():
     with open('./reporting/wallets/amount.txt', 'r') as file:
         address = file.read()
@@ -30,13 +19,17 @@ def read_amount():
 
 
 def use_random_date_and_time():
-    set_random_time()
     set_random_date()
+    set_random_time()
 
 
 def enter_amount():
     wait_visibility(driver.instance, By.XPATH, amount_input)
-    driver.instance.find_element(By.XPATH, amount_input).send_keys(get_amount())
+    try:
+        WebDriverWait(driver.instance, 3).until(ec.url_to_be('https://app.streamflow.finance/new-vesting'))
+        driver.instance.find_element(By.XPATH, amount_input).send_keys('0.1')
+    except TimeoutException:
+        driver.instance.find_element(By.XPATH, amount_input).send_keys(get_amount())
 
 
 def enter_big_number():
@@ -55,14 +48,15 @@ def set_random_date():
     wait_visibility(driver.instance, By.ID, start_date_input)
     driver.instance.find_element(By.ID, start_date_input).send_keys(random_start_date())
     wait_visibility(driver.instance, By.ID, end_date_input)
+    explicit_wait(5)
+    click(driver.instance, By.ID, end_date_input)
     driver.instance.find_element(By.ID, end_date_input).send_keys(random_end_date())
 
 
 def set_random_time():
     wait_visibility(driver.instance, By.ID, start_time_input)
     driver.instance.find_element(By.ID, start_time_input).send_keys(random_start_time())
-    wait_visibility(driver.instance, By.ID, end_time_input)
-    driver.instance.find_element(By.ID, end_date_input).send_keys(random_end_time())
+    driver.instance.find_element(By.ID, end_date_input).send_keys('26122032')
 
 
 def set_random_cliff():

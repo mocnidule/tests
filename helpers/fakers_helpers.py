@@ -84,9 +84,9 @@ def random_start_date():
 
 
 def random_end_date():
-    days = ['16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30']
-    months = ['07', '08', '09', '10', '11', '12']
-    years = ['2031', '2032']
+    days = ['11', '12', '13', '14', '15']
+    months = ['11', '12']
+    years = ['2027', '2028']
     day = (random.choice(days))
     month = (random.choice(months))
     year = (random.choice(years))
