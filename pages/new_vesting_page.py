@@ -59,11 +59,7 @@ def set_random_time():
     driver.instance.find_element(By.ID, end_date_input).send_keys('26122032')
 
 
-def set_random_cliff():
-    wait_visibility(driver.instance, By.ID, cliff_date_input)
-    driver.instance.find_element(By.ID, cliff_date_input).send_keys('12122026')
-    driver.instance.find_element(By.ID, cliff_time_input).send_keys(random_start_time())
-    explicit_wait(2)
+def set_cliff():
     wait_visibility(driver.instance, By.ID, cliff_percentage_input)
     driver.instance.find_element(By.ID, cliff_percentage_input).clear()
     driver.instance.find_element(By.ID, cliff_percentage_input).send_keys(get_cliff_percentage())
@@ -74,6 +70,7 @@ def assert_overview_section():
 
 
 def click_add_recipient_4_times():
+    explicit_wait(5)
     button = driver.instance.find_element(By.XPATH, add_recipient)
     for i in range(4):
         button.click()
@@ -105,3 +102,7 @@ def fill_batch_details():
     driver.instance.find_element(By.XPATH, email_two).send_keys('dusandev87@gmail.com')
     driver.instance.find_element(By.XPATH, email_three).send_keys('mocnibratdule@gmail.com')
     driver.instance.find_element(By.XPATH, email_four).send_keys('dushan@streamflow.com')
+
+
+def upload_csv():
+    pass

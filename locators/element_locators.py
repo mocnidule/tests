@@ -97,6 +97,7 @@ member_three = 'members.2'
 member_four = 'members.3'
 member_five = 'members.4'
 create_multi_sig_wallet_button = '//button[contains(text(),"Create Multisig Wallet")]'
+referral_input_field = '//input[@id="referral"]'
 
 # SOLFLARE WEB WALLET
 

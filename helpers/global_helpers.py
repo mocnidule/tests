@@ -237,18 +237,18 @@ def transfer_contract():
 
 
 def withdraw_contract():
+    explicit_wait(300)
     go_to_all_streams_page()
     more_options_button = "((//p[contains(text(),'" + read_contract_title() + \
                           "')]/parent::div/parent::div)[2]//button)[2]"
     options = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, more_options_button)))
     options.click()
-    explicit_wait(100)
     withdraw_contract_button = "(((//p[contains(text(),'" + read_contract_title() + "')]/parent::div/parent::div)[2]//button)[2\
     ]/parent::div/parent::div//button[contains(text(),'Withdraw')])"
     withdraw = WebDriverWait(driver.instance, 20).until(
         ec.presence_of_element_located((By.XPATH, withdraw_contract_button)))
     withdraw.click()
-    withdraw_button_confirm = "//p[contains(text(),'" + str(read_amount()) + "')]/parent::div//button[1]"
+    withdraw_button_confirm = "//*[contains(text(),'You can withdraw between 0')]/parent::div//button[2]"
     button = WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, withdraw_button_confirm)))
     button.click()
     approve_in_wallet()
@@ -319,3 +319,7 @@ def connect_sender_to_app():
     enter_password_and_submit()
     connect_sender_wallet()
     select_devnet()
+
+
+def add_referral():
+    driver.instance.find_element(By.XPATH, referral_input_field).send_keys('HG4sYqvkTfgBvGgZZhYfws4f8BoytTr1NmcDEwkKC2z8')
