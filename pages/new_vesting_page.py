@@ -18,9 +18,8 @@ def read_amount():
     return address
 
 
-def use_random_date_and_time():
+def set_date():
     set_random_date()
-    set_random_time()
 
 
 def enter_amount():
@@ -51,12 +50,6 @@ def set_random_date():
     explicit_wait(2)
     click(driver.instance, By.ID, end_date_input)
     driver.instance.find_element(By.ID, end_date_input).send_keys('26122027')
-
-
-def set_random_time():
-    wait_visibility(driver.instance, By.ID, start_time_input)
-    driver.instance.find_element(By.ID, start_time_input).send_keys(random_start_time())
-    driver.instance.find_element(By.ID, end_date_input).send_keys('26122032')
 
 
 def set_cliff():

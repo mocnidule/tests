@@ -3,7 +3,6 @@ from flaky import flaky
 from helpers.global_helpers import *
 
 
-@pytest.mark.all
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_seconds(setup):
@@ -19,13 +18,12 @@ def test_vesting_seconds(setup):
     find_contract_and_assert()
 
 
-@pytest.mark.all
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_minutes(setup):
     connect_sender_to_app()
     click_on_vesting_tab()
-    use_random_date_and_time()
+    set_date()
     use_minutes()
     enter_standard_contract_details()
     sender_send_email()
@@ -38,14 +36,13 @@ def test_vesting_minutes(setup):
     find_contract_and_assert()
 
 
-@pytest.mark.all
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_hours(setup):
     connect_sender_to_app()
     click_on_vesting_tab()
+    set_date()
     use_hours()
-    use_random_date_and_time()
     enter_standard_contract_details()
     sender_send_email()
     select_both_can_cancel()
@@ -57,14 +54,13 @@ def test_vesting_hours(setup):
     find_contract_and_assert()
 
 
-@pytest.mark.all
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_days(setup):
     connect_sender_to_app()
     click_on_vesting_tab()
+    set_date()
     use_days()
-    use_random_date_and_time()
     enter_standard_contract_details()
     sender_send_email()
     select_both_can_cancel()
@@ -76,14 +72,13 @@ def test_vesting_days(setup):
     find_contract_and_assert()
 
 
-@pytest.mark.all
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_months(setup):
     connect_sender_to_app()
     click_on_vesting_tab()
+    set_date()
     use_months()
-    use_random_date_and_time()
     enter_standard_contract_details()
     sender_send_email()
     select_both_can_cancel()
@@ -95,14 +90,13 @@ def test_vesting_months(setup):
     find_contract_and_assert()
 
 
-@pytest.mark.all
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_years(setup):
     connect_sender_to_app()
     click_on_vesting_tab()
+    set_date()
     use_years()
-    use_random_date_and_time()
     enter_standard_contract_details()
     sender_send_email()
     select_both_can_cancel()
@@ -114,7 +108,6 @@ def test_vesting_years(setup):
     find_contract_and_assert()
 
 
-@pytest.mark.all
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_and_sender_cancel(setup):
@@ -132,7 +125,6 @@ def test_vesting_and_sender_cancel(setup):
     cancel_contract()
 
 
-@pytest.mark.all
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_and_recipient_cancel(setup):
@@ -152,7 +144,6 @@ def test_vesting_and_recipient_cancel(setup):
     cancel_contract()
 
 
-@pytest.mark.all
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_and_sender_transfer(setup):
@@ -170,7 +161,6 @@ def test_vesting_and_sender_transfer(setup):
     transfer_contract()
 
 
-@pytest.mark.all
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_and_recipient_transfer(setup):
@@ -190,7 +180,6 @@ def test_vesting_and_recipient_transfer(setup):
     transfer_contract()
 
 
-@pytest.mark.all
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_big_number(setup):
@@ -208,7 +197,6 @@ def test_vesting_big_number(setup):
     handle_default_window()
 
 
-@pytest.mark.all
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_and_recipient_withdraw(setup):
@@ -225,9 +213,9 @@ def test_vesting_and_recipient_withdraw(setup):
     select_devnet()
     find_contract_and_assert()
     withdraw_contract()
+    wait_transaction_confirmed_alert()
 
 
-@pytest.mark.all
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_and_auto_withdraw(setup):
@@ -243,7 +231,6 @@ def test_vesting_and_auto_withdraw(setup):
     email_alert_success()
 
 
-@pytest.mark.all
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_and_add_referral(setup):
@@ -259,7 +246,6 @@ def test_vesting_and_add_referral(setup):
     email_alert_success()
 
 
-@pytest.mark.all
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_bulk(setup):
@@ -274,7 +260,6 @@ def test_vesting_bulk(setup):
     email_alert_success()
 
 
-@pytest.mark.all
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_with_cliff(setup):
@@ -287,7 +272,6 @@ def test_vesting_with_cliff(setup):
     handle_default_window()
 
 
-@pytest.mark.all
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_upload_csv(setup):
