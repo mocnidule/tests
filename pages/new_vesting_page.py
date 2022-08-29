@@ -47,7 +47,7 @@ def click_create_button():
 def set_random_date():
     wait_visibility(driver.instance, By.ID, end_date_input)
     click(driver.instance, By.ID, end_date_input)
-    driver.instance.find_element(By.ID, end_date_input).send_keys('26122027')
+    driver.instance.find_element(By.ID, end_date_input).send_keys('20271226')
 
 
 def set_cliff():
