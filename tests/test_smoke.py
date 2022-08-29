@@ -6,7 +6,7 @@ from pages.new_payment_page import fill_standard_details_for_payment, create_pay
 
 @pytest.mark.all
 @pytest.mark.smoke
-@flaky(max_runs=1, min_passes=1)
+@flaky(max_runs=2, min_passes=1)
 def test_vesting(setup):
     connect_sender_to_app()
     click_on_vesting_tab()
@@ -26,7 +26,7 @@ def test_vesting(setup):
 
 @pytest.mark.all
 @pytest.mark.smoke
-@flaky(max_runs=1, min_passes=1)
+@flaky(max_runs=2, min_passes=1)
 def test_payment(setup):
     connect_sender_to_app()
     click_on_payment_tab()
