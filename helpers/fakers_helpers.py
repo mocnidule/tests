@@ -16,12 +16,19 @@ def read_contract_title():
 
 
 def get_released_amount():
-    amount = random.randint(350, 450)
+    amount = random.randint(100, 500)
     return amount
 
 
 def get_amount():
     amount = random.randint(1000000, 10000000)
+    with open('./reporting/wallets/amount.txt', 'w') as file:
+        file.write(str(amount))
+    return amount
+
+
+def get_deposited_amount():
+    amount = random.randint(1000, 10000)
     with open('./reporting/wallets/amount.txt', 'w') as file:
         file.write(str(amount))
     return amount
@@ -54,7 +61,7 @@ def get_hours():
 
 
 def get_days():
-    days = random.randint(1, 90)
+    days = random.randint(1, 7)
     return days
 
 

@@ -18,7 +18,7 @@ def enter_deposited_amount():
         WebDriverWait(driver.instance, 2).until(ec.url_to_be('https://app.streamflow.finance/new-payment'))
         driver.instance.find_element(By.XPATH, amount_input).send_keys('0.1')
     except TimeoutException:
-        driver.instance.find_element(By.ID, deposited_amount_input_field).send_keys(get_amount())
+        driver.instance.find_element(By.ID, deposited_amount_input_field).send_keys(get_deposited_amount())
 
 
 def fill_standard_details_for_payment():
@@ -32,9 +32,6 @@ def fill_standard_details_for_payment():
 
 def create_payment_contract():
     click_create_stream_button()
-    approve_in_wallet()
-    handle_default_window()
-    find_contract_and_assert()
 
 
 def click_create_stream_button():

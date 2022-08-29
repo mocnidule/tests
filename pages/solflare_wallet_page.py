@@ -4,7 +4,6 @@ from pages.wallet_picker_page import select_solflare_web
 from helpers.element_helpers import *
 from locators.element_locators import *
 from helpers.window_helpers import *
-from reporting.allure import attach_screenshot
 
 
 def approve_in_wallet():
@@ -77,12 +76,9 @@ def connect_recipient_wallet():
     driver.instance.refresh()
     select_solflare_web()
     handle_new_window()
-    attach_screenshot(driver.instance, '1')
     click(driver.instance, By.XPATH, '//*[@data-testid="MenuIcon"]')
-    attach_screenshot(driver.instance, '2')
     click(driver.instance, By.XPATH, '//*[@viewBox="0 0 51 51"]')
     click(driver.instance, By.XPATH, '//img[@alt="BarpKdmxv3K8FaJ1KsH6mvGo9GrWNKsRbWu7CLEahAzv"]')
-    attach_screenshot(driver.instance, '6')
     handle_default_window()
     select_solflare_web()
     select_solflare_web()

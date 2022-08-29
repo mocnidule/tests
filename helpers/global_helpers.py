@@ -253,6 +253,7 @@ def withdraw_contract():
     button.click()
     approve_in_wallet()
     handle_default_window()
+    explicit_wait(10)
     attach_screenshot(driver.instance, 'Contract Withdrawn')
 
 
@@ -271,7 +272,17 @@ def cancel_contract():
 
 
 def top_up_contract():
-    pass
+    more_options_button = "((//p[contains(text(),'" + read_contract_title() + \
+                          "')]/parent::div/parent::div)[2]//button)[2]"
+    options = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, more_options_button)))
+    options.click()
+    top_up_button_ui = "(((//p[contains(text(),'" + read_contract_title() + "')]/parent::div/parent::div)[2]//button)[2\
+        ]/parent::div/parent::div//button[contains(text(),'Cancel')])"
+    top_up = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, top_up_button_ui)))
+    top_up.click()
+    approve_in_wallet()
+    handle_default_window()
+    attach_screenshot(driver.instance, 'Contract Top-ed UP')
 
 
 def sender_select_auto_withdrawal():
