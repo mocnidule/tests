@@ -55,8 +55,12 @@ def enter_mnemonic():
 
 def connect_sender_wallet():
     select_solflare_web()
-    handle_new_window()
-    click(driver.instance, By.XPATH, already_have_wallet_button)
+    try:
+        handle_new_window()
+        click(driver.instance, By.XPATH, already_have_wallet_button)
+    except IndexError:
+        handle_second_window()
+        click(driver.instance, By.XPATH, already_have_wallet_button)
     enter_mnemonic()
     click(driver.instance, By.XPATH, continue_button)
     driver.instance.find_element(By.XPATH, password).send_keys('mocMOC123')
