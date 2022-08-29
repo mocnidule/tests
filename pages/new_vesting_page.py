@@ -48,11 +48,6 @@ def set_random_date():
     wait_visibility(driver.instance, By.ID, end_date_input)
     click(driver.instance, By.ID, end_date_input)
     driver.instance.find_element(By.ID, end_date_input).send_keys('26122027')
-    attach_screenshot(driver.instance, 'End Date')
-    explicit_wait(5)
-    wait_visibility(driver.instance, By.ID, start_date_input)
-    driver.instance.find_element(By.ID, start_date_input).send_keys('26122023')
-    attach_screenshot(driver.instance, 'Start Date')
 
 
 def set_cliff():
