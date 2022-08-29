@@ -21,7 +21,6 @@ def read_amount():
 
 def set_date():
     set_random_date()
-    attach_screenshot()
 
 
 def enter_amount():
