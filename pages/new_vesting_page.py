@@ -3,7 +3,6 @@ from helpers.fakers_helpers import *
 from helpers.batch_helpers import *
 from pages.solflare_wallet_page import *
 from selenium.webdriver.common.action_chains import ActionChains
-from reporting.allure import attach_screenshot
 
 
 def create_vesting_contract_and_assert():
@@ -47,7 +46,8 @@ def click_create_button():
 def set_random_date():
     wait_visibility(driver.instance, By.ID, end_date_input)
     click(driver.instance, By.ID, end_date_input)
-    driver.instance.find_element(By.ID, end_date_input).send_keys('20271226')
+    driver.instance.find_element(By.ID, end_date_input).send_keys('12122023')
+    # driver.instance.find_element(By.ID, end_date_input).send_keys('26122027') # uncomment if using local
 
 
 def set_cliff():
