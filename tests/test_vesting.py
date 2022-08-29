@@ -44,8 +44,8 @@ def test_vesting_minutes(setup):
 def test_vesting_hours(setup):
     connect_sender_to_app()
     click_on_vesting_tab()
-    use_random_date_and_time()
     use_hours()
+    use_random_date_and_time()
     enter_standard_contract_details()
     sender_send_email()
     select_both_can_cancel()
@@ -63,8 +63,8 @@ def test_vesting_hours(setup):
 def test_vesting_days(setup):
     connect_sender_to_app()
     click_on_vesting_tab()
-    use_random_date_and_time()
     use_days()
+    use_random_date_and_time()
     enter_standard_contract_details()
     sender_send_email()
     select_both_can_cancel()
@@ -82,8 +82,8 @@ def test_vesting_days(setup):
 def test_vesting_months(setup):
     connect_sender_to_app()
     click_on_vesting_tab()
-    use_random_date_and_time()
     use_months()
+    use_random_date_and_time()
     enter_standard_contract_details()
     sender_send_email()
     select_both_can_cancel()
@@ -101,8 +101,8 @@ def test_vesting_months(setup):
 def test_vesting_years(setup):
     connect_sender_to_app()
     click_on_vesting_tab()
-    use_random_date_and_time()
     use_years()
+    use_random_date_and_time()
     enter_standard_contract_details()
     sender_send_email()
     select_both_can_cancel()

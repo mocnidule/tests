@@ -20,6 +20,7 @@ def read_amount():
 
 def use_random_date_and_time():
     set_random_date()
+    attach_screenshot(driver.instance, 'Time')
     set_random_time()
 
 
