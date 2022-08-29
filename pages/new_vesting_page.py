@@ -20,7 +20,6 @@ def read_amount():
 
 def use_random_date_and_time():
     set_random_date()
-    attach_screenshot(driver.instance, 'Time')
     set_random_time()
 
 
@@ -47,11 +46,11 @@ def click_create_button():
 
 def set_random_date():
     wait_visibility(driver.instance, By.ID, start_date_input)
-    driver.instance.find_element(By.ID, start_date_input).send_keys(random_start_date())
+    driver.instance.find_element(By.ID, start_date_input).send_keys('26122023')
     wait_visibility(driver.instance, By.ID, end_date_input)
-    explicit_wait(5)
+    explicit_wait(2)
     click(driver.instance, By.ID, end_date_input)
-    driver.instance.find_element(By.ID, end_date_input).send_keys(random_end_date())
+    driver.instance.find_element(By.ID, end_date_input).send_keys('26122027')
 
 
 def set_random_time():
