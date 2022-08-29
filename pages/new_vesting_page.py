@@ -3,6 +3,7 @@ from helpers.fakers_helpers import *
 from helpers.batch_helpers import *
 from pages.solflare_wallet_page import *
 from selenium.webdriver.common.action_chains import ActionChains
+from reporting.allure import attach_screenshot
 
 
 def create_vesting_contract_and_assert():
@@ -20,6 +21,7 @@ def read_amount():
 
 def set_date():
     set_random_date()
+    attach_screenshot()
 
 
 def enter_amount():
@@ -44,12 +46,14 @@ def click_create_button():
 
 
 def set_random_date():
-    wait_visibility(driver.instance, By.ID, start_date_input)
-    driver.instance.find_element(By.ID, start_date_input).send_keys('26122023')
     wait_visibility(driver.instance, By.ID, end_date_input)
-    explicit_wait(2)
     click(driver.instance, By.ID, end_date_input)
     driver.instance.find_element(By.ID, end_date_input).send_keys('26122027')
+    attach_screenshot(driver.instance, 'End Date')
+    explicit_wait(5)
+    wait_visibility(driver.instance, By.ID, start_date_input)
+    driver.instance.find_element(By.ID, start_date_input).send_keys('26122023')
+    attach_screenshot(driver.instance, 'Start Date')
 
 
 def set_cliff():
