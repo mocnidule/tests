@@ -226,12 +226,10 @@ def withdraw_contract():
                           "')]/parent::div/parent::div)[2]//button)[2]"
     options = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, more_options_button)))
     options.click()
-    attach_screenshot(driver.instance, 'bug')
     withdraw_contract_button = "(((//p[contains(text(),'" + read_contract_title() + "')]/parent::div/parent::div)[2]//button)[2\
     ]/parent::div/parent::div//button[contains(text(),'Withdraw')])"
     withdraw = WebDriverWait(driver.instance, 20).until(
         ec.presence_of_element_located((By.XPATH, withdraw_contract_button)))
-    attach_screenshot(driver.instance, 'bug 2')
     withdraw.click()
     withdraw_button_confirm = "//*[contains(text(),'You can withdraw between 0')]/parent::div//button[2]"
     button = WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, withdraw_button_confirm)))
