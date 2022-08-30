@@ -151,6 +151,7 @@ def test_vesting_and_recipient_cancel(setup):
     find_contract_and_assert()
     cancel_contract()
 
+
 @pytest.mark.all
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
@@ -209,22 +210,18 @@ def test_vesting_big_number(setup):
 
 @pytest.mark.all
 @pytest.mark.vesting
-@flaky(max_runs=2, min_passes=1)
+@flaky(max_runs=1, min_passes=1)
 def test_vesting_and_recipient_withdraw(setup):
     connect_sender_to_app()
     click_on_vesting_tab()
     enter_standard_contract_details()
-    sender_send_email()
     click_create_button()
     approve_in_wallet()
-    additional_approve_in_wallet()
     handle_default_window()
-    email_alert_success()
     connect_recipient_wallet()
     select_devnet()
     find_contract_and_assert()
     withdraw_contract()
-    wait_transaction_confirmed_alert()
 
 
 @pytest.mark.all

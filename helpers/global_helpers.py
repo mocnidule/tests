@@ -203,23 +203,6 @@ def enter_wallet_address():
     driver.instance.find_element(By.XPATH, recipient_input).send_keys('BarpKdmxv3K8FaJ1KsH6mvGo9GrWNKsRbWu7CLEahAzv')
 
 
-def sender_fill_big_amount_contract_details():
-    enter_big_number()
-    explicit_wait(2)
-    create_contract_title()
-    enter_contract_title()
-    enter_wallet_address()
-
-
-def recipient_withdraw_partial():
-    explicit_wait(30)
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, withdraw_button))).click()
-    WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, confirm_withdraw_button))).click()
-    approve_in_wallet()
-    handle_default_window()
-    attach_screenshot(driver.instance, 'Partial Withdraw')
-
-
 def transfer_contract():
     go_to_all_streams_page()
     more_options_button = "((//p[contains(text(),'" + read_contract_title() + \
@@ -237,16 +220,18 @@ def transfer_contract():
 
 
 def withdraw_contract():
-    explicit_wait(300)
+    explicit_wait(240)
     go_to_all_streams_page()
     more_options_button = "((//p[contains(text(),'" + read_contract_title() + \
                           "')]/parent::div/parent::div)[2]//button)[2]"
     options = WebDriverWait(driver.instance, 20).until(ec.presence_of_element_located((By.XPATH, more_options_button)))
     options.click()
+    attach_screenshot(driver.instance, 'bug')
     withdraw_contract_button = "(((//p[contains(text(),'" + read_contract_title() + "')]/parent::div/parent::div)[2]//button)[2\
     ]/parent::div/parent::div//button[contains(text(),'Withdraw')])"
     withdraw = WebDriverWait(driver.instance, 20).until(
         ec.presence_of_element_located((By.XPATH, withdraw_contract_button)))
+    attach_screenshot(driver.instance, 'bug 2')
     withdraw.click()
     withdraw_button_confirm = "//*[contains(text(),'You can withdraw between 0')]/parent::div//button[2]"
     button = WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, withdraw_button_confirm)))
@@ -286,11 +271,8 @@ def top_up_contract():
 
 
 def sender_select_auto_withdrawal():
+    explicit_wait(3)
     click(driver.instance, By.XPATH, auto_withdrawal)
-
-
-def recipient_wait_for_auto_withdrawal():
-    explicit_wait(30)
 
 
 def scroll_to_top():
