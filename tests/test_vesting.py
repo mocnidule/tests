@@ -210,22 +210,6 @@ def test_vesting_big_number(setup):
 
 @pytest.mark.all
 @pytest.mark.vesting
-@flaky(max_runs=1, min_passes=1)
-def test_vesting_and_recipient_withdraw(setup):
-    connect_sender_to_app()
-    click_on_vesting_tab()
-    enter_standard_contract_details()
-    click_create_button()
-    approve_in_wallet()
-    handle_default_window()
-    connect_recipient_wallet()
-    select_devnet()
-    find_contract_and_assert()
-    withdraw_contract()
-
-
-@pytest.mark.all
-@pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_and_auto_withdraw(setup):
     connect_sender_to_app()
