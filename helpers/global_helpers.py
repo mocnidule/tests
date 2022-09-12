@@ -278,6 +278,11 @@ def scroll_to_top():
     explicit_wait(2)
 
 
+def scroll_to_bottom():
+    driver.instance.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    explicit_wait(2)
+
+
 def find_contract_and_assert():
     go_to_all_streams_page()
     driver.instance.find_element(By.XPATH, search_contracts_input_field).send_keys(read_contract_title())

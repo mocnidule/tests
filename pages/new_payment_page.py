@@ -7,7 +7,7 @@ def enter_release_amount():
     wait_visibility(driver.instance, By.ID, release_amount_input_field)
     try:
         WebDriverWait(driver.instance, 2).until(ec.url_to_be('https://app.streamflow.finance/new-payment'))
-        driver.instance.find_element(By.XPATH, amount_input).send_keys('0.01')
+        driver.instance.find_element(By.ID, release_amount_input_field).send_keys('0.01')
     except TimeoutException:
         driver.instance.find_element(By.ID, release_amount_input_field).send_keys(get_released_amount())
 
@@ -16,7 +16,7 @@ def enter_deposited_amount():
     wait_visibility(driver.instance, By.ID, deposited_amount_input_field)
     try:
         WebDriverWait(driver.instance, 2).until(ec.url_to_be('https://app.streamflow.finance/new-payment'))
-        driver.instance.find_element(By.XPATH, amount_input).send_keys('0.1')
+        driver.instance.find_element(By.ID, deposited_amount_input_field).send_keys('0.1')
     except TimeoutException:
         driver.instance.find_element(By.ID, deposited_amount_input_field).send_keys(get_deposited_amount())
 

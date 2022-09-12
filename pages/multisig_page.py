@@ -7,6 +7,11 @@ def go_to_multi_sig_page():
     click(driver.instance, By.XPATH, multi_sig_page)
 
 
+def return_to_multi_sig_page():
+    scroll_to_top()
+    click(driver.instance, By.XPATH, multi_sig_page)
+
+
 def create_new_multi_sig_wallet():
     click(driver.instance, By.XPATH, new_multi_sig_wallet)
     driver.instance.find_element(By.ID, wallet_name).send_keys('Test Multi-sig')
@@ -19,3 +24,48 @@ def create_new_multi_sig_wallet():
     driver.instance.find_element(By.ID, member_four).send_keys('58VuwmGK9UwFuSFsWUoWM4bCyDTKyEKLmACSpxbJV4Np')  # ledger
     click(driver.instance, By.XPATH, create_multi_sig_wallet_button)
     approve_in_wallet()
+
+
+def go_to_new_vesting_from_multi_sig():
+    click(driver.instance, By.XPATH, new_vesting_multi_sig)
+
+
+def go_to_new_payment_from_multi_sig():
+    click(driver.instance, By.XPATH, new_payment_multi_sig)
+
+
+def go_to_proposals_tab():
+    click(driver.instance, By.XPATH, proposals_tab)
+
+
+def go_to_streams_tab():
+    click(driver.instance, By.XPATH, streams_tab_in_multi_sig)
+
+
+def click_approve_button_in_multi_sig():
+    click(driver.instance, By.XPATH, approve_button_multi_sig)
+
+
+def view_pending_proposals_only():
+    click(driver.instance, By.XPATH, pending_proposals_switch)
+
+
+def select_multi_sig():
+    click(driver.instance, By.XPATH, multi_sig_wallet)
+
+
+def find_proposal_and_approve():
+    approve_proposal_button = "((//div[contains(text(),'" + read_contract_title() + "')]/parent::div/parent::div" \
+                                                                                    "//button[1])) "
+    actions = ActionChains(driver.instance)
+    actions.move_to_element(approve_proposal_button).perform()
+    click(driver.instance, By.XPATH, approve_proposal_button)
+    click(driver.instance, By.XPATH, approve_proposal_button)
+    approve_in_wallet()
+    handle_default_window()
+    attach_screenshot(driver.instance, 'Contract Proposal Approved')
+
+
+def click_propose_streaming_contract():
+    click(driver.instance, By.XPATH, create_multisig_payment_proposal_button)
+
