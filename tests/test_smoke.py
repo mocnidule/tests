@@ -5,7 +5,7 @@ from pages.new_payment_page import fill_standard_details_for_payment, create_pay
 
 
 @pytest.mark.all
-@pytest.mark.smokex
+@pytest.mark.smoke
 @flaky(max_runs=2, min_passes=1)
 def test_vesting(setup):
     connect_sender_to_app()
