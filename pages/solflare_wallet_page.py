@@ -9,7 +9,6 @@ from reporting.allure import attach_screenshot
 
 def approve_in_wallet():
     handle_new_window()
-    attach_screenshot(driver.instance, 'Bug')
     click(driver.instance, By.XPATH, approve_button)
 
 
