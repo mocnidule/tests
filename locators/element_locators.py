@@ -104,8 +104,7 @@ approve_button_multi_sig = '//button[contains(text(),"Approve")]'
 pending_proposals_switch = '//button[@role="switch"]'
 proposals_tab = '//button[contains(text(),"Proposals")]'
 streams_tab_in_multi_sig = '(//button[contains(text(),"Streams")])[2]'
-multi_sig_wallet = '//div[contains(text(),"4QaarZkC…6vxYUCUr")]'
-spinner = '//div[@class="loader"]'
+multi_sig_wallet = '//span[@data-original="4QaarZkCNZkAqxkQJcevoTeFBBV2TZeDQM3e6vxYUCUr"]'
 
 # SOLFLARE WEB WALLET
 
