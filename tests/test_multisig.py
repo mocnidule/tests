@@ -1,21 +1,24 @@
 import pytest
 from flaky import flaky
 from pages.multisig_page import *
-from pages.new_payment_page import fill_standard_details_for_payment, create_payment_contract
+from pages.new_payment_page import fill_standard_details_for_payment
 
 
-# @pytest.mark.multisig
-# @flaky(max_runs=2, min_passes=1)
-# def test_create_multi_sig():
-#     enter_password_and_submit()
-#     connect_sender_wallet()
-#     select_devnet()
-#     create_new_multi_sig_wallet()
+@pytest.mark.all
+@pytest.mark.multisig
+@flaky(max_runs=2, min_passes=1)
+def test_create_multi_sig():
+    enter_password_and_submit()
+    connect_sender_wallet()
+    select_devnet()
+    go_to_multi_sig_page()
+    create_new_multi_sig_wallet()
 
 
-@pytest.mark.multisigx
-@flaky(max_runs=1, min_passes=1)
-def test_create_vesting_multi_sig_accept_execute():
+@pytest.mark.all
+@pytest.mark.multisig
+@flaky(max_runs=2, min_passes=1)
+def test_create_vesting_multi_sig_accept_execute(setup):
     enter_password_and_submit()
     connect_sender_wallet()
     select_devnet()
@@ -23,7 +26,7 @@ def test_create_vesting_multi_sig_accept_execute():
     select_multi_sig()
     go_to_new_vesting_from_multi_sig()
     enter_standard_contract_details()
-    click_create_button()
+    click_propose_vesting_contract()
     approve_in_wallet()
     handle_default_window()
     connect_recipient_wallet()
@@ -34,11 +37,13 @@ def test_create_vesting_multi_sig_accept_execute():
     select_multi_sig()
     go_to_proposals_tab()
     find_proposal_and_approve()
+    assert_contract_in_streams()
 
 
+@pytest.mark.all
 @pytest.mark.multisig
-@flaky(max_runs=1, min_passes=1)
-def test_payment_multi_sig_accept_execute():
+@flaky(max_runs=2, min_passes=1)
+def test_payment_multi_sig_accept_execute(setup):
     enter_password_and_submit()
     connect_sender_wallet()
     select_devnet()
@@ -57,9 +62,18 @@ def test_payment_multi_sig_accept_execute():
     select_multi_sig()
     go_to_proposals_tab()
     find_proposal_and_approve()
+    assert_contract_in_streams()
 
 
-# @pytest.mark.multisig
-# @flaky(max_runs=2, min_passes=1)
-# def test_payment_multi_sig_add_remove_member():
-#     pass
+@pytest.mark.all
+@pytest.mark.multisig
+@flaky(max_runs=2, min_passes=1)
+def test_payment_multi_sig_cancel():
+    pass
+
+
+@pytest.mark.all
+@pytest.mark.multisig
+@flaky(max_runs=2, min_passes=1)
+def test_payment_multi_sig_add_remove_member():
+    pass
