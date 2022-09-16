@@ -1,7 +1,7 @@
 absl-py
 allure-pytest
 allure-python-commons
-conda
+anaconda
 constantly
 construct
 construct-typing
