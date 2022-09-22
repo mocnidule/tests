@@ -55,12 +55,12 @@ def select_multi_sig():
 
 
 def find_proposal_and_approve():
-    approve_proposal_button = "((//div[contains(text(),'" + read_contract_title() + "')]/parent::div/parent::div" \
-                                                                                    "//button[1])) "
-    actions = ActionChains(driver.instance)
-    actions.move_to_element(approve_proposal_button).perform()
-    click(driver.instance, By.XPATH, approve_proposal_button)
-    click(driver.instance, By.XPATH, approve_proposal_button)
+    view_pending_proposals_only()
+    actionChains = ActionChains(driver.instance)
+    element = WebDriverWait(driver.instance, 20).until(
+        ec.visibility_of_element_located((By.XPATH, "((//div[contains(text(),'" + read_contract_title() + "')]/parent::div/parent::div" \
+                                                                                    "//button[1]))")))
+    actionChains.move_to_element(element).click().perform()
     approve_in_wallet()
     handle_default_window()
     attach_screenshot(driver.instance, 'Contract Proposal Approved')
@@ -69,3 +69,18 @@ def find_proposal_and_approve():
 def click_propose_streaming_contract():
     click(driver.instance, By.XPATH, create_multisig_payment_proposal_button)
 
+
+def click_propose_vesting_contract():
+    element = WebDriverWait(driver.instance, 10).until(
+        ec.visibility_of_element_located(
+            (By.XPATH, '//button[contains(text(),"Create Vesting Proposal")]')))
+    actionChains = ActionChains(driver.instance)
+    actionChains.move_to_element(element).click().perform()
+    click(driver.instance, By.XPATH, '//button[contains(text(),"Create Vesting Proposal")]')
+
+
+def assert_contract_in_streams():
+    wait_invisibility(driver.instance, By.XPATH, spinner)
+    scroll_to_top()
+    go_to_streams_tab()
+    wait_visibility(driver.instance, By.XPATH, "//p[contains(text(),'" + read_contract_title() + "')]")
