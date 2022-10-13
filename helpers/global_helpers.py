@@ -67,11 +67,13 @@ def click_toggle():
 
 
 def click_on_payment_tab():
-    click(driver.instance, By.XPATH, payment_tab)
+    click(driver.instance, By.XPATH, new_payment_button)
+    click(driver.instance, By.XPATH, stream_payment)
 
 
 def click_on_vesting_tab():
-    click(driver.instance, By.XPATH, vesting_tab)
+    click(driver.instance, By.XPATH, new_payment_button)
+    click(driver.instance, By.XPATH, vesting_payment)
 
 
 def enter_password_and_submit():

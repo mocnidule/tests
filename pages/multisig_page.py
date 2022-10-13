@@ -27,11 +27,13 @@ def create_new_multi_sig_wallet():
 
 
 def go_to_new_vesting_from_multi_sig():
-    click(driver.instance, By.XPATH, new_vesting_multi_sig)
+    click(driver.instance, By.XPATH, new_proposal_button)
+    click(driver.instance, By.XPATH, vesting_proposal)
 
 
 def go_to_new_payment_from_multi_sig():
-    click(driver.instance, By.XPATH, new_payment_multi_sig)
+    click(driver.instance, By.XPATH, new_proposal_button)
+    click(driver.instance, By.XPATH, stream_proposal)
 
 
 def go_to_proposals_tab():
