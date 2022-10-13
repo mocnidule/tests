@@ -86,3 +86,19 @@ def assert_contract_in_streams():
     scroll_to_top()
     go_to_streams_tab()
     wait_visibility(driver.instance, By.XPATH, "//p[contains(text(),'" + read_contract_title() + "')]")
+
+
+def propose_one_off_from_multi_sig():
+    click(driver.instance, By.XPATH, withdraw_modal_multi_sig)
+    driver.instance.find_element(By.XPATH, '//input[@id="address"]').send_keys('BarpKdmxv3K8FaJ1KsH6mvGo9GrWNKsRbWu7CLEahAzv')
+    try:
+        WebDriverWait(driver.instance, 3).until(ec.url_to_be('https://app.streamflow.finance/new-vesting'))
+        driver.instance.find_element(By.XPATH, '//input[@id="amount"]').send_keys('0.1')
+    except TimeoutException:
+        driver.instance.find_element(By.XPATH, '//input[@id="amount"]').send_keys(get_amount())
+    click(driver.instance, By.XPATH, '(//button[contains(text(),"Withdraw")])[2]')
+    approve_in_wallet()
+    handle_default_window()
+
+
+

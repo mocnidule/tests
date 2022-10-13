@@ -110,6 +110,7 @@ vesting_payment = '//a[contains(text(),"Vesting payment")]'
 vesting_proposal = '//a[contains(text(),"Vesting proposal")]'
 stream_payment = '//a[contains(text(),"Stream payment")]'
 stream_proposal = '//a[contains(text(),"Stream proposal")]'
+withdraw_modal_multi_sig = '//button[contains(text(),"Withdraw")]'
 
 # SOLFLARE WEB WALLET
 
