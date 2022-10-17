@@ -32,7 +32,7 @@ def test_payment(setup):
     click_on_payment_tab()
     fill_standard_details_for_payment()
     wait_wallet_connect_alert_disappear()
-    wait_wallet_connect_alert_disappear()
+    explicit_wait(5)
     create_payment_contract()
     approve_in_wallet()
     handle_default_window()
