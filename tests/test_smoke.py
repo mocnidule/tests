@@ -31,6 +31,7 @@ def test_payment(setup):
     connect_sender_to_app()
     click_on_payment_tab()
     fill_standard_details_for_payment()
+    wait_wallet_connect_alert_disappear()
     create_payment_contract()
     approve_in_wallet()
     handle_default_window()

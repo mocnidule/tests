@@ -171,6 +171,10 @@ def wait_transaction_confirmed_alert():
     wait_visibility(driver.instance, By.XPATH, transaction_confirmed_alert)
 
 
+def wait_wallet_connect_alert_disappear():
+    wait_invisibility(driver.instance, By.XPATH, wallet_connected_alert)
+
+
 def find_outgoing_and_assert():
     go_to_outgoing_page()
     transaction_title = "//p[contains(text(),'" + read_contract_title() + "')]"
