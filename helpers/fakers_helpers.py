@@ -16,26 +16,26 @@ def read_contract_title():
 
 
 def get_released_amount():
-    amount = random.randint(100, 500)
+    amount = random.randint(1, 2)
     return amount
 
 
 def get_amount():
-    amount = random.randint(1000000, 10000000)
+    amount = random.randint(1, 5)
     with open('./reporting/wallets/amount.txt', 'w') as file:
         file.write(str(amount))
     return amount
 
 
 def get_deposited_amount():
-    amount = random.randint(1000, 10000)
+    amount = random.randint(5, 15)
     with open('./reporting/wallets/amount.txt', 'w') as file:
         file.write(str(amount))
     return amount
 
 
 def get_big_amount():
-    amount = ['1000000', '10000000', '50000000']
+    amount = ['1', '3', '6']
     big = (random.choice(amount))
     return big
 
