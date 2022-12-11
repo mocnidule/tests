@@ -22,6 +22,9 @@ def enter_deposited_amount():
 
 
 def fill_standard_details_for_payment():
+    # wait_visibility(driver.instance, By.XPATH, '//button[contains(text(),"wSOL")]')
+    # driver.instance.find_element(By.XPATH, '//button[contains(text(),"wSOL")]').click()
+    # driver.instance.find_element(By.XPATH, '(//div[contains(text(),"TEST")])[1]').click()
     enter_deposited_amount()
     enter_release_amount()
     create_contract_title()

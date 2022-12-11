@@ -6,7 +6,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 
 def create_vesting_contract_and_assert():
-    click_create_button()
+    click_continue_button()
     approve_in_wallet()
     handle_default_window()
     find_contract_and_assert()
@@ -36,11 +36,8 @@ def enter_big_number():
     driver.instance.find_element(By.XPATH, amount_input).send_keys(get_big_amount())
 
 
-def click_create_button():
-    button = driver.instance.find_element('xpath', '//button[contains(text(),"Create Vesting Contract")]')
-    actions = ActionChains(driver.instance)
-    actions.move_to_element(button).perform()
-    click(driver.instance, By.XPATH, '//button[contains(text(),"Create Vesting Contract")]')
+def click_continue_button():
+    click(driver.instance, By.XPATH, '//button[contains(text(),"Continue")]')
 
 
 def set_random_date():

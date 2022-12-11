@@ -54,8 +54,14 @@ def enter_mnemonic():
     driver.instance.find_element(By.XPATH, mnemonic_12).send_keys('month')
 
 
+def select_web_wallet():
+    click(driver.instance, By.XPATH, wallet_connect)
+
+
 def connect_sender_wallet():
     select_solflare_web()
+    driver.instance.switch_to.frame(driver.instance.find_element(By.TAG_NAME, 'iframe'))
+    select_web_wallet()
     try:
         handle_new_window()
         click(driver.instance, By.XPATH, already_have_wallet_button)
@@ -72,7 +78,8 @@ def connect_sender_wallet():
     driver.instance.close()
     handle_default_window()
     select_solflare_web()
-    select_solflare_web()
+    driver.instance.switch_to.frame(driver.instance.find_element(By.TAG_NAME, 'iframe'))
+    select_web_wallet()
     connect_button_handler()
     handle_default_window()
 
@@ -92,4 +99,7 @@ def connect_recipient_wallet():
     click(driver.instance, By.XPATH, connect_button)
     handle_default_window()
 
+
+def chose_wallet_connect_page():
+    click(driver.instance, By.XPATH, wallet_connect)
 

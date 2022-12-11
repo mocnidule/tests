@@ -1,10 +1,13 @@
 from pages.new_vesting_page import *
 from pages.solflare_wallet_page import *
 from reporting.allure import attach_screenshot
-from selenium. webdriver. common. keys import Keys
+from selenium.webdriver.common.keys import Keys
 
 
 def enter_standard_contract_details():
+    driver.instance.find_element(By.XPATH, '(//button)[14]').click()
+    driver.instance.find_element(By.XPATH, '//input[@type="search"]').send_keys('TEST')
+    driver.instance.find_element(By.XPATH, '(//div[contains(text(),"TEST")])[1]').click()
     enter_amount()
     explicit_wait(2)
     create_contract_title()
@@ -59,7 +62,7 @@ def go_to_all_streams_page():
 
 
 def click_dropdown_menu():
-    click(driver.instance, By.XPATH, dropdown_button)
+    click(driver.instance, By.ID, dropdown_button)
 
 
 def click_toggle():
@@ -319,9 +322,39 @@ def try_transfer():
 
 def connect_sender_to_app():
     enter_password_and_submit()
+    chose_wallet_connect_page()
     connect_sender_wallet()
     select_devnet()
 
 
 def add_referral():
-    driver.instance.find_element(By.XPATH, referral_input_field).send_keys('HG4sYqvkTfgBvGgZZhYfws4f8BoytTr1NmcDEwkKC2z8')
+    driver.instance.find_element(By.XPATH, referral_input_field).send_keys(
+        'HG4sYqvkTfgBvGgZZhYfws4f8BoytTr1NmcDEwkKC2z8')
+
+
+def select_usdc_token():
+    try:
+        WebDriverWait(driver.instance, 2).until(ec.url_to_be('https://app.streamflow.finance/new-payment'))
+        click(driver.instance, By.XPATH, '//button[@id="headlessui-listbox-button-18"]')
+        driver.instance.find_element(By.XPATH, '//input[@type="search"]').send_keys('TEST')
+        click(driver.instance, By.XPATH, '(//div[contains(text(),"TEST")])[2]')
+    except TimeoutException:
+        pass
+
+
+def select_new_stream():
+    click(driver.instance, By.XPATH, new_stream_button)
+    explicit_wait(3)
+
+
+def click_create_stream():
+    click(driver.instance, By.XPATH, create_stream_button)
+
+
+def exit_form():
+    click(driver.instance, By.XPATH, '(//button)[10]')
+
+
+def click_to_stream():
+    click(driver.instance, By.XPATH, '(//button)[14]')
+
