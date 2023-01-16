@@ -1,13 +1,12 @@
 import pytest
 from flaky import flaky
 from helpers.global_helpers import *
-from pages.new_payment_page import fill_standard_details_for_payment, create_payment_contract
 
 
 @pytest.mark.all
 @pytest.mark.smoke
-@flaky(max_runs=5, min_passes=1)
-def test_vesting(setup):
+@flaky(max_runs=2, min_passes=1)
+def test_vesting_solana(setup):
     connect_sender_to_app()
     select_new_stream()
     enter_standard_contract_details()
@@ -18,5 +17,11 @@ def test_vesting(setup):
     approve_in_wallet()
     additional_approve_in_wallet()
     handle_default_window()
-    email_alert_success()
-    explicit_wait(15)
+    wait_stream_created_modal()
+
+
+# @pytest.mark.all
+# @pytest.mark.smoke
+# @flaky(max_runs=1, min_passes=1)
+# def test_vesting_aptos(setup):
+#     pass

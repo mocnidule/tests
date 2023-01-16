@@ -5,7 +5,7 @@ from selenium.webdriver.common.keys import Keys
 
 
 def enter_standard_contract_details():
-    driver.instance.find_element(By.XPATH, '(//button)[14]').click()
+    driver.instance.find_element(By.XPATH, '//button[contains(@class, "leading-6")]').click()
     driver.instance.find_element(By.XPATH, '//input[@type="search"]').send_keys('TEST')
     driver.instance.find_element(By.XPATH, '(//div[contains(text(),"TEST")])[1]').click()
     enter_amount()
@@ -62,7 +62,7 @@ def go_to_all_streams_page():
 
 
 def click_dropdown_menu():
-    click(driver.instance, By.ID, dropdown_button)
+    click(driver.instance, By.XPATH, dropdown_button)
 
 
 def click_toggle():
@@ -102,6 +102,7 @@ def select_devnet():
         pass
     except TimeoutException:
         click_dropdown_menu()
+        print('I clicked')
         click_toggle()
 
 
@@ -343,8 +344,8 @@ def select_usdc_token():
 
 
 def select_new_stream():
-    click(driver.instance, By.XPATH, new_stream_button)
     explicit_wait(3)
+    click(driver.instance, By.XPATH, new_stream_button)
 
 
 def click_create_stream():
@@ -357,4 +358,8 @@ def exit_form():
 
 def click_to_stream():
     click(driver.instance, By.XPATH, '(//button)[14]')
+
+
+def wait_stream_created_modal():
+    wait_visibility(driver.instance, By.XPATH, '//h3[contains(text(),"Stream Created")]')
 
