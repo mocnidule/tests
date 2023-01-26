@@ -66,7 +66,7 @@ def connect_sender_wallet_on_solana():
     try:
         handle_new_window()
         click(driver.instance, By.XPATH, already_have_wallet_button)
-    except IndexError:
+    except TypeError:
         handle_second_window()
         click(driver.instance, By.XPATH, already_have_wallet_button)
     enter_mnemonic_solana()
