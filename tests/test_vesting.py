@@ -7,7 +7,7 @@ from helpers.global_helpers import *
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_seconds(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_vesting_tab()
     enter_standard_contract_details()
     sender_send_email()
@@ -23,7 +23,7 @@ def test_vesting_seconds(setup):
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_minutes(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_vesting_tab()
     set_date()
     use_minutes()
@@ -42,7 +42,7 @@ def test_vesting_minutes(setup):
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_hours(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_vesting_tab()
     set_date()
     use_hours()
@@ -61,7 +61,7 @@ def test_vesting_hours(setup):
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_days(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_vesting_tab()
     set_date()
     use_days()
@@ -80,7 +80,7 @@ def test_vesting_days(setup):
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_months(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_vesting_tab()
     set_date()
     use_months()
@@ -99,7 +99,7 @@ def test_vesting_months(setup):
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_years(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_vesting_tab()
     set_date()
     use_years()
@@ -118,7 +118,7 @@ def test_vesting_years(setup):
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_and_sender_cancel(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_vesting_tab()
     enter_standard_contract_details()
     sender_send_email()
@@ -136,7 +136,7 @@ def test_vesting_and_sender_cancel(setup):
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_and_recipient_cancel(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_vesting_tab()
     enter_standard_contract_details()
     sender_send_email()
@@ -146,7 +146,7 @@ def test_vesting_and_recipient_cancel(setup):
     additional_approve_in_wallet()
     handle_default_window()
     email_alert_success()
-    connect_recipient_wallet()
+    connect_recipient_wallet_on_solana()
     select_devnet()
     find_contract_and_assert()
     cancel_contract()
@@ -156,7 +156,7 @@ def test_vesting_and_recipient_cancel(setup):
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_and_sender_transfer(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_vesting_tab()
     enter_standard_contract_details()
     sender_send_email()
@@ -174,7 +174,7 @@ def test_vesting_and_sender_transfer(setup):
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_and_recipient_transfer(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_vesting_tab()
     enter_standard_contract_details()
     sender_send_email()
@@ -184,7 +184,7 @@ def test_vesting_and_recipient_transfer(setup):
     additional_approve_in_wallet()
     handle_default_window()
     email_alert_success()
-    connect_recipient_wallet()
+    connect_recipient_wallet_on_solana()
     select_devnet()
     find_contract_and_assert()
     transfer_contract()
@@ -194,7 +194,7 @@ def test_vesting_and_recipient_transfer(setup):
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_big_number(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_vesting_tab()
     enter_big_number()
     explicit_wait(2)
@@ -212,7 +212,7 @@ def test_vesting_big_number(setup):
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_and_auto_withdraw(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_vesting_tab()
     enter_standard_contract_details()
     sender_send_email()
@@ -228,7 +228,7 @@ def test_vesting_and_auto_withdraw(setup):
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_and_add_referral(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_vesting_tab()
     enter_standard_contract_details()
     sender_send_email()
@@ -244,7 +244,7 @@ def test_vesting_and_add_referral(setup):
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_bulk(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_vesting_tab()
     click_add_recipient_4_times()
     fill_batch_details()
@@ -259,7 +259,7 @@ def test_vesting_bulk(setup):
 @pytest.mark.vesting
 @flaky(max_runs=2, min_passes=1)
 def test_vesting_with_cliff(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_vesting_tab()
     enter_standard_contract_details()
     set_cliff()

@@ -1,19 +1,7 @@
 from pages.new_vesting_page import *
-from pages.solflare_wallet_page import *
+from pages.wallet_page import *
 from reporting.allure import attach_screenshot
 from selenium.webdriver.common.keys import Keys
-
-
-def enter_standard_contract_details():
-    driver.instance.find_element(By.XPATH, '//button[contains(@class, "leading-6")]').click()
-    driver.instance.find_element(By.XPATH, '//input[@type="search"]').send_keys('TEST')
-    driver.instance.find_element(By.XPATH, '(//div[contains(text(),"TEST")])[1]').click()
-    enter_amount()
-    explicit_wait(2)
-    create_contract_title()
-    enter_contract_title()
-    enter_wallet_address()
-    attach_screenshot(driver.instance, 'Filled Vesting Details')
 
 
 def request_airdrop():
@@ -22,7 +10,7 @@ def request_airdrop():
     approve_in_wallet()
     handle_default_window()
     driver.instance.refresh()
-    select_solflare_web()
+    select_solflare()
     handle_new_window()
     WebDriverWait(driver.instance, 20).until(ec.element_to_be_clickable((By.XPATH, allow_button))).click()
     handle_default_window()
@@ -213,6 +201,11 @@ def enter_wallet_address():
     driver.instance.find_element(By.XPATH, recipient_input).send_keys('BarpKdmxv3K8FaJ1KsH6mvGo9GrWNKsRbWu7CLEahAzv')
 
 
+def enter_wallet_address_aptos():
+    wait_visibility(driver.instance, By.XPATH, recipient_input)
+    driver.instance.find_element(By.XPATH, recipient_input).send_keys('0xb53c0b6df1a3decec44f509c5dbb261c393dc5681f769de9355842e277c05e13')
+
+
 def transfer_contract():
     go_to_all_streams_page()
     more_options_button = "((//p[contains(text(),'" + read_contract_title() + \
@@ -321,10 +314,10 @@ def try_transfer():
     click(driver.instance, By.XPATH, confirm_transfer_button)
 
 
-def connect_sender_to_app():
+def connect_sender_to_solana():
     enter_password_and_submit()
     chose_wallet_connect_page()
-    connect_sender_wallet()
+    connect_sender_wallet_on_solana()
     select_devnet()
 
 
@@ -344,7 +337,7 @@ def select_usdc_token():
 
 
 def select_new_stream():
-    explicit_wait(3)
+    explicit_wait(10)
     click(driver.instance, By.XPATH, new_stream_button)
 
 
@@ -363,3 +356,35 @@ def click_to_stream():
 def wait_stream_created_modal():
     wait_visibility(driver.instance, By.XPATH, '//h3[contains(text(),"Stream Created")]')
 
+
+def select_aptos():
+    click(driver.instance, By.ID, 'headlessui-menu-button-2')
+    click(driver.instance, By.XPATH, '//div[contains(text(),"Aptos")]')
+    click(driver.instance, By.XPATH, '//button[contains(text(),"Change Network")]')
+
+
+def select_aptos_token_and_fill_details():
+    click(driver.instance, By.XPATH, '//button[contains(@class, "leading-6")]')
+    click(driver.instance, By.XPATH, '(//div[contains(text(),"APT")])[1]')
+    enter_amount()
+    explicit_wait(2)
+    create_contract_title()
+    enter_contract_title()
+    enter_wallet_address_aptos()
+    attach_screenshot(driver.instance, 'Filled Vesting Details')
+
+
+def enter_standard_contract_details():
+    driver.instance.find_element(By.XPATH, '//button[contains(@class, "leading-6")]').click()
+    driver.instance.find_element(By.XPATH, '//input[@type="search"]').send_keys('TEST')
+    driver.instance.find_element(By.XPATH, '(//div[contains(text(),"TEST")])[1]').click()
+    enter_amount()
+    explicit_wait(2)
+    create_contract_title()
+    enter_contract_title()
+    enter_wallet_address()
+    attach_screenshot(driver.instance, 'Filled Vesting Details')
+
+
+def disable_aw():
+    click(driver.instance, By.XPATH, '(//button[@role="switch"])[3]')

@@ -8,7 +8,7 @@ from pages.new_payment_page import fill_standard_details_for_payment, create_pay
 @pytest.mark.streaming
 @flaky(max_runs=2, min_passes=1)
 def test_streaming_seconds(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_payment_tab()
     fill_standard_details_for_payment()
     sender_send_email()
@@ -24,7 +24,7 @@ def test_streaming_seconds(setup):
 @pytest.mark.streaming
 @flaky(max_runs=2, min_passes=1)
 def test_streaming_minutes(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_payment_tab()
     use_minutes()
     fill_standard_details_for_payment()
@@ -41,7 +41,7 @@ def test_streaming_minutes(setup):
 @pytest.mark.streaming
 @flaky(max_runs=2, min_passes=1)
 def test_streaming_hours(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_payment_tab()
     use_hours()
     fill_standard_details_for_payment()
@@ -58,7 +58,7 @@ def test_streaming_hours(setup):
 @pytest.mark.streaming
 @flaky(max_runs=2, min_passes=1)
 def test_streaming_days(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_payment_tab()
     use_days()
     fill_standard_details_for_payment()
@@ -75,7 +75,7 @@ def test_streaming_days(setup):
 @pytest.mark.streaming
 @flaky(max_runs=2, min_passes=1)
 def test_streaming_weeks(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_payment_tab()
     use_weeks()
     fill_standard_details_for_payment()
@@ -92,7 +92,7 @@ def test_streaming_weeks(setup):
 @pytest.mark.streaming
 @flaky(max_runs=2, min_passes=1)
 def test_streaming_months(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_payment_tab()
     use_months()
     fill_standard_details_for_payment()
@@ -109,7 +109,7 @@ def test_streaming_months(setup):
 @pytest.mark.streaming
 @flaky(max_runs=2, min_passes=1)
 def test_streaming_years(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_payment_tab()
     use_years()
     fill_standard_details_for_payment()
@@ -126,7 +126,7 @@ def test_streaming_years(setup):
 @pytest.mark.streaming
 @flaky(max_runs=2, min_passes=1)
 def test_streaming_and_sender_cancel(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_payment_tab()
     fill_standard_details_for_payment()
     sender_send_email()
@@ -143,7 +143,7 @@ def test_streaming_and_sender_cancel(setup):
 @pytest.mark.streaming
 @flaky(max_runs=2, min_passes=1)
 def test_streaming_and_recipient_cancel(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_payment_tab()
     fill_standard_details_for_payment()
     sender_send_email()
@@ -153,7 +153,7 @@ def test_streaming_and_recipient_cancel(setup):
     additional_approve_in_wallet()
     handle_default_window()
     email_alert_success()
-    connect_recipient_wallet()
+    connect_recipient_wallet_on_solana()
     click_on_payment_tab()
     select_devnet()
     find_contract_and_assert()
@@ -164,7 +164,7 @@ def test_streaming_and_recipient_cancel(setup):
 @pytest.mark.streaming
 @flaky(max_runs=2, min_passes=1)
 def test_streaming_and_sender_transfer(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_payment_tab()
     fill_standard_details_for_payment()
     select_both_can_transfer()
@@ -182,7 +182,7 @@ def test_streaming_and_sender_transfer(setup):
 @pytest.mark.streaming
 @flaky(max_runs=2, min_passes=1)
 def test_streaming_and_recipient_transfer(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_payment_tab()
     fill_standard_details_for_payment()
     sender_send_email()
@@ -191,7 +191,7 @@ def test_streaming_and_recipient_transfer(setup):
     additional_approve_in_wallet()
     handle_default_window()
     email_alert_success()
-    connect_recipient_wallet()
+    connect_recipient_wallet_on_solana()
     click_on_payment_tab()
     select_devnet()
     find_contract_and_assert()
@@ -202,7 +202,7 @@ def test_streaming_and_recipient_transfer(setup):
 @pytest.mark.streaming
 @flaky(max_runs=2, min_passes=1)
 def test_streaming_and_recipient_withdraw(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_payment_tab()
     select_frequency_picker()
     click(driver.instance, By.XPATH, minute)
@@ -210,7 +210,7 @@ def test_streaming_and_recipient_withdraw(setup):
     create_payment_contract()
     approve_in_wallet()
     handle_default_window()
-    connect_recipient_wallet()
+    connect_recipient_wallet_on_solana()
     click_on_payment_tab()
     select_devnet()
     find_contract_and_assert()
@@ -221,7 +221,7 @@ def test_streaming_and_recipient_withdraw(setup):
 @pytest.mark.streaming
 @flaky(max_runs=2, min_passes=1)
 def test_streaming_auto_withdraw(setup):
-    connect_sender_to_app()
+    connect_sender_to_solana()
     click_on_payment_tab()
     fill_standard_details_for_payment()
     sender_send_email()

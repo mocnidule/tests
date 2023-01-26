@@ -1,8 +1,7 @@
 from helpers.global_helpers import *
 from helpers.fakers_helpers import *
 from helpers.batch_helpers import *
-from pages.solflare_wallet_page import *
-from selenium.webdriver.common.action_chains import ActionChains
+from pages.wallet_page import *
 
 
 def create_vesting_contract_and_assert():
@@ -22,13 +21,13 @@ def set_date():
     set_random_date()
 
 
-def enter_amount():
-    wait_visibility(driver.instance, By.XPATH, amount_input)
-    try:
-        WebDriverWait(driver.instance, 3).until(ec.url_to_be('https://app.streamflow.finance/new-vesting'))
-        driver.instance.find_element(By.XPATH, amount_input).send_keys('0.1')
-    except TimeoutException:
-        driver.instance.find_element(By.XPATH, amount_input).send_keys(get_amount())
+# def enter_amount():
+#     wait_visibility(driver.instance, By.XPATH, amount_input)
+#     try:
+#         WebDriverWait(driver.instance, 3).until(ec.url_to_be('https://app.streamflow.finance/new-vesting'))
+#         driver.instance.find_element(By.XPATH, amount_input).send_keys('0.001')
+#     except TimeoutException:
+#         driver.instance.find_element(By.XPATH, amount_input).send_keys(get_amount())
 
 
 def enter_big_number():
@@ -94,3 +93,8 @@ def fill_batch_details():
 
 def upload_csv():
     pass
+
+
+def enter_amount():
+    wait_visibility(driver.instance, By.XPATH, amount_input)
+    driver.instance.find_element(By.XPATH, amount_input).send_keys('0.00001')

@@ -162,3 +162,5 @@ dashboard_tab = '//button[contains(text(),"Home")]'
 wallet_connect = '//button[contains(text(),"Web wallet")]'
 new_stream_button = '//button[contains(text(),"New Stream")]'
 create_stream_button = '//button[contains(text(),"Create stream")]'
+not_now_button = '//button[contains(text(),"Not now")]'
+

@@ -8,8 +8,8 @@ def setup(url):
     driver.initialize()
     driver.instance.get(url)
     yield
-    for logs in driver.instance.get_log('browser'):
-        print(logs)
+    # for logs in driver.instance.get_log('browser'):
+    #     print(logs)
     attach_screenshot(driver.instance, 'Test Done')
     driver.quit_driver()
 
