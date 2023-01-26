@@ -15,9 +15,9 @@ def initialize():
     instance = webdriver.Firefox(options=options, firefox_profile=profile, executable_path=GeckoDriverManager().install())
     instance.implicitly_wait(2)
     # instance.install_addon(r'/Users/dusankovacevic/Desktop/streamflow-web-tests/driver/solflare_wallet-1.40.3.xpi')
-    instance.install_addon(r'/test_env/driver/solflare_wallet-1.40.3.xpi')
+    instance.install_addon(r'/var/lib/jenkins/workspace/test_env/driver/solflare_wallet-1.40.3.xpi')
     # instance.install_addon(r'/Users/dusankovacevic/Desktop/streamflow-web-tests/driver/rise_wallet-1.4.0.xpi')
-    instance.install_addon(r'/test_env/driver/rise_wallet-1.4.0.xpi')
+    instance.install_addon(r'/var/lib/jenkins/workspace/test_env/driver/rise_wallet-1.4.0.xpi')
     return instance
 
 
