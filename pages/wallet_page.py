@@ -63,12 +63,14 @@ def connect_sender_wallet_on_solana():
     select_solflare()
     driver.instance.switch_to.frame(driver.instance.find_element(By.TAG_NAME, 'iframe'))
     click(driver.instance, By.XPATH, '//button[contains(text(),"Extension")]')
-    try:
-        handle_new_window()
-        click(driver.instance, By.XPATH, already_have_wallet_button)
-    except TypeError:
-        handle_second_window()
-        click(driver.instance, By.XPATH, already_have_wallet_button)
+    # try:
+    #     handle_new_window()
+    #     click(driver.instance, By.XPATH, already_have_wallet_button)
+    # except TypeError:
+    #     handle_second_window()
+    #     click(driver.instance, By.XPATH, already_have_wallet_button)
+    handle_second_window()
+    click(driver.instance, By.XPATH, already_have_wallet_button)
     enter_mnemonic_solana()
     click(driver.instance, By.XPATH, continue_button)
     driver.instance.find_element(By.XPATH, password).send_keys('mocMOC123')
