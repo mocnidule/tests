@@ -69,7 +69,7 @@ def connect_sender_wallet_on_solana():
     # except TypeError:
     #     handle_second_window()
     #     click(driver.instance, By.XPATH, already_have_wallet_button)
-    handle_second_window()
+    handle_new_window()
     click(driver.instance, By.XPATH, already_have_wallet_button)
     enter_mnemonic_solana()
     click(driver.instance, By.XPATH, continue_button)
